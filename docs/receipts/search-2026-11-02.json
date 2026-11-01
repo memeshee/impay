@@ -1,0 +1,104 @@
+{
+ "date": "2026-11-02",
+ "network": "eip155:42220",
+ "network_name": "Celo",
+ "payer": "0xDbFe5c4d0256D2459bB216caB905999Ca41bE349",
+ "query": "Panama stablecoin trade finance Celo",
+ "count": 10,
+ "results_count": 10,
+ "usdc_before_atomic": 434699,
+ "usdc_after_atomic": 424699,
+ "usdc_spent_atomic": 10000,
+ "usdc_before": 0.434699,
+ "usdc_after": 0.424699,
+ "usdc_spent": 0.01,
+ "paid_usdc_atomic": 10000,
+ "response": {
+  "query": "Panama stablecoin trade finance Celo",
+  "count": 10,
+  "results": [
+   {
+    "title": "How to Buy Celo (CELO) in Panama with Credit Card Online",
+    "url": "https://www.bitget.com/how-to-buy/celo/panama",
+    "description": "Step-by-step guide with videos for beginners on how to buy Celo in Panama with a credit card. Learn to buy CELO and other crypto instantly and safely.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "How to Buy Celo Dollar (CUSD) in Panama with Credit Card Online",
+    "url": "https://www.bitget.com/how-to-buy/celo-dollar/panama",
+    "description": "The official currency of Panama is the Balboa (PAB), although USD is also widely used there, and you can purchase Celo Dollar(CUSD) in just a matter of minutes, no matter where you are in the country, from Panama City and Colon to David and San Miguelito.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "Celo: Ethereum Layer 2 for Payments, Stablecoins & DeFi",
+    "url": "https://celo.org/",
+    "description": "Celo is an Ethereum L2 powering fast, low-cost payments, native stablecoins, and DeFi apps \u2014 driving real-world adoption and financial inclusion worldwide.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "What is Celo? (CELO) | CELO Crypto Token | Kraken",
+    "url": "https://www.kraken.com/learn/what-is-celo",
+    "description": "Central to running the operations on its blockchain, Celo operates two native tokens: CELO, a governance asset for voting on changes to the protocol and Celo Dollars (cUSD), a stablecoin mirroring the value of the US dollar.",
+    "age": "July 13, 2026",
+    "publishedAt": "2026-07-13T00:00:00.000Z"
+   },
+   {
+    "title": "CELO Trading 2026 | Best Blockchain Exchanges & Brokers",
+    "url": "https://www.daytrading.com/celo",
+    "description": "As with any investment, traders can reduce risk by diversifying their portfolio, across other crypto and non-crypto assets. CELO is the native cryptocurrency of the Celo platform, which is a \u2018mobile-first decentralised payment system. It works alongside stablecoins such as cUSD to produce a less volatile payment currency.",
+    "age": "February 27, 2026",
+    "publishedAt": "2026-02-27T07:53:02.000Z"
+   },
+   {
+    "title": "Celo price today, CELO to USD live price, marketcap and chart | CoinMarketCap",
+    "url": "https://coinmarketcap.com/currencies/celo/",
+    "description": "The Celo ecosystem consists of a proof-of-stake blockchain technology stack, the CELO native token, 33 stablecoins representing 20 currencies including USDC, USD\u20ae, and USA\u20ae (all enabled as gas currencies) and several Mento stable assets (USDm, EURm, BRLm, XOFm, and more), along with XAUt0 (also gas-enabled) and infrastructure partners including Aave, Uniswap V3 and V4, Morpho, Curve, Velodrome, Self, Google Cloud, RedStone and Chainlink.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "Celo Challenges Tron's Leadership in Active Stablecoin Addresses",
+    "url": "https://www.coindesk.com/markets/2024/09/26/celo-challenges-trons-leadership-in-active-stablecoin-addresses",
+    "description": "As of writing, the cryptocurrency traded at 63 cents, representing a nearly 20% gain on a 24-hour basis, according to CoinDesk data. \"Improving worldwide access to basic payments/finance has always been a key way that ethereum can be good for the world, and it's great to see @Celo getting traction,\" Buterin said on X. Celo still lags behind Tron in terms of value of stablecoin ...",
+    "age": "September 26, 2024",
+    "publishedAt": "2024-09-26T11:07:40.000Z"
+   },
+   {
+    "title": "Balboa Corp Introduces Stablecoins to Enhance Panama's Shipping Finance",
+    "url": "https://www.coca.xyz/post/balboa-corp-introduces-stablecoins-to-enhance-panama-s-shipping-finance",
+    "description": "Balboa Corp, Panama's pioneering stablecoin issuer, has emerged from the shadows to announce its launch, setting the stage for a significant shift in the region\u2019s shipping and trade finance sectors. The company, now officially active as of today, April 13, 2026, has unveiled its stablecoin ...",
+    "age": "April 13, 2026",
+    "publishedAt": "2026-04-13T00:13:51.000Z"
+   },
+   {
+    "title": "How to Buy Celo (CELO) in Panama | Transak",
+    "url": "https://transak.com/buy/celo/panama",
+    "description": "Looking for the easiest way to buy Celo cryptocurrency in Panama? Try Transak, a platform to buy CELO using your credit card in Panama.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "What Is Celo? Mobile-First L2 and Stablecoin Rails | Support",
+    "url": "https://eco.com/support/en/articles/15183710-what-is-celo-mobile-first-l2-and-stablecoin-rails",
+    "description": "Celo is an Ethereum Layer 2 network built for mobile payments and stablecoin transfers, with a focus on emerging markets in Latin America and Africa. It launched in 2020 as a standalone Layer 1, then migrated to an Ethereum L2 on the OP Stack in March 2025. Its native stablecoins (cUSD, cEUR, ...",
+    "age": "September 16, 2026",
+    "publishedAt": "2026-09-16T00:00:00.000Z"
+   }
+  ],
+  "untrustedContent": true,
+  "next": {
+   "slug": "answer",
+   "route": "GET /api/answer",
+   "price": "$0.08"
+  }
+ },
+ "settlement_tx": "0xb60804bb039c0f28932508ff9ccc9c6f23ecc4002492ea35d7c2ec06566a0ee2",
+ "settlement_block": 81658914,
+ "settlement_status": "0x1",
+ "attempts": 1,
+ "elapsed_s": 4.4,
+ "payee": "0xabf4fabd7c416fb67202e5f9002389fc75e2a9d0"
+}

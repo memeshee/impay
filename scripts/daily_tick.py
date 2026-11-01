@@ -43,6 +43,16 @@ def b(x) -> bytes:
     return bytes.fromhex(h[2:] if h.startswith("0x") else h)
 
 
+def receipt_query(path: str) -> str | None:
+    """Query of an earlier receipt, or None. An unreadable receipt must never
+    take down the tick before it has paid anything."""
+    try:
+        with open(path) as f:
+            return json.load(f).get("query")
+    except (OSError, ValueError):
+        return None
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--query", required=True)
@@ -53,7 +63,8 @@ def main() -> int:
     local_date = datetime.now().strftime("%Y-%m-%d")
     receipt_path = os.path.join(ROOT, "docs", "receipts", f"search-{local_date}.json")
 
-    prior = [json.load(open(p)).get("query") for p in sorted(glob.glob(os.path.join(ROOT, "docs", "receipts", "search-*.json")))]
+    receipt_glob = os.path.join(ROOT, "docs", "receipts", "search-*.json")
+    prior = [q for q in map(receipt_query, sorted(glob.glob(receipt_glob))) if q]
     if args.query in prior:
         print(f"WARNING: query already used by an earlier receipt: {args.query}")
 

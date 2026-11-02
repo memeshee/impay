@@ -1,0 +1,104 @@
+{
+ "date": "2026-11-03",
+ "network": "eip155:42220",
+ "network_name": "Celo",
+ "payer": "0xDbFe5c4d0256D2459bB216caB905999Ca41bE349",
+ "query": "Celo USDC payroll for remote contractors",
+ "count": 10,
+ "results_count": 10,
+ "usdc_before_atomic": 424699,
+ "usdc_after_atomic": 414699,
+ "usdc_spent_atomic": 10000,
+ "usdc_before": 0.424699,
+ "usdc_after": 0.414699,
+ "usdc_spent": 0.01,
+ "paid_usdc_atomic": 10000,
+ "response": {
+  "query": "Celo USDC payroll for remote contractors",
+  "count": 10,
+  "results": [
+   {
+    "title": "USDC Payroll: How It Works, Fees and Settlement Times - Toku",
+    "url": "https://www.toku.com/resources/usdc-payroll-explained",
+    "description": "Income from employment or services: If USDC is received as payment for services (which is the case for most remote contractors), it is likely classified as income from business or profession rather than capital gains.",
+    "age": "July 29, 2026",
+    "publishedAt": "2026-07-29T00:00:00.000Z"
+   },
+   {
+    "title": "Stablecoin Payroll: How to Pay Workers in USDC and USDT | Support",
+    "url": "https://eco.com/support/en/articles/14799234-stablecoin-payroll-how-to-pay-workers-in-usdc-and-usdt",
+    "description": "See stablecoin automation platforms for the broader landscape. \u200b \u00b7 The worker is paid in fiat through a standard payroll system (Deel, Remote, Papaya, ADP) but elects to receive part or all of net pay as stablecoin.",
+    "age": "September 16, 2026",
+    "publishedAt": "2026-09-16T23:43:47.000Z"
+   },
+   {
+    "title": "How can contractors receive stablecoin payouts? | Remote Help Center",
+    "url": "https://support.remote.com/hc/en-us/articles/32057660588429-How-can-contractors-receive-stablecoin-payouts",
+    "description": "To receive payouts in USDC, contractors should select the Crypto option (when available) rather than the Stripe option (which is for fiat currencies only). If the Crypto option isn't visible, it means the you aren\u2019t eligible.",
+    "age": "November 21, 2024",
+    "publishedAt": "2024-11-21T07:08:52.000Z"
+   },
+   {
+    "title": "Empower your contractors with borderless payments: Remote launches stablecoin payouts | Remote",
+    "url": "https://remote.com/blog/payroll/crypto-payments",
+    "description": "At Remote, we understand the challenges of managing global talent. So, we\u2019re excited to announce that you can now pay contractors in stablecoins, starting with USD Coin (USDC).",
+    "age": "August 10, 2026",
+    "publishedAt": "2026-08-10T15:51:16.000Z"
+   },
+   {
+    "title": "Remote enables USDC crypto payouts for contractors",
+    "url": "https://finance.yahoo.com/news/remote-enables-usdc-crypto-payouts-120000494.html",
+    "description": "Some people might even start using ... to create an account, they can decide how they want to get paid: in a local currency on a bank account or in USDC....",
+    "age": "December 17, 2024",
+    "publishedAt": "2024-12-17T18:43:25.000Z"
+   },
+   {
+    "title": "Remote's New USDC Payment Option: What You Need to Know - OneSafe Blog",
+    "url": "https://www.onesafe.io/blog/remote-usdc-payment-contractor-payroll",
+    "description": "Remote has launched a payment option allowing U.S.-based companies to pay contractors in 69 countries using USDC (USD Coin).",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "How to Pay Employees & Contractors in USDC | Rise",
+    "url": "https://www.riseworks.io/resources/crypto-payroll-guides/how-to-pay-employees-and-contractors-in-usdc",
+    "description": "Crypto payroll doesn\u2019t mean skipping compliance. In fact, it demands more rigor. ... For full-time employees, Rise\u2019s Employer of Record (EOR) solution allows you to offer compliant employment, benefits, and salaries in fiat, USDC, or a hybrid of both without opening local entities. Both USDC and USDT are USD-pegged stablecoins used for cross-border contractor payroll, but the decision involves more than market cap.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "How to Get USDC on Celo: A Detailed How-To Guide",
+    "url": "https://www.usdc.com/learn/how-to-get-usdc-on-celo",
+    "description": "One thing that makes Celo different is that it runs on a proof-of-stake (PoS) system as opposed to using energy-hungry mining like Bitcoin\u2019s proof-of-work (PoW) system. Celo relies on a group of trusted participants, called validators, to keep the network secure and process transactions.",
+    "age": "July 25, 2025",
+    "publishedAt": "2025-07-25T16:09:46.000Z"
+   },
+   {
+    "title": "How to Run Payroll in USDC (2026)",
+    "url": "https://stablecoininsider.org/how-to-run-payroll-in-usdc/",
+    "description": "It is also not the same as paying freelancers. How to pay contractors in USDC is the 1099 accounts-payable path. This page is for W-2 (or equivalent) employees after payroll has already approved gross-to-net.",
+    "age": "September 3, 2026",
+    "publishedAt": "2026-09-03T06:45:15.000Z"
+   },
+   {
+    "title": "6 Best Stablecoin Payroll Platforms in 2026 - Toku",
+    "url": "https://www.toku.com/resources/best-stablecoin-payroll-platforms",
+    "description": "Their wallet and treasury models differ, so teams should compare the actual funding and withdrawal path rather than treating every stablecoin feature as equivalent. Remote publishes USDC payouts for eligible contractors through Stripe Connect and ...",
+    "age": "September 28, 2026",
+    "publishedAt": "2026-09-28T00:00:00.000Z"
+   }
+  ],
+  "untrustedContent": true,
+  "next": {
+   "slug": "answer",
+   "route": "GET /api/answer",
+   "price": "$0.08"
+  }
+ },
+ "settlement_tx": "0x3bcad28f4a59391ae36a9f1f7996388bd3db22789f94154a5581bfa7f121521b",
+ "settlement_block": 81745287,
+ "settlement_status": "0x1",
+ "attempts": 1,
+ "elapsed_s": 4.3,
+ "payee": "0xabf4fabd7c416fb67202e5f9002389fc75e2a9d0"
+}

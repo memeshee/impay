@@ -1,0 +1,104 @@
+{
+ "date": "2026-11-04",
+ "network": "eip155:42220",
+ "network_name": "Celo",
+ "payer": "0xDbFe5c4d0256D2459bB216caB905999Ca41bE349",
+ "query": "Costa Rica stablecoin B2B invoicing Celo",
+ "count": 10,
+ "results_count": 10,
+ "usdc_before_atomic": 414699,
+ "usdc_after_atomic": 404699,
+ "usdc_spent_atomic": 10000,
+ "usdc_before": 0.414699,
+ "usdc_after": 0.404699,
+ "usdc_spent": 0.01,
+ "paid_usdc_atomic": 10000,
+ "response": {
+  "query": "Costa Rica stablecoin B2B invoicing Celo",
+  "count": 10,
+  "results": [
+   {
+    "title": "How to Buy Celo (CELO) in Costa Rica with Credit Card Online",
+    "url": "https://www.bitget.com/how-to-buy/celo/costa-rica",
+    "description": "Step-by-step guide with videos for beginners on how to buy Celo in Costa Rica with a credit card. Learn to buy CELO and other crypto instantly and safely.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "Celo in Costa Rica | SpectroCoin",
+    "url": "https://spectrocoin.com/celo-in-Costa-Rica.html",
+    "description": "Exchange Celo in Costa Rica. SpectroCoin provides safe and easy to use exchange and blockchain wallet for BTC, ETH, XEM, Dash cryptocurrency. Sign up now!",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "How to Buy Celo Dollar (CUSD) in Costa Rica with Credit Card Online",
+    "url": "https://www.bitget.com/how-to-buy/celo-dollar/costa-rica",
+    "description": "Step-by-step guide with videos for beginners on how to buy Celo Dollar in Costa Rica with a credit card. Learn to buy CUSD and other crypto instantly and safely.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "Costa Rica e-invoicing: factura electr\u00f3nica \u2014 Invopop",
+    "url": "https://invopop.com/coverage/costa-rica",
+    "description": "Costa Rica requires electronic invoices across B2G, B2B and B2C, cleared through the Direcci\u00f3n General de Tributaci\u00f3n. See the requirements in full.",
+    "age": "August 12, 2026",
+    "publishedAt": "2026-08-12T10:25:09.000Z"
+   },
+   {
+    "title": "Costa Rican Colon to Celo: Convert CRC to CELO Instantly | Switchere",
+    "url": "https://switchere.com/converter/crc/celo",
+    "description": "Alternatively, users can use a local fiat on-ramp to buy a stablecoin like Celo Dollar (cUSD) with CRC, and then swap cUSD for CELO on a decentralized exchange (DEX) within the Celo mobile-first DeFi ecosystem. This two-step process provides access to the Celo network's assets. Celo's core infrastructure is designed for smartphone users, which is highly relevant in regions with high mobile penetration like Costa Rica.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "Costa Rica\u2019s e-invoicing regulations: B2G and B2B compliance",
+    "url": "https://www.openenvoy.com/resources/electronic-invoicing-in-costa-rica",
+    "description": "Since 2018, all businesses and government suppliers in Costa Rica must issue electronic invoices for every transaction.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "E-invoicing in Costa Rica | Avalara",
+    "url": "https://www.avalara.com/us/en/vatlive/country-guides/south-america/costa-rica-e-services/e-invoicing-in-costa-rica.html",
+    "description": "Businesses must issue electronic ... for five years. Business-to-business (B2B) e-invoicing is also mandatory in Costa Rica for all VAT-registered businesses....",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "12 Best Stablecoin Payment Providers Compared (2026) | Due",
+    "url": "https://www.opendue.com/blog/best-stablecoin-payment-providers",
+    "description": "Best for: Wallet infrastructure providers, remittance platforms, and B2B fintechs in Africa and LATAM that need compliant virtual accounts and stablecoin settlement as a backend service. Africa (11): Kenya, Nigeria, Ghana, Tanzania, Uganda, Rwanda, South Africa, Ethiopia, Senegal, Cameroon, Cote d'Ivoire \u00b7 Americas (5): US, Brazil, Mexico, Argentina, Colombia ... Ethereum, Solana, Polygon, Tron, Celo.",
+    "age": "April 30, 2026",
+    "publishedAt": "2026-04-30T00:00:00.000Z"
+   },
+   {
+    "title": "Stablecoin Invoicing Guide for B2B (2026) | Billed",
+    "url": "https://billed.app/hub/online-payments/stablecoin-invoicing-guide/",
+    "description": "Stablecoin invoicing is sending a bill denominated in a fiat-pegged cryptocurrency (USDC, USDT, PYUSD) and accepting payment to a wallet or processor address. For B2B suppliers with cross-border buyers, it lets you settle in minutes on a public ...",
+    "age": "May 20, 2026",
+    "publishedAt": "2026-05-20T10:00:00.000Z"
+   },
+   {
+    "title": "Briefing document & Podcast: E-Invoicing & E-Reporting in Costa Rica \u2013 VATupdate",
+    "url": "https://www.vatupdate.com/2026/03/26/briefing-document-podcast-e-invoicing-e-reporting-in-costa-rica/",
+    "description": "Version 4.4 of the electronic invoicing ... signatures, submitting them to the tax authority for real-time validation. ... All B2B transactions in Costa Rica are subject to mandatory electronic invoicing....",
+    "age": "March 26, 2026",
+    "publishedAt": "2026-03-26T00:00:00.000Z"
+   }
+  ],
+  "untrustedContent": true,
+  "next": {
+   "slug": "answer",
+   "route": "GET /api/answer",
+   "price": "$0.08"
+  }
+ },
+ "settlement_tx": "0x4f492a3967d010cd0a5874a7d8e0eaf9c8c83ca3d6ed09b0ce7d0a2550a4d147",
+ "settlement_block": 81831701,
+ "settlement_status": "0x1",
+ "attempts": 1,
+ "elapsed_s": 4.6,
+ "payee": "0xabf4fabd7c416fb67202e5f9002389fc75e2a9d0"
+}

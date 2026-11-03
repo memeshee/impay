@@ -1,0 +1,22 @@
+{
+ "attested_at_block": 81831726,
+ "tx": "0x690d2ce053ca648620402243f0ae2ea4d3081b307b02a0890afd440c66474018",
+ "from": "0xDbFe5c4d0256D2459bB216caB905999Ca41bE349",
+ "codes_on_wire": [
+  "celo_b97cdbaae280",
+  "celo_invoiceagent"
+ ],
+ "erc8021_schema": 0,
+ "snapshot": {
+  "date": "2026-11-03",
+  "settlements_claimed": 2,
+  "settlements_verified": 2,
+  "independent_payers": 0,
+  "paid_service_calls": 14,
+  "spend_usd": 0.046,
+  "source": "https://celo.uconfidant.tech/api/proof"
+ },
+ "registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+ "agent_id": 10005,
+ "verify": "python scripts/verify_attribution.py"
+}

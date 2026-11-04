@@ -190,9 +190,12 @@ async def handle_text(update: Update, text: str, ctx=None) -> None:
         await msg.reply_text(
             f"Held for review as {held['id']} (risk {screen.get('risk_level')}).\n"
             f"{('Why: ' + '; '.join(reasons) + chr(10)) if reasons else ''}"
-            "An operator can release it with /release " + held["id"] + ", "
-            "or drop it with /drop " + held["id"] + "."
+            "The agent is screening the name and the payout wallet now and will report\n"
+            "back within a minute — a sanctions match blocks this invoice for good.\n"
+            "An operator can clear the hold with /release " + held["id"] +
+            ", or drop it with /drop " + held["id"] + "."
         )
+
         await ping_operator(ctx, held, reasons)
         return
     # The screener already decided; asking for a tap on every clean invoice is
@@ -491,6 +494,19 @@ async def ping_operator(ctx, inv: dict, reasons: list[str]) -> None:
             log.exception("operator ping failed")
 
 
+def _release_state(inv: dict) -> str:
+    """What a release actually did: cleared a TRUST hold, not a clearance to pay.
+
+    Saying "can be paid now" before the sanctions screen had run was a promise the
+    agent broke a minute later by blocking the invoice.
+    """
+    if (inv.get("services_status") or "") == "done":
+        return "Screening already ran clean, so the link is payable now:"
+    return ("Screening is running now (~40s). The link is payable only if it comes "
+            "back clean — a name that matches a sanctions list blocks the invoice, "
+            "and a blocked invoice cannot be released again:")
+
+
 async def release(update: Update, ctx) -> None:
     msg = must_msg(update)
     if not _is_operator(update):
@@ -504,13 +520,22 @@ async def release(update: Update, ctx) -> None:
     if not inv:
         await msg.reply_text(f"No held invoice {ctx.args[0]}.")
         return
-    await msg.reply_text(f"Released {inv['id']}\n{pay_url(inv['id'])}")
+    # The release clears the TRUST hold. It does not clear a sanctions screen, and
+    # saying "can be paid now" before the screen has run was a promise the agent then
+    # broke by blocking the invoice.
+    screened = (inv.get("services_status") or "") == "done"
+    state = _release_state(inv)
+    await msg.reply_text(f"Released {inv['id']} — the operator hold is cleared.\n{state}\n"
+                         f"{pay_url(inv['id'])}")
     if inv.get("creator_chat_id") and getattr(ctx, "bot", None) is not None:
         try:
             await ctx.bot.send_message(
                 chat_id=inv["creator_chat_id"],
-                text=f"{inv['id']} was cleared by an operator and can be paid now:\n"
-                     f"{pay_url(inv['id'])}")
+                text=(f"{inv['id']} was cleared by an operator and is payable now:\n"
+                      f"{pay_url(inv['id'])}" if screened else
+                      f"{inv['id']} was cleared by an operator. Its screening is running "
+                      f"now; the link becomes payable if it comes back clean:\n"
+                      f"{pay_url(inv['id'])}"))
         except Exception:  # noqa: BLE001
             log.exception("could not notify the invoice creator of the release")
 

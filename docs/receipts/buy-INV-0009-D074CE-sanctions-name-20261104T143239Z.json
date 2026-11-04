@@ -1,0 +1,30 @@
+{
+  "status": 200,
+  "headers": {
+    "Date": "Wed, 04 Nov 2026 14:32:39 GMT",
+    "Content-Type": "application/json; charset=utf-8",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "access-control-allow-origin": "*",
+    "access-control-expose-headers": "PAYMENT-REQUIRED, PAYMENT-RESPONSE, WWW-Authenticate, Payment-Receipt, X-Cache, X-Credits-Balance, X-Metered-Usd, X-Idempotent-Replay, X-Replayed-Answer, X-Agent402-Allowance, Retry-After, Mcp-Session-Id, Mcp-Protocol-Version, Last-Event-Id, Link, X-Total-Count, X-Async-Recommended, Location, Preference-Applied, Sunset",
+    "Cache-Control": "no-store, private",
+    "etag": "W/\"3d3-1IuosWyhzdJvky63VLBvd2EcyYw\"",
+    "payment-response": "eyJzdWNjZXNzIjp0cnVlLCJwYXllciI6IjB4RGJGZTVjNGQwMjU2RDI0NTliQjIxNmNhQjkwNTk5OUNhNDFiRTM0OSIsInRyYW5zYWN0aW9uIjoiMHgyMWJmN2E3ZTJhM2Q5ZTNlNjQ3ODY4ZmIzOGRmMTY2NWFiYzdmODA0NjIwYzg3ZDhlYTE2MTcxZTViNzQ1YWFhIiwibmV0d29yayI6ImVpcDE1NTo0MjIyMCJ9",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "Server": "cloudflare",
+    "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+    "vary": "Accept-Encoding",
+    "x-content-type-options": "nosniff",
+    "x-railway-request-id": "rFQudCzYRa2PBGQiwUFZXw",
+    "x-request-id": "ddab8182-cc0c-446d-9f81-937b5ca39571",
+    "Content-Encoding": "gzip",
+    "x-hikari-trace": "cdg1.8vsn",
+    "x-railway-edge": "cdg1",
+    "cf-cache-status": "DYNAMIC",
+    "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=nsMXApNFy%2Bt5aNf2MdW46VMm30RagDQdWds3GmPqRqRQEoUqE1j7QTnoSPFz%2Ff6K1QYVD7mdOjdekgtwHkvvobs9%2FL%2BvlcVUOgqQhaDarKph9%2BZOcG5XOlxx4f5sJMd%2FfQ%3D%3D\"}]}",
+    "CF-RAY": "a5545441d9009f1e-FRA",
+    "alt-svc": "h3=\":443\"; ma=86400"
+  },
+  "text": "{\"query\":\"Marco\",\"verdict\":\"match\",\"exactCount\":0,\"containsCount\":9,\"allTokensCount\":0,\"matches\":[{\"id\":\"9344\",\"name\":\"DIODATO DEL GALLO, Marco Marino\",\"type\":\"individual\",\"matchType\":\"contains\"},{\"id\":\"10628\",\"name\":\"OLIVAS OJEDA, Marco Antonio\",\"type\":\"individual\",\"matchType\":\"contains\"},{\"id\":\"10899\",\"name\":\"BELTRAN LEYVA, Marcos Arturo\",\"type\":\"individual\",\"matchType\":\"contains\"},{\"id\":\"12314\",\"name\":\"FLOREZ SEPULVEDA, Marco Tulio\",\"type\":\"individual\",\"matchType\":\"contains\"},{\"id\":\"16128\",\"name\":\"DI LAURO, Marco\",\"type\":\"individual\",\"matchType\":\"contains\"}],\"entriesOnList\":19484,\"listsChecked\":[{\"list\":\"OFAC SDN\",\"authority\":\"US Treasury OFAC\",\"url\":\"https://sanctionslist.ofac.treas.gov/\"}],\"listsFetchedAt\":\"2026-11-04T08:33:36.538Z\",\"confirmBeforeActing\":\"a match is a string match against a published list, not a confirmed identification. Names repeat and addresses are reused; confirm the entry against the list itself (the SDN id is given) before acting on it\"}"
+}

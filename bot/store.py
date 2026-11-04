@@ -183,9 +183,14 @@ def release(inv_id: str, *, payout_address: str | None,
     inv["created_block"] = created_block
     if payout_address:
         inv["payout_address"] = payout_address
-    inv["services_status"] = "pending"
+    # Never re-buy a screen that already ran clean: resetting this to "pending" made
+    # a released invoice unpayable again (the page said "screening in progress") and
+    # charged the screening fee twice.
+    if (inv.get("services_status") or "") != "done":
+        inv["services_status"] = "pending"
     _save(db)
     return inv
+
 
 
 def get(inv_id: str) -> dict | None:
@@ -198,9 +203,16 @@ def open_invoices() -> list[dict]:
 
 
 def invoices_awaiting_services() -> list[dict]:
-    """Invoices minted but not yet enriched with the services the agent buys."""
+    """Invoices minted but not yet enriched with the services the agent buys.
+
+    Held invoices are included: they are created with services_status="held" and
+    used to only be screened after an operator released them — so the operator
+    cleared a hold blind and the invoice then went blocked by a sanctions match the
+    agent could have reported before anyone acted.
+    """
     return [i for i in _load()["invoices"].values()
-            if i.get("services_status") in ("pending", "retry")]
+            if i.get("services_status") in ("pending", "retry", "held")]
+
 
 
 def set_services(inv_id: str, status: str, enrichment: dict | None = None) -> dict | None:

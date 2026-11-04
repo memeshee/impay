@@ -1,0 +1,30 @@
+{
+  "status": 200,
+  "headers": {
+    "Date": "Wed, 04 Nov 2026 14:32:52 GMT",
+    "Content-Type": "application/json; charset=utf-8",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "access-control-allow-origin": "*",
+    "access-control-expose-headers": "PAYMENT-REQUIRED, PAYMENT-RESPONSE, WWW-Authenticate, Payment-Receipt, X-Cache, X-Credits-Balance, X-Metered-Usd, X-Idempotent-Replay, X-Replayed-Answer, X-Agent402-Allowance, Retry-After, Mcp-Session-Id, Mcp-Protocol-Version, Last-Event-Id, Link, X-Total-Count, X-Async-Recommended, Location, Preference-Applied, Sunset",
+    "Cache-Control": "no-store, private",
+    "etag": "W/\"28c-onjnpqSFMS0DG0lk8pXs2fyFfCs\"",
+    "payment-response": "eyJzdWNjZXNzIjp0cnVlLCJwYXllciI6IjB4RGJGZTVjNGQwMjU2RDI0NTliQjIxNmNhQjkwNTk5OUNhNDFiRTM0OSIsInRyYW5zYWN0aW9uIjoiMHhiZjFiMzdiNzcxYjBmZDQ2ZGM3NmZlOGY3ZDQyOGJjNmQ5ODk5MWRmYjExYTcyZDBiMTBkMzY5Y2M1NGQwMmM1IiwibmV0d29yayI6ImVpcDE1NTo0MjIyMCJ9",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "Server": "cloudflare",
+    "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+    "vary": "Accept-Encoding",
+    "x-content-type-options": "nosniff",
+    "x-railway-request-id": "oEW5NzVtQFuf9QJXlt7tkg",
+    "x-request-id": "8be7528c-158a-45cb-aaff-a5580fcf6ce9",
+    "Content-Encoding": "gzip",
+    "x-hikari-trace": "waw1.j60f",
+    "x-railway-edge": "waw1",
+    "cf-cache-status": "DYNAMIC",
+    "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=xVEn5Z%2FjssHlJINHiZ%2FGXf66SJNI60e9kbuyJEfWA0LXbjkGLeY%2F9qcjGaTGP4Zlo%2BvwMcaq4J5%2BYS0iDmZ6RQoYR0%2BctB0zLqZ71bj7uuMR6PeBJR8e7d34DposPs1awg%3D%3D\"}]}",
+    "CF-RAY": "a55454910de8980c-WAW",
+    "alt-svc": "h3=\":443\"; ma=86400"
+  },
+  "text": "{\"query\":\"Jack Miller\",\"verdict\":\"no_match_on_lists_checked\",\"exactCount\":0,\"containsCount\":0,\"allTokensCount\":0,\"matches\":[],\"entriesOnList\":19484,\"listsChecked\":[{\"list\":\"OFAC SDN\",\"authority\":\"US Treasury OFAC\",\"url\":\"https://sanctionslist.ofac.treas.gov/\"}],\"listsFetchedAt\":\"2026-11-04T08:33:36.538Z\",\"notAClearance\":\"this value does not appear on the lists named in `listsChecked`, as of the dates in `listsFetchedAt`. That is NOT a clearance: lists change without notice, entities appear under many spellings, and ownership rules put parties in scope who are named on no list. Use this as one input to your own screening, never as the decision\"}"
+}

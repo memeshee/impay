@@ -8,7 +8,7 @@ invoice is never payable, and the settlement window starts at release.
 
 import pytest
 
-from bot import jev, serve, store
+from bot import jev, main, serve, store
 
 PAY_TO = "0x86E95581E41946ED84956433a8a9c836bCbA636c"
 OTHER = "0x1111111111111111111111111111111111111111"
@@ -172,3 +172,59 @@ def test_a_refused_page_never_needs_a_live_rate(monkeypatch):
 
     assert open_row
     assert serve.invoice_payload(open_row)["payable"] is True
+
+
+# ------------------------------------- release: a hold is not a clearance to pay
+def test_a_held_invoice_is_screened_before_any_operator_acts():
+    """Held invoices used to sit unscreened until release, so the operator cleared a
+    hold blind and the invoice then went blocked by a match nobody could see."""
+    held = _held()
+    assert held["services_status"] == "held"
+    assert held["id"] in [i["id"] for i in store.invoices_awaiting_services()]
+    green = {"receipts": [{"slug": "sanctions-name", "ok": True,
+                           "result": {"verdict": "no_match_on_lists_checked", "clean": True}}],
+             "blocked": False, "reason": None, "spent_usd": 0.005, "at": 1}
+    after = store.set_services(held["id"], "done", green)
+    assert after["status"] == "held"          # still an operator's call
+    assert after["services_status"] == "done"  # but now the verdict is known
+
+
+def test_a_sanctions_match_blocks_a_held_invoice_instead_of_leaving_it_queued():
+    held = _held()
+    red = {"receipts": [{"slug": "sanctions-name", "ok": True,
+                         "result": {"verdict": "match", "clean": False}}],
+           "blocked": True, "reason": "sanctions-name flagged: verdict=match for 'Marco Silva'",
+           "spent_usd": 0.005, "at": 1}
+    after = store.set_services(held["id"], "done", red)
+    assert after["status"] == "blocked"       # not a ticket an operator can clear
+    assert store.release(held["id"], payout_address=None, created_block=1) is None
+
+
+def test_release_keeps_a_clean_screen_so_the_page_is_payable_immediately():
+    """Release used to reset services_status to "pending", so an already-screened
+    invoice became unpayable again ("screening in progress") and the fee was paid twice."""
+    # USD, so pricing needs no FX fetch: this test is about the release, and the
+    # offline suite blocks sockets by design.
+    held = store.create({"amount": "10", "currency": "USD", "recipient": "Marco Silva"},
+                        {"decision": "review", "suspicious_p": 0.4, "duplicate_p": 0.9,
+                         "pressure_p": 0.1, "risk_level": "review"},
+                        creator="marco", payout_address=OTHER, creator_chat_id=7,
+                        status="held")
+    green = {"receipts": [{"slug": "sanctions-name", "ok": True,
+                           "result": {"verdict": "no_match_on_lists_checked", "clean": True}}],
+             "blocked": False, "reason": None, "spent_usd": 0.005, "at": 1}
+    store.set_services(held["id"], "done", green)
+    released = store.release(held["id"], payout_address=None, created_block=1)
+    assert released["status"] == "open" and released["services_status"] == "done"
+    payload = serve.invoice_payload(store.get(held["id"]))
+    assert payload["payable"] is True and not payload.get("screening_pending")
+    assert 'id="sendbox"' in serve.render_invoice(payload)
+
+
+def test_the_release_reply_does_not_promise_payment_before_the_screen_ran():
+    """'can be paid now' was sent 14s before the screen blocked the invoice."""
+    unscreened = {"id": "INV-1", "services_status": "pending"}
+    assert "payable now" not in main._release_state(unscreened)
+    assert "payable only if it comes back clean" in main._release_state(unscreened)
+    screened = {"id": "INV-1", "services_status": "done"}
+    assert "payable now" in main._release_state(screened)

@@ -1,0 +1,31 @@
+{
+  "status": 200,
+  "headers": {
+    "Date": "Wed, 04 Nov 2026 14:32:29 GMT",
+    "Content-Type": "application/json; charset=utf-8",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "access-control-allow-origin": "*",
+    "access-control-expose-headers": "PAYMENT-REQUIRED, PAYMENT-RESPONSE, WWW-Authenticate, Payment-Receipt, X-Cache, X-Credits-Balance, X-Metered-Usd, X-Idempotent-Replay, X-Replayed-Answer, X-Agent402-Allowance, Retry-After, Mcp-Session-Id, Mcp-Protocol-Version, Last-Event-Id, Link, X-Total-Count, X-Async-Recommended, Location, Preference-Applied, Sunset",
+    "Cache-Control": "no-store, private",
+    "etag": "W/\"56-paM1pui8v4l9qN1idAqaXDwT/sQ\"",
+    "payment-response": "eyJzdWNjZXNzIjp0cnVlLCJwYXllciI6IjB4RGJGZTVjNGQwMjU2RDI0NTliQjIxNmNhQjkwNTk5OUNhNDFiRTM0OSIsInRyYW5zYWN0aW9uIjoiMHg5MzRiYzI2MjgyMzNkMzU5ZjgzYjZlOGRhZmU0YWQyMzc3ZGRiZTE5MDRlMjVmZGZhODE3MTc0YWRmNWI3Y2FlIiwibmV0d29yayI6ImVpcDE1NTo0MjIyMCJ9",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "Server": "cloudflare",
+    "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+    "vary": "Accept-Encoding",
+    "x-cache": "hit",
+    "x-content-type-options": "nosniff",
+    "x-railway-request-id": "T0ZoJgHOTI6f9C8X-_9nXA",
+    "x-request-id": "7978b90d-68bd-4fcf-891a-556caabac91c",
+    "x-hikari-trace": "lax1.z1hw",
+    "x-railway-edge": "lax1",
+    "cf-cache-status": "DYNAMIC",
+    "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=AbK3aREJzdwST57TKpPhbxi%2BxJqPaFKFakqUFQS6zDIjtZj0qKi3ssDqlfZLFaUfRZjmGZWOOU0TaJCBlBe0291eD3lyx5Kc8Gsggj%2FZ4DsSmQF7fhVRTbwHdE4KHm4hZw%3D%3D\"}]}",
+    "Content-Encoding": "zstd",
+    "CF-RAY": "a55453fe9e73eb28-SJC",
+    "alt-svc": "h3=\":443\"; ma=86400"
+  },
+  "text": "{\"from\":\"USD\",\"to\":\"BRL\",\"amount\":1,\"rate\":5.4934,\"result\":5.4934,\"date\":\"2026-11-03\"}"
+}

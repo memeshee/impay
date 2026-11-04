@@ -210,3 +210,36 @@ def test_a_phone_still_gets_the_deep_link_as_the_primary_action(base_url):
     assert 'id="sendbox"' in body  # the manual path is still there
 
 
+def test_transfer_calldata_is_a_real_erc20_transfer():
+    """Frame it wrong and the wallet signs a transfer of the wrong amount, to the
+    wrong address — so the encoding is asserted, not eyeballed."""
+    usdt = "0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e"
+    data = serve._transfer_calldata(usdt, 20000)          # 0.02 at 6 decimals
+    assert data.startswith("0xa9059cbb")
+    assert len(data) == 2 + 8 + 64 + 64
+    assert data[10:74] == "0" * 24 + usdt[2:].lower()     # recipient, left-padded
+    assert data[74:] == format(20000, "x").rjust(64, "0")  # atomic amount
+    # 18-decimal token: 25 wBRL
+    wbrl = "0xd76f5faf6888e24d9f04bf92a0c8b921fe4390e0"
+    assert serve._transfer_calldata(wbrl, 25 * 10 ** 18).endswith(
+        format(25 * 10 ** 18, "x").rjust(64, "0"))
+    for bad in ("0x1234", usdt):
+        with pytest.raises(ValueError):
+            serve._transfer_calldata(bad, 0)
+
+
+def test_the_page_offers_a_browser_wallet_but_only_reveals_it_to_one(base_url):
+    """celo:// and ethereum: have no handler in a desktop browser, so the pay button
+    is an injected-wallet button, shipped hidden and revealed by the provider."""
+    inv = _invoice()
+    code, _, body = get(f"{base_url}/i/{inv['id']}")
+    assert code == 200
+    assert '<div id="walletbox" hidden>' in body
+    assert 'id="paywallet"' in body
+    assert 'data-calldata="0xa9059cbb' in body
+    assert 'data-chain="0xa4ec"' in body          # Celo mainnet, hex
+    assert "eip6963:announceProvider" in body     # multi-wallet discovery
+    assert "eth_sendTransaction" in body
+
+
+

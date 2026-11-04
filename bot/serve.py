@@ -325,6 +325,10 @@ def invoice_payload(inv: dict) -> dict:
         "amount_atomic": req["amount_atomic"],
         "asset_contract": req["asset_contract"],
         "chain": req["chain"],
+        "chain_id_hex": hex(x402.CELO_CHAIN_ID),
+        # A browser wallet signs eth_sendTransaction with the calldata we hand it,
+        # so the ERC-20 transfer is encoded here instead of described in prose.
+        "transfer_calldata": _transfer_calldata(req["asset_contract"], req["amount_atomic"]),
         "fx": req.get("fx"),
         # Wallet deep links. Celo wallets (MiniPay/Valora) take the first;
         # generic EVM wallets that understand EIP-681 take the second.
@@ -395,9 +399,111 @@ _COPY_JS = r'''<script>
 </script>'''
 
 
+# A desktop browser cannot open celo:// or ethereum: — no handler is registered by
+# any extension. What a browser wallet CAN do is sign the transfer we hand it, so
+# the page looks for an injected provider (EIP-6963 announcements, then the legacy
+# window.ethereum) and only then reveals the pay button.
+_WALLET_JS = r'''<script>
+(function () {
+  var btn = document.getElementById('paywallet');
+  if (!btn) { return; }
+  var box = document.getElementById('walletbox');
+  var note = document.getElementById('walletnote');
+  var provider = null, name = 'browser wallet';
+  var want = (btn.getAttribute('data-chain') || '').toLowerCase();
+  var payee = (btn.getAttribute('data-payee') || '').toLowerCase();
+
+  function offer(p, label) {
+    if (provider || !p || typeof p.request !== 'function') { return; }
+    provider = p;
+    if (label) { name = label; }
+    btn.textContent = btn.textContent.replace('a browser wallet', name);
+    box.hidden = false;
+  }
+
+  // EIP-6963: every announced provider, so a browser with several wallets does not
+  // depend on whichever one won the window.ethereum race.
+  window.addEventListener('eip6963:announceProvider', function (ev) {
+    var detail = ev.detail || {};
+    offer(detail.provider, (detail.info || {}).name);
+  });
+  try { window.dispatchEvent(new Event('eip6963:requestProvider')); } catch (e) {}
+  if (window.ethereum) { offer(window.ethereum, null); }
+
+  function say(text) { note.textContent = text; }
+
+  btn.addEventListener('click', function () {
+    btn.disabled = true;
+    say('Waiting for your wallet\u2026');
+    var from;
+    provider.request({ method: 'eth_requestAccounts' })
+      .then(function (accounts) {
+        from = accounts && accounts[0];
+        if (!from) { throw new Error('the wallet returned no account'); }
+        if (from.toLowerCase() === payee) {
+          throw new Error('that is the payout wallet, and a transfer it initiates cannot '
+                          + 'settle its own invoice — switch accounts');
+        }
+        return provider.request({ method: 'wallet_switchEthereumChain',
+                                  params: [{ chainId: want }] })
+          .catch(function (err) {
+            if (err && err.code === 4902) {
+              return provider.request({ method: 'wallet_addEthereumChain', params: [{
+                chainId: want, chainName: 'Celo',
+                rpcUrls: ['https://forno.celo.org'],
+                nativeCurrency: { name: 'CELO', symbol: 'CELO', decimals: 18 },
+                blockExplorerUrls: ['https://celoscan.io']
+              }] });
+            }
+            if (err && err.code === 4001) { throw err; }   // user refused the switch
+            return null;                                    // already on Celo
+          });
+      })
+      .then(function () {
+        return provider.request({ method: 'eth_sendTransaction', params: [{
+          from: from,
+          to: btn.getAttribute('data-to'),
+          data: btn.getAttribute('data-calldata')
+        }] });
+      })
+      .then(function (tx) {
+        var short = String(tx).slice(0, 12) + '\u2026';
+        note.innerHTML = 'Sent <span class="mono">' + short + '</span> \u2014 waiting for '
+                       + 'Celo to show the transfer. This page flips to settled on its own.';
+        btn.textContent = 'Sent \u2014 waiting for Celo';
+      })
+      .catch(function (err) {
+        btn.disabled = false;
+        var msg = (err && (err.message || err.code)) || 'the wallet did not send it';
+        say('Wallet: ' + msg);
+      });
+  });
+})();
+</script>'''
+
+
+
 
 def _short(addr: str) -> str:
     return f"{addr[:8]}…{addr[-6:]}" if addr and len(addr) > 20 else (addr or "")
+
+
+def _transfer_calldata(token: str, amount_atomic: int) -> str:
+    """ERC-20 `transfer(address,uint256)` calldata.
+
+    A wallet extension signs what it is given, so the transfer has to be encoded
+    server-side: `transfer` selector, the recipient left-padded to 32 bytes, the
+    atomic amount left-padded to 32 bytes. Getting this wrong sends the wrong
+    token amount to the wrong place, so it is asserted in the tests.
+    """
+    addr = str(token).lower().removeprefix("0x")
+    if len(addr) != 40:
+        raise ValueError(f"not an address: {token!r}")
+    amount = int(amount_atomic)
+    if amount <= 0:
+        raise ValueError("cannot encode a non-positive transfer")
+    return "0xa9059cbb" + addr.rjust(64, "0") + format(amount, "x").rjust(64, "0")
+
 
 
 PAGE_CSS = """
@@ -565,7 +671,22 @@ def render_invoice(payload: dict) -> str:
         if payload.get("mobile"):
             parts.append(f'<a class="btn" href="{_e(payload["pay_link_celo"])}">'
                          f'Pay {_e(amount)} in MiniPay / Valora</a>')
+        # A browser wallet is the only desktop path that can actually send money,
+        # so it is offered first — hidden until an injected provider answers, so a
+        # browser without one never sees a button that cannot work.
+        parts.append(
+            '<div id="walletbox" hidden>'
+            f'<button class="btn" id="paywallet" type="button" '
+            f'data-to="{_e(payload.get("asset_contract") or "")}" '
+            f'data-calldata="{_e(payload.get("transfer_calldata") or "")}" '
+            f'data-chain="{_e(payload.get("chain_id_hex") or "")}" '
+            f'data-payee="{_e(payload.get("pay_to") or "")}">'
+            f'Pay {_e(amount)} with a browser wallet</button>'
+            '<div class="note" id="walletnote">Signs the transfer in your wallet; '
+            'this page still settles from the chain, not from the wallet’s word.</div>'
+            '</div>')
         parts.append(manual)
+
         if payload.get("onramp_url"):
             parts.append(f'<a class="btn ghost" href="{_e(payload["onramp_url"])}" '
                          'target="_blank" rel="noreferrer">'
@@ -593,6 +714,7 @@ def render_invoice(payload: dict) -> str:
   <dl class="rows">{row_html}</dl>
   {body}
   {_COPY_JS}
+  {_WALLET_JS}
   <div class="foot">
     Settled by an ERC-8004 agent · <span class="mono">agentId {AGENT_ID}</span> ·
     <a href="{REPO}" target="_blank" rel="noreferrer">source</a><br>

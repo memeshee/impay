@@ -1,0 +1,30 @@
+{
+  "status": 200,
+  "headers": {
+    "Date": "Wed, 04 Nov 2026 14:04:21 GMT",
+    "Content-Type": "application/json; charset=utf-8",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "access-control-allow-origin": "*",
+    "access-control-expose-headers": "PAYMENT-REQUIRED, PAYMENT-RESPONSE, WWW-Authenticate, Payment-Receipt, X-Cache, X-Credits-Balance, X-Metered-Usd, X-Idempotent-Replay, X-Replayed-Answer, X-Agent402-Allowance, Retry-After, Mcp-Session-Id, Mcp-Protocol-Version, Last-Event-Id, Link, X-Total-Count, X-Async-Recommended, Location, Preference-Applied, Sunset",
+    "Cache-Control": "no-store, private",
+    "etag": "W/\"25a-oE7yHL9bZi4bBL5QXikS8Bn0VAY\"",
+    "payment-response": "eyJzdWNjZXNzIjp0cnVlLCJwYXllciI6IjB4RGJGZTVjNGQwMjU2RDI0NTliQjIxNmNhQjkwNTk5OUNhNDFiRTM0OSIsInRyYW5zYWN0aW9uIjoiMHg4MjQ2NjlkODdmZThmYTI4ODcxYjJkOGRjODk3NjM0ODFhOWM4MjI5OTZkMTVjMjlmNTczM2IzMzkxYzRlN2U3IiwibmV0d29yayI6ImVpcDE1NTo0MjIyMCJ9",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "Server": "cloudflare",
+    "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+    "vary": "Accept-Encoding",
+    "x-content-type-options": "nosniff",
+    "x-railway-request-id": "9GjraEW3TBGTMGQEnPRhug",
+    "x-request-id": "29e7f3e0-db90-4ea3-9d6e-428c96d1818d",
+    "Content-Encoding": "gzip",
+    "x-hikari-trace": "lax1.z1hw",
+    "x-railway-edge": "lax1",
+    "cf-cache-status": "DYNAMIC",
+    "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=EjH4efxaslPAGZAhQIaOifF9kXTvv1QU%2BzbuwmR3cd0qDbVoeMfgsXkbs0q8ZOyqhioHKEhu7D4sH6t5Fb4%2FdOCPgfB6LiWHlvVaWEwnmEKSUH2Dk6eYWopLjiMsfd5n2A%3D%3D\"}]}",
+    "CF-RAY": "a5542acbb9d62ea2-LAX",
+    "alt-svc": "h3=\":443\"; ma=86400"
+  },
+  "text": "{\"query\":\"Jack\",\"verdict\":\"match\",\"exactCount\":0,\"containsCount\":1,\"allTokensCount\":0,\"matches\":[{\"id\":\"57976\",\"name\":\"DERMAN GUZMAN, Jack Peter\",\"type\":\"individual\",\"matchType\":\"contains\"}],\"entriesOnList\":19484,\"listsChecked\":[{\"list\":\"OFAC SDN\",\"authority\":\"US Treasury OFAC\",\"url\":\"https://sanctionslist.ofac.treas.gov/\"}],\"listsFetchedAt\":\"2026-11-04T08:33:36.538Z\",\"confirmBeforeActing\":\"a match is a string match against a published list, not a confirmed identification. Names repeat and addresses are reused; confirm the entry against the list itself (the SDN id is given) before acting on it\"}"
+}

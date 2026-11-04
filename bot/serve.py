@@ -312,7 +312,17 @@ def invoice_payload(inv: dict) -> dict:
     if status not in PAYABLE_STATUSES:
         out["payable"] = False
         return out
+    # The watcher refuses to settle an invoice whose paid screening has not finished
+    # (watch.screening_allows), so a page that invites payment while it is still
+    # pending asks a payer to send money the agent cannot accept — and if the screen
+    # then comes back blocked, that money is stranded. One predicate, both paths.
+    from . import watch as _watch
+    if not _watch.screening_allows(inv):
+        out["payable"] = False
+        out["screening_pending"] = True
+        return out
     out["payable"] = True
+
     try:
         req = x402.create_payment_request(inv, pay_to)
     except (ValueError, KeyError, RuntimeError) as exc:
@@ -328,7 +338,8 @@ def invoice_payload(inv: dict) -> dict:
         "chain_id_hex": hex(x402.CELO_CHAIN_ID),
         # A browser wallet signs eth_sendTransaction with the calldata we hand it,
         # so the ERC-20 transfer is encoded here instead of described in prose.
-        "transfer_calldata": _transfer_calldata(req["asset_contract"], req["amount_atomic"]),
+        # `to` is the token contract; the RECIPIENT is the first argument here.
+        "transfer_calldata": _transfer_calldata(pay_to, req["amount_atomic"]),
         "fx": req.get("fx"),
         # Wallet deep links. Celo wallets (MiniPay/Valora) take the first;
         # generic EVM wallets that understand EIP-681 take the second.
@@ -432,8 +443,38 @@ _WALLET_JS = r'''<script>
 
   function say(text) { note.textContent = text; }
 
+  // Switching is an ask, not a guarantee: a wallet can silently stay on another
+  // chain, and a transfer signed there names a contract that is not this token.
+  // Verify eth_chainId before anything is sent, and refuse if it is not Celo.
+  function ensureChain() {
+    return provider.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: want }] })
+      .catch(function (err) {
+        if (err && err.code === 4001) { throw err; }      // user refused
+        return provider.request({ method: 'wallet_addEthereumChain', params: [{
+          chainId: want, chainName: 'Celo',
+          rpcUrls: ['https://forno.celo.org'],
+          nativeCurrency: { name: 'CELO', symbol: 'CELO', decimals: 18 },
+          blockExplorerUrls: ['https://celoscan.io']
+        }] }).catch(function (addErr) {
+          if (addErr && addErr.code === 4001) { throw addErr; }
+          if (addErr && addErr.code === 4902) { throw addErr; }
+
+          return null;                                     // maybe it switched anyway
+        });
+      })
+      .then(function () { return provider.request({ method: 'eth_chainId' }); })
+      .then(function (id) {
+        if (String(id).toLowerCase() !== want) {
+          throw new Error('the wallet is on chain ' + id + ' and this invoice is on Celo ('
+                          + want + '). Switch the network in the wallet and press pay again — '
+                          + 'nothing was sent.');
+        }
+      });
+  }
+
   btn.addEventListener('click', function () {
     btn.disabled = true;
+    note.classList.remove('bad');
     say('Waiting for your wallet\u2026');
     var from;
     provider.request({ method: 'eth_requestAccounts' })
@@ -444,20 +485,7 @@ _WALLET_JS = r'''<script>
           throw new Error('that is the payout wallet, and a transfer it initiates cannot '
                           + 'settle its own invoice — switch accounts');
         }
-        return provider.request({ method: 'wallet_switchEthereumChain',
-                                  params: [{ chainId: want }] })
-          .catch(function (err) {
-            if (err && err.code === 4902) {
-              return provider.request({ method: 'wallet_addEthereumChain', params: [{
-                chainId: want, chainName: 'Celo',
-                rpcUrls: ['https://forno.celo.org'],
-                nativeCurrency: { name: 'CELO', symbol: 'CELO', decimals: 18 },
-                blockExplorerUrls: ['https://celoscan.io']
-              }] });
-            }
-            if (err && err.code === 4001) { throw err; }   // user refused the switch
-            return null;                                    // already on Celo
-          });
+        return ensureChain();
       })
       .then(function () {
         return provider.request({ method: 'eth_sendTransaction', params: [{
@@ -491,21 +519,23 @@ def _short(addr: str) -> str:
     return f"{addr[:8]}…{addr[-6:]}" if addr and len(addr) > 20 else (addr or "")
 
 
-def _transfer_calldata(token: str, amount_atomic: int) -> str:
-    """ERC-20 `transfer(address,uint256)` calldata.
+def _transfer_calldata(recipient: str, amount_atomic: int) -> str:
+    """ERC-20 `transfer(address,uint256)` calldata — recipient FIRST.
 
-    A wallet extension signs what it is given, so the transfer has to be encoded
-    server-side: `transfer` selector, the recipient left-padded to 32 bytes, the
-    atomic amount left-padded to 32 bytes. Getting this wrong sends the wrong
-    token amount to the wrong place, so it is asserted in the tests.
+    A wallet extension signs what it is given, so this has to be the payee, not the
+    token: the transaction's `to` is the token contract and the recipient lives only
+    in these 32 bytes. Encoding the contract here instead tells the wallet to send
+    the tokens *to the token contract* (a wallet renders that as "Send to 0x4806…",
+    with a red "token address" warning), so it is asserted in the tests.
     """
-    addr = str(token).lower().removeprefix("0x")
+    addr = str(recipient).lower().removeprefix("0x")
     if len(addr) != 40:
-        raise ValueError(f"not an address: {token!r}")
+        raise ValueError(f"not an address: {recipient!r}")
     amount = int(amount_atomic)
     if amount <= 0:
         raise ValueError("cannot encode a non-positive transfer")
     return "0xa9059cbb" + addr.rjust(64, "0") + format(amount, "x").rjust(64, "0")
+
 
 
 
@@ -571,6 +601,10 @@ def render_invoice(payload: dict) -> str:
     }
     # An unknown status is not "held" — saying so would claim a human reviewed it.
     badge = badges.get(status, '<span class="badge held" id="badge">not payable</span>')
+    if payload.get("screening_pending"):
+        # "awaiting payment" would be a promise the agent cannot keep yet.
+        badge = '<span class="badge open" id="badge">screening</span>'
+
     rows = [
         ("Recipient", _e(payload.get("recipient") or "—")),
         ("Invoice", _e(payload.get("invoice_amount") or "—")),
@@ -615,6 +649,13 @@ def render_invoice(payload: dict) -> str:
 
     if payload.get("error"):
         body = f'<div class="warn">{_e(payload["error"])}</div>'
+    elif payload.get("screening_pending"):
+        # The agent is still buying the screens that decide whether this invoice may
+        # be paid at all, so there is nothing here to pay yet.
+        body = ('<div class="warn"><b>Screening in progress.</b><br>'
+                'The agent is buying this invoice’s sanctions checks right now and will '
+                'not accept payment until they come back clean — usually under a minute. '
+                'This page reloads itself as soon as the invoice is payable.</div>')
     elif status == "settled":
         body = '<div class="note" id="paid" style="color:#6ee7b7">Payment confirmed onchain.</div>'
     elif status == "blocked":
@@ -733,12 +774,16 @@ def render_invoice(payload: dict) -> str:
 (function() {{
   var id = {json.dumps(payload["id"])};
   var settled = {json.dumps(status == "settled")};
+  var initialStatus = {json.dumps(status)};
+  var initialPayable = {json.dumps(bool(payload.get("payable")))};
   if (settled || {json.dumps(bool(payload.get("error")))}) return;
   function poll() {{
     fetch("/api/invoice/" + encodeURIComponent(id), {{headers: {{accept: "application/json"}}}})
       .then(function(r) {{ return r.json(); }})
       .then(function(d) {{
-        if (d.status === "settled") {{ location.reload(); }}
+        // Screening finishing, or a status change, makes this page wrong — reload
+        // rather than leaving a payer looking at a stale promise.
+        if (d.status !== initialStatus || !!d.payable !== initialPayable) {{ location.reload(); }}
       }}).catch(function() {{}});
   }}
   setInterval(poll, 5000);

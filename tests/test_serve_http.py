@@ -6,6 +6,7 @@ page, so these start the actual server on an ephemeral port.
 """
 
 import json
+import re
 import threading
 import urllib.error
 import urllib.request
@@ -49,8 +50,12 @@ def get(url, method="GET", headers=None):
 
 
 def _invoice(**kw):
-    return store.create({"amount": "10", "currency": "USD", "recipient": "Ana"},
-                        {"decision": "settle"}, creator="ana", payout_address=PAY_TO, **kw)
+    inv = store.create({"amount": "10", "currency": "USD", "recipient": "Ana"},
+                       {"decision": "settle"}, creator="ana", payout_address=PAY_TO, **kw)
+    # An open invoice is only payable once its paid screening has finished
+    # (watch.screening_allows) — these tests are about rendering a payable page.
+    store.set_services(inv["id"], "done")
+    return store.get(inv["id"])
 
 
 def test_health(base_url):
@@ -211,21 +216,41 @@ def test_a_phone_still_gets_the_deep_link_as_the_primary_action(base_url):
 
 
 def test_transfer_calldata_is_a_real_erc20_transfer():
-    """Frame it wrong and the wallet signs a transfer of the wrong amount, to the
-    wrong address — so the encoding is asserted, not eyeballed."""
+    """The transaction's `to` is the token; the RECIPIENT lives in the calldata.
+
+    Encoding the token contract here instead makes a wallet ask you to "send 0.02
+    USD₮ to 0x4806…" — the contract itself — which is what a real wallet flagged
+    with a red token-address warning. Distinct addresses below, so the two can
+    never be confused again.
+    """
+    payee = "0x86E95581E41946ED84956433a8a9c836bCbA636c"
     usdt = "0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e"
-    data = serve._transfer_calldata(usdt, 20000)          # 0.02 at 6 decimals
+    data = serve._transfer_calldata(payee, 20000)          # 0.02 at 6 decimals
     assert data.startswith("0xa9059cbb")
     assert len(data) == 2 + 8 + 64 + 64
-    assert data[10:74] == "0" * 24 + usdt[2:].lower()     # recipient, left-padded
+    assert data[10:74] == "0" * 24 + payee[2:].lower()     # recipient, left-padded
     assert data[74:] == format(20000, "x").rjust(64, "0")  # atomic amount
+    assert usdt[2:].lower() not in data                    # never the token contract
     # 18-decimal token: 25 wBRL
     wbrl = "0xd76f5faf6888e24d9f04bf92a0c8b921fe4390e0"
     assert serve._transfer_calldata(wbrl, 25 * 10 ** 18).endswith(
         format(25 * 10 ** 18, "x").rjust(64, "0"))
-    for bad in ("0x1234", usdt):
-        with pytest.raises(ValueError):
-            serve._transfer_calldata(bad, 0)
+    with pytest.raises(ValueError):
+        serve._transfer_calldata("0x1234", 20000)          # not an address
+    with pytest.raises(ValueError):
+        serve._transfer_calldata(payee, 0)                 # no zero transfers
+
+
+def test_the_browser_wallet_is_handed_a_transfer_to_the_payee(base_url):
+    """The pay button's calldata must pay the payee, not the token contract."""
+    inv = _invoice()
+    code, _, body = get(f"{base_url}/i/{inv['id']}")
+    assert code == 200
+    m = re.search(r'data-calldata="(0xa9059cbb[0-9a-f]+)"', body)
+    assert m, "no transfer calldata on the page"
+    data = m.group(1)
+    assert data[10:74] == "0" * 24 + PAY_TO[2:].lower()
+
 
 
 def test_the_page_offers_a_browser_wallet_but_only_reveals_it_to_one(base_url):

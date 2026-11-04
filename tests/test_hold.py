@@ -100,8 +100,26 @@ def test_held_invoice_page_has_no_pay_button():
 def test_open_invoice_page_still_has_the_pay_button():
     inv = store.create({"amount": "10", "currency": "USD", "recipient": "Ana"},
                        {"decision": "settle"}, creator="ana", payout_address=PAY_TO)
+    store.set_services(inv["id"], "done")   # screening finished, so it is payable
     html = serve.render_invoice(serve.invoice_payload(store.get(inv["id"])))
     assert "celo://wallet/pay" in html and "awaiting payment" in html
+
+
+def test_an_unscreened_invoice_offers_no_way_to_pay():
+    """The watcher will not settle an invoice whose screening has not finished, so a
+    page that shows pay controls before then invites money the agent must refuse —
+    and if the screen then matches, that money is stranded."""
+    inv = store.create({"amount": "10", "currency": "USD", "recipient": "Ana"},
+                       {"decision": "settle"}, creator="ana", payout_address=PAY_TO)
+    payload = serve.invoice_payload(store.get(inv["id"]))
+    assert payload["payable"] is False and payload["screening_pending"] is True
+    html = serve.render_invoice(payload)
+    assert "Screening in progress" in html
+    assert "celo://wallet/pay" not in html
+    # no markup to pay with: no copy fields, no wallet button, no send card
+    assert "data-copy=" not in html
+    assert 'id="paywallet"' not in html
+    assert 'id="sendbox"' not in html
 
 
 def test_dropped_invoice_page_refuses():
@@ -149,6 +167,8 @@ def test_a_refused_page_never_needs_a_live_rate(monkeypatch):
     monkeypatch.setattr(serve.x402, "create_payment_request", real)
     open_inv = store.create({"amount": "10", "currency": "USD", "recipient": "Ana"},
                             {"decision": "settle"}, creator="ana", payout_address=PAY_TO)
+    store.set_services(open_inv["id"], "done")   # screening finished, so it is payable
     open_row = store.get(open_inv["id"])
+
     assert open_row
     assert serve.invoice_payload(open_row)["payable"] is True

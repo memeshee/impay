@@ -49,18 +49,32 @@ BRL invoice settles **500 wBRL for 500 BRL** — in kind. The pay page also carr
 prefilled Ripio on-ramp bound to the payout address, so a payer holding no stablecoin
 can still pay.
 
+## Registration fields (what the form asks for)
+
+- **Public repo:** https://github.com/memeshee/impay (the old `celo-invoice-agent` URL redirects)
+- **ERC-8004 agentId:** `10005` · registry `0x8004A169FB4a3325136EB29fA0ceB6D2e539a432` · owner `0xDbFe5c4d0256D2459bB216caB905999Ca41bE349`
+- **Agent wallet:** `0xDbFe5c4d0256D2459bB216caB905999Ca41bE349`
+- **PayTo wallet** (x402 carries no attribution tag): `0x86E95581E41946ED84956433a8a9c836bCbA636c`
+- **ERC-8021 code:** `celo_b97cdbaae280` (+ our own `celo_invoiceagent`) — verified on the wire, see the attribution block at the top of the README
+- **Telegram:** [@notcelordbot](https://t.me/notcelordbot)
+- **Primary track:** Build with buy — the agent pays for sanctions-name, sanctions-wallet and
+  fx-rate per invoice over x402, and a non-clean verdict blocks settlement
+- **Also entering:** Open Corridors / USA₮ over x402 — a stranger pays an invoice link with no
+  account; and Stable Agents: LatAm (Ripio) — a BRL invoice settles in wBRL in kind, with a
+  prefilled Ripio on-ramp on the pay page
+
 ## What is not done yet
 
-Stated in the README's Limits section rather than hidden: no independent payer has paid
-yet (every settlement is builder-funded, and `/proof` reports that number), the Textile
+Stated in the README's Limits section rather than hidden: **0 independent payers** — every
+settlement so far is builder-funded and `/proof` reports that number; **no settled wFIAT
+invoice** (the wBRL pay page is live and open, the transfer has not happened); the Textile
 wBRL swap is a standalone leg rather than an automatic payout, FX is a keyless rate
-cross-checked against a bought one rather than a firm quote, and storage is a single
-JSON file.
+cross-checked against a bought one rather than a firm quote, and storage is a single JSON file.
 
 ## Engineering, for the code reviewers
 
-222 offline tests (no network, no keys, no `.env`), ruff, a 75% coverage floor and a
-daily workflow that re-derives the settlement claims from Celo. The densest tests are
-on the paths where silence costs money: every refusal in `bot/verify.py`, the x402 spend
-budgets, the screening gate, and the HTTP surface over a real socket. `SECURITY.md` maps
-each control to the test that pins it.
+249 offline tests (no network, no keys, no `.env`), ruff, a 75% coverage floor
+(currently 79%) and a daily workflow that re-derives the settlement claims from Celo. The
+densest tests are on the paths where silence costs money: every refusal in `bot/verify.py`,
+the x402 spend budgets, the screening gate, and the HTTP surface over a real socket.
+`SECURITY.md` maps each control to the test that pins it.

@@ -61,7 +61,7 @@ reading the source first.
 ## Engineering hygiene
 
 - `python -m pytest` passes on a clean checkout: no network, no keys, no `.env`
-  (195 tests, marked otherwise). CI runs it plus `ruff` and a 75% coverage floor.
+  (249 tests, marked otherwise). CI runs it plus `ruff` and a 75% coverage floor.
 - `python scripts/verify_settlements.py` re-derives settlement claims; a daily
   workflow runs it.
 - `SECURITY.md` lists the controls and the test that pins each one.

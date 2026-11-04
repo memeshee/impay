@@ -92,7 +92,7 @@ def test_trust_reasons_are_quiet_when_nothing_fired():
 def test_held_invoice_page_has_no_pay_button():
     held = _held()
     html = serve.render_invoice(serve.invoice_payload(store.get(held["id"])))
-    assert "held for review" in html
+    assert "Waiting on an operator" in html
     assert "celo://wallet/pay" not in html        # a payer must not be able to send
     assert "ethereum:" not in html
 
@@ -149,7 +149,7 @@ def test_a_refused_page_never_needs_a_live_rate(monkeypatch):
                            {"decision": "settle"}, creator="ana", payout_address=PAY_TO)
     store.mark_settled(settled["id"], "0x" + "ab" * 32)
     cases = {
-        "held for review": _held()["id"],
+        "Waiting on an operator": _held()["id"],
         "Dropped": dropped["id"],
         "Payment confirmed onchain.": settled["id"],
     }
@@ -228,3 +228,11 @@ def test_the_release_reply_does_not_promise_payment_before_the_screen_ran():
     assert "payable only if it comes back clean" in main._release_state(unscreened)
     screened = {"id": "INV-1", "services_status": "done"}
     assert "payable now" in main._release_state(screened)
+
+
+def test_releasing_a_screen_hold_says_the_operator_accepted_the_candidates():
+    """"already ran clean" was wrong for an invoice held on substring noise."""
+    released = {"id": "INV-1", "services_status": "done",
+                "held_reason": "sanctions-name found 8 entries containing part of 'Bao'"}
+    text = main._release_state(released)
+    assert "you accepted" in text and "clean" not in text

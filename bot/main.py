@@ -223,9 +223,11 @@ def _bare_name_hint(recipient: str | None) -> str:
     name = (recipient or "").strip()
     if not name or name.startswith("@") or len(name.split()) > 1:
         return ""
-    return ("\n\nNote: the recipient is a bare first name, and the name screen runs on "
-            "the exact string — single tokens often read as a match and block the "
-            "invoice. If that happens, send it again with the full name.")
+    return ("\n\nNote: the recipient is a bare first name. Name screens match token by "
+            "token, so a single token usually comes back as candidates rather than a "
+            "clean pass — the invoice then waits for an operator to accept it. A full "
+            "name normally screens clean on its own.")
+
 
 
 async def mint_and_reply(msg, item: dict, user_id: int, creator: str | None = None):
@@ -501,6 +503,9 @@ def _release_state(inv: dict) -> str:
     agent broke a minute later by blocking the invoice.
     """
     if (inv.get("services_status") or "") == "done":
+        if inv.get("held_reason"):
+            return ("Screening returned candidates rather than a hit and you accepted "
+                    "them, so the link is payable now:")
         return "Screening already ran clean, so the link is payable now:"
     return ("Screening is running now (~40s). The link is payable only if it comes "
             "back clean — a name that matches a sanctions list blocks the invoice, "

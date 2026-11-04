@@ -1,7 +1,7 @@
 {
-  "total_usd": 0.492,
+  "total_usd": 0.531,
   "hosts": {
-    "agent402.tools": 0.492
+    "agent402.tools": 0.531
   },
   "issued": {
     "0x837ee5a4b5739b7da4ac90c29eaf4623c3d14a56d5a4cb3141b482a49e7d3573": {
@@ -388,6 +388,51 @@
       "url": "https://agent402.tools/api/sanctions/name",
       "amount_atomic": 5000,
       "at": 1793802813
+    },
+    "0xf7156e0088b841f2b3cea1a86842d2f8cebcced619fc76a3b44ddbd09315f71f": {
+      "url": "https://agent402.tools/api/sanctions/wallet",
+      "amount_atomic": 2000,
+      "at": 1793803123
+    },
+    "0x85f4e224e6034aae3fcf84b679127e00c8c32c4dcde9c358a26c9cf033b30afe": {
+      "url": "https://agent402.tools/api/sanctions/name",
+      "amount_atomic": 5000,
+      "at": 1793803128
+    },
+    "0xbfbcfdd73e606223c44589671de2ee85841d3e0a64613949e189495c090886c5": {
+      "url": "https://agent402.tools/api/sanctions/name",
+      "amount_atomic": 5000,
+      "at": 1793803430
+    },
+    "0xe1fdba1cef84712c8219c48317f3dfe9508c49e6f4e9299c807e61ece1c6d60a": {
+      "url": "https://agent402.tools/api/sanctions/name",
+      "amount_atomic": 5000,
+      "at": 1793803440
+    },
+    "0x59281f04a95f2e1b20c6eaa163de31fa091850840dcb3ba41abb720b3ba99f04": {
+      "url": "https://agent402.tools/api/sanctions/name",
+      "amount_atomic": 5000,
+      "at": 1793803445
+    },
+    "0xccc15644a1709b66ca9ac3d611736bf3f0de549bd2c3321ea030c1c083e24ca8": {
+      "url": "https://agent402.tools/api/sanctions/name",
+      "amount_atomic": 5000,
+      "at": 1793803450
+    },
+    "0xec5379c5ccbbb6f50ab21bbd4c38da0e94ccbd8abc2c95e338e6f4e2c12f2999": {
+      "url": "https://agent402.tools/api/sanctions/name",
+      "amount_atomic": 5000,
+      "at": 1793803458
+    },
+    "0x06df7f06392e058494a0a294d53c87523bae327001eeb6cbe565e97e9f6dd22e": {
+      "url": "https://agent402.tools/api/sanctions/wallet",
+      "amount_atomic": 2000,
+      "at": 1793803611
+    },
+    "0x7ccd2c39dfb966f0a0a4ea98b7b2b97cc9002849c8c544aa9b5cd593b18b999d": {
+      "url": "https://agent402.tools/api/sanctions/name",
+      "amount_atomic": 5000,
+      "at": 1793803616
     }
   }
 }

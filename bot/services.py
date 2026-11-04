@@ -9,7 +9,7 @@ paid. Roughly $0.009 per invoice across three calls:
 - `sanctions-wallet` ($0.002) screen the payout address
 - `sanctions-name`  ($0.005) screen the counterparty name
 
-A sanctions hit blocks settlement of that invoice. That is the whole point: the
+An exact sanctions hit blocks settlement of that invoice. That is the whole point: the
 purchase is not a demo of paying, it is the gate.
 
 Rules that keep this honest:
@@ -140,9 +140,19 @@ def purchase(slug: str, params: dict, invoice_id: str, *, key: str | None = None
 def _summarize(slug: str, body: dict) -> dict:
     """Keep the decision, drop the bulk."""
     if slug.startswith("sanctions"):
+        matches = body.get("matches") or []
         return {"verdict": body.get("verdict"),
+                "query": body.get("query"),
                 "exactCount": body.get("exactCount"),
-                "matches": len(body.get("matches") or []),
+                # The signal that separates a real hit from substring noise:
+                # allTokensCount > 0 means EVERY token of the queried name appears in
+                # one listed entry. containsCount just means a token appeared somewhere
+                # ('Anna' hits 'DI ANNABA, Yacine'; 'Bao' hits 'Bilbao').
+                "allTokensCount": body.get("allTokensCount"),
+                "containsCount": body.get("containsCount"),
+                "top": [{"name": m.get("name"), "id": m.get("id"),
+                         "matchType": m.get("matchType")} for m in matches[:3]],
+                "matches": len(matches),
                 "lists": [x.get("list") for x in (body.get("listsChecked") or [])],
                 "clean": is_clean(body)}
     if slug == "fx-rate":
@@ -151,11 +161,68 @@ def _summarize(slug: str, body: dict) -> dict:
     return {"clean": None}
 
 
+
 def is_clean(body: dict) -> bool:
     """A sanctions screen is clean only on an explicit no-match verdict."""
     if body.get("verdict") != CLEAN_VERDICT:
         return False
     return int(body.get("exactCount") or 0) == 0
+
+
+# A screen returns three different things behind one word, "verdict". Treating them
+# the same refused every invoice whose counterparty had a common name.
+CLEAN, HOLD, BLOCK = "clean", "hold", "block"
+
+
+def screen_verdict(slug: str, result: dict) -> tuple[str, str]:
+    """What one paid screen actually licenses: refusal, a human decision, or clear.
+
+    The vendor's `verdict` word is not a decision by itself. It also returns
+    `exactCount` (exact string equality — effectively always 0), `allTokensCount`
+    (every token of the queried name appears in ONE listed entry) and `containsCount`
+    (some token appears somewhere). Verified live against OFAC SDN:
+
+        'Viktor Bout' → match, allTokens=1, contains=0 → "BOUT, Viktor Anatolijevitch"
+                        (SDN 8279) — a real hit
+        'Anna'  → match, allTokens=0, contains=34 → "DI ANNABA, Yacine" — substring noise
+        'Bao'   → match, allTokens=0, contains=8  → "Bilbao", "LIU, Baoxia" — noise
+        'Jack'  → match, allTokens=0, contains=1  → "DERMAN GUZMAN, Jack Peter" — noise
+        'Jack Miller' → no_match_on_lists_checked                      — clear
+
+    So an all-token match on a name of two or more tokens blocks; substring noise and
+    any single-token query (one token cannot identify a person) open a hold a human
+    adjudicates, quoting the entry and its SDN id so it can be checked against the
+    list. A wallet address is exact by construction, so it has no fuzzy tier.
+    """
+    result = result or {}
+    verdict = str(result.get("verdict") or "")
+    exact = int(result.get("exactCount") or 0)
+    if slug.startswith("sanctions-wallet"):
+        if result.get("clean"):
+            return CLEAN, ""
+        return BLOCK, f"sanctions-wallet is on a list: verdict={verdict}"
+    if result.get("clean"):
+        return CLEAN, ""
+    query = str(result.get("query") or "").strip()
+    tokens = len(query.split())
+    all_tokens = int(result.get("allTokensCount") or 0)
+    top = result.get("top") or []
+    named = ", ".join(f"{(m.get('name') or '?')} (SDN {m.get('id') or '?'})" for m in top[:2])
+    listed = ", ".join(result.get("lists") or []) or "the list checked"
+    if exact > 0:
+        return BLOCK, f"sanctions-name exact hit on {listed}: {named or query!r}"
+    if all_tokens > 0 and tokens >= 2:
+        return BLOCK, (f"sanctions-name match on every token of {query!r} in {listed}: "
+                       f"{named} — check the entry against the list before acting")
+    if all_tokens > 0:
+        return HOLD, (f"single-token name {query!r} matches a listed entry ({named} in "
+                      f"{listed}) but one token cannot identify a person — a full name "
+                      f"needs to be screened")
+    return HOLD, (f"sanctions-name found {result.get('containsCount') or 0} entry/entries "
+                  f"containing part of {query!r} on {listed} and no all-token match"
+                  + (f" (top: {named})" if named else ""))
+
+
 
 
 def plan_for(invoice: dict) -> list[tuple[str, dict]]:
@@ -178,28 +245,34 @@ def plan_for(invoice: dict) -> list[tuple[str, dict]]:
 
 def enrich(invoice: dict, *, key: str | None = None, session_factory=None,
            web3=None, log=print) -> dict:
-    """Buy everything this invoice needs. Returns {receipts, blocked, reason}."""
+    """Buy everything this invoice needs.
+
+    Returns {receipts, blocked, reason, held, held_reason}. `blocked` is terminal (an
+    exact sanctions hit); `held` is an operator decision (fuzzy candidates only).
+    """
     receipts = []
     blocked, reason = False, None
+    held, held_reason = False, None
     for slug, params in plan_for(invoice):
         session = session_factory(slug) if session_factory else None
         rec = purchase(slug, params, invoice["id"], key=key, session=session,
                        web3=web3, log=log)
         receipts.append(rec)
         if rec.get("ok") and slug.startswith("sanctions"):
-            if not (rec.get("result") or {}).get("clean", False):
-                blocked = True
-                # Name the exact string that was screened. A bare first name
-                # ("Jack") matches broadly because the vendor screens the string
-                # token-by-token, and without the subject the operator cannot tell
-                # a real hit from a too-short name.
-                subject = params.get("name") or params.get("address") or ""
-                reason = (f"{slug} flagged: verdict="
-                          f"{(rec.get('result') or {}).get('verdict')}"
-                          + (f" for {subject!r}" if subject else ""))
+            decision, why = screen_verdict(slug, rec.get("result") or {})
+            # Name the exact string that was screened: a bare first name reading as a
+            # hit is indistinguishable from a real one without it.
+            subject = params.get("name") or params.get("address") or ""
+            where = f" for {subject!r}" if subject else ""
+            if decision == BLOCK:
+                blocked, reason = True, f"{why}{where}"
+            elif decision == HOLD and not blocked:
+                held, held_reason = True, f"{why}{where}"
     spent = sum(float(r.get("price_usd_quoted") or 0) for r in receipts if r.get("ok"))
     return {"receipts": receipts, "blocked": blocked, "reason": reason,
+            "held": held, "held_reason": held_reason,
             "spent_usd": round(spent, 4), "at": int(time.time())}
+
 
 
 def fx_crosscheck(enrichment: dict, priced_usd_per_unit: str | None) -> dict | None:

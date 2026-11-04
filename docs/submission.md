@@ -40,8 +40,15 @@ with their transaction hashes and the reason.
 
 **2. The agent buys the controls it does not own, per invoice.** A sanctions screen on
 the payout wallet ($0.002), on the counterparty name ($0.005) and an FX cross-check
-($0.002) are paid in USA₮/USDC over x402, and a non-clean verdict **blocks settlement**
-rather than decorating it. `docs/receipts/` holds the raw 402 responses, and each
+($0.002) are paid in USA₮/USDC over x402, and the verdict **decides the money** rather
+than decorating it. The vendor reports more than a verdict word, so the agent reads the
+one that identifies a person: an all-token match against a listed entry blocks the
+invoice for good (`Viktor Bout` → `BOUT, Viktor Anatolijevitch`, SDN 8279), a listed
+payout address blocks, and a `containsCount` hit is treated as substring noise — `Bao`
+matches `Bilbao` and `LIU, Baoxia`, `Anna` matches `DI ANNABA, Yacine` — so those
+invoices are parked as an operator decision (`/release` or `/drop`) with the entry and
+its SDN id quoted in the reason. All five readings above were verified against the live
+vendor. `docs/receipts/` holds the raw 402 responses, and each
 purchase's settlement is re-checked onchain.
 
 **3. LatAm money does not round-trip through the dollar.** `/wallet <addr> wBRL` and a
@@ -58,7 +65,8 @@ can still pay.
 - **ERC-8021 code:** `celo_b97cdbaae280` (+ our own `celo_invoiceagent`) — verified on the wire, see the attribution block at the top of the README
 - **Telegram:** [@notcelordbot](https://t.me/notcelordbot)
 - **Primary track:** Build with buy — the agent pays for sanctions-name, sanctions-wallet and
-  fx-rate per invoice over x402, and a non-clean verdict blocks settlement
+  fx-rate per invoice over x402, and the verdict decides settlement (an all-token name
+  match blocks; substring-only noise holds for an operator)
 - **Also entering:** Open Corridors / USA₮ over x402 — a stranger pays an invoice link with no
   account; and Stable Agents: LatAm (Ripio) — a BRL invoice settles in wBRL in kind, with a
   prefilled Ripio on-ramp on the pay page

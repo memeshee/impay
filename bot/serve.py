@@ -308,6 +308,9 @@ def invoice_payload(inv: dict) -> dict:
         "settlement_tx": inv.get("settlement_tx"),
         "explorer": (EXPLORER_TX + inv["settlement_tx"]) if inv.get("settlement_tx") else None,
         "screening": _screening(inv),
+        "held_reason": inv.get("held_reason"),
+        "blocked_reason": inv.get("blocked_reason"),
+
         "agent": {"id": AGENT_ID, "registry": IDENTITY_REGISTRY,
                   "registry_url": f"https://8004scan.io/agents/celo/{AGENT_ID}"},
     }
@@ -672,8 +675,11 @@ def render_invoice(payload: dict) -> str:
     elif status == "held":
         # A held invoice is not payable, so it must not render a pay button:
         # otherwise the payer sends money the agent will refuse to settle.
-        body = ('<div class="warn"><b>Held for review.</b><br>'
-                'An operator has to clear this invoice before it can be paid.</div>')
+        body = ('<div class="warn"><b>Waiting on an operator.</b><br>'
+                + (_e(payload["held_reason"]) + '<br>' if payload.get("held_reason") else '')
+                + 'The screen returned candidates rather than a hit, so a human has to '
+                  'accept or refuse this invoice before it can be paid.</div>')
+
     elif status == "dropped":
         body = ('<div class="warn"><b>Dropped.</b><br>'
                 'This invoice was rejected and cannot be paid.</div>')
@@ -871,7 +877,8 @@ def render_index(stats: dict | None = None) -> str:
         judgment that fails closed on anything it cannot read.</li>
     <li><b>The agent buys what it cannot do itself</b> — a sanctions screen on the
         name and the payout wallet, plus an FX cross-check, each paid in USA₮/USDC
-        over x402 (~$0.009 per invoice). A hit blocks settlement.</li>
+        over x402 (~$0.009 per invoice). An all-token name match blocks settlement;
+        substring noise waits for an operator.</li>
     <li><b>The payer opens a link</b> — wallet deep link, EIP-681, or a Ripio
         on-ramp if they hold no stablecoin. 500 BRL settles as 500 wBRL in kind.</li>
     <li><b>Nobody confirms anything</b> — the watcher proves the transfer onchain

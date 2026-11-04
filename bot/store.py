@@ -193,6 +193,33 @@ def release(inv_id: str, *, payout_address: str | None,
 
 
 
+def rejudge(inv_id: str, *, decision: str, reason: str) -> dict | None:
+    """Re-apply a screening POLICY decision to an invoice that is already screened.
+
+    The paid response is on disk, so fixing the policy must not mean buying the screen
+    again: a name the old rule blocked on substring noise can be re-ranked as a hold,
+    and an all-token hit re-ranked as a block. Terminal states are never reopened.
+    """
+    db = _load()
+    inv = db["invoices"].get(str(inv_id).upper())
+    if not inv or inv.get("status") in ("settled", "dropped", "expired"):
+        return None
+    target = "blocked" if decision == "block" else "held"
+    if inv.get("status") == target:
+        return inv
+    inv["previous_status"] = inv.get("status")
+    inv["status"] = target
+    inv["rejudged_at"] = int(time.time())
+    if target == "blocked":
+        inv["blocked_reason"] = reason
+        inv.pop("held_reason", None)
+    else:
+        inv["held_reason"] = reason
+        inv.pop("blocked_reason", None)
+    _save(db)
+    return inv
+
+
 def get(inv_id: str) -> dict | None:
     return _load()["invoices"].get(str(inv_id).upper())
 
@@ -227,7 +254,7 @@ def set_services(inv_id: str, status: str, enrichment: dict | None = None) -> di
         inv["services_spent_usd"] = enrichment.get("spent_usd")
         inv["screened_at"] = enrichment.get("at")
         if enrichment.get("blocked"):
-            # A sanctions hit stops the money. It is not a warning label.
+            # A confirmed sanctions hit stops the money. It is not a warning label.
             if inv["status"] in ("settled", "dropped"):
                 # Too late: the money already moved, and a settled invoice staying
                 # settled is worth more than a retroactive status change that also
@@ -237,6 +264,13 @@ def set_services(inv_id: str, status: str, enrichment: dict | None = None) -> di
             else:
                 inv["status"] = "blocked"
                 inv["blocked_reason"] = enrichment.get("reason")
+        elif enrichment.get("held"):
+            # Fuzzy candidates are a decision, not a verdict: park the invoice for an
+            # operator instead of refusing it forever over a common first name.
+            inv["held_reason"] = enrichment.get("held_reason")
+            if inv["status"] == "open":
+                inv["status"] = "held"
+
     _save(db)
     return inv
 

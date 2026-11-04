@@ -246,3 +246,99 @@ def test_enrich_pending_skips_when_disabled(monkeypatch):
     monkeypatch.setenv("SERVICES_ENRICH", "0")
     assert watch.enrich_pending() == []
     assert len(store.invoices_awaiting_services()) == 1
+
+
+# ------------------------------------------- 3. exact hit vs fuzzy candidates
+def _name_only(body):
+    """Enrich with a clean rate/wallet and the name body under test, so the verdict
+    policy is isolated from the other two purchases."""
+    clean = {"verdict": "no_match_on_lists_checked", "exactCount": 0}
+    sessions = {"sanctions-name": FakeSession(FakeResponse(body)),
+                "sanctions-wallet": FakeSession(FakeResponse(clean)),
+                "fx-rate": FakeSession(FakeResponse({"rate": 5.3}))}
+    inv = _invoice()
+    enr = services.enrich(inv, session_factory=lambda slug: sessions[slug], log=lambda *_: None)
+    return inv, enr
+
+
+def test_a_name_with_candidates_only_is_a_hold_not_a_death_sentence():
+    """'Bao' returns verdict=match with exactCount=0 — five fuzzy candidates, no hit.
+    Blocking on that refused every invoice for a common first name and left nothing an
+    operator could clear."""
+    inv, enr = _name_only({"query": "Bao", "verdict": "match", "exactCount": 0,
+                           "containsCount": 8, "allTokensCount": 0,
+                           "matches": [{"id": "7287", "name": "GANADERIAS BILBAO LTDA.",
+                                        "matchType": "contains"}],
+                           "listsChecked": [{"list": "OFAC SDN"}]})
+    assert enr["blocked"] is False and enr["reason"] is None
+    assert enr["held"] is True and "no all-token match" in enr["held_reason"]
+    updated = store.set_services(inv["id"], "done", enr)
+    # the reason names the string that was actually screened (the invoice recipient)
+    assert updated["status"] == "held"
+    assert "'Marco Silva'" in (updated.get("held_reason") or "")
+    # ...and a human can clear it, which is the whole difference from `blocked`
+    assert store.release(inv["id"], payout_address=None, created_block=1)["status"] == "open"
+
+
+def test_an_exact_name_hit_still_blocks_for_good():
+    inv, enr = _name_only({"query": "Ivan Bad", "verdict": "possible_match", "exactCount": 1,
+                           "matches": [{"name": "IVAN BAD"}],
+                           "listsChecked": [{"list": "OFAC SDN"}]})
+    assert enr["blocked"] is True and enr["held"] is False
+    assert "exact hit" in enr["reason"]
+    updated = store.set_services(inv["id"], "done", enr)
+    assert updated["status"] == "blocked"
+    assert store.release(inv["id"], payout_address=None, created_block=1) is None
+
+
+def test_a_listed_payout_wallet_blocks_with_no_fuzzy_tier():
+    """An address is exact by construction: there is no 'candidates' reading of it."""
+    decision, why = services.screen_verdict(
+        "sanctions-wallet", {"verdict": "match", "exactCount": 0, "clean": False})
+    assert decision == services.BLOCK and "sanctions-wallet is on a list" in why
+    assert services.screen_verdict("sanctions-wallet", {"clean": True})[0] == services.CLEAN
+
+
+# ------------------------------ exact-vs-all-tokens: the vendor's real response shape
+def _screen(body):
+    return services.screen_verdict("sanctions-name", services._summarize("sanctions-name", body))
+
+
+def test_substring_noise_is_a_hold_and_names_the_entry():
+    """'Bao' hits 'Bilbao' and 'LIU, Baoxia' — a token appeared, nothing identified."""
+    body = {"query": "Bao", "verdict": "match", "exactCount": 0,
+            "containsCount": 8, "allTokensCount": 0,
+            "matches": [{"id": "7287", "name": "GANADERIAS BILBAO LTDA.", "matchType": "contains"},
+                        {"id": "22683", "name": "LIU, Baoxia", "matchType": "contains"}],
+            "listsChecked": [{"list": "OFAC SDN"}]}
+    decision, why = _screen(body)
+    assert decision == services.HOLD
+    assert "SDN 7287" in why and "no all-token match" in why
+
+
+def test_an_all_token_match_on_a_full_name_blocks():
+    """'Viktor Bout' → BOUT, Viktor Anatolijevitch (SDN 8279), matchType all-tokens."""
+    body = {"query": "Viktor Bout", "verdict": "match", "exactCount": 0,
+            "containsCount": 0, "allTokensCount": 1,
+            "matches": [{"id": "8279", "name": "BOUT, Viktor Anatolijevitch",
+                         "matchType": "all-tokens"}],
+            "listsChecked": [{"list": "OFAC SDN"}]}
+    decision, why = _screen(body)
+    assert decision == services.BLOCK
+    assert "every token" in why and "SDN 8279" in why
+
+
+def test_one_token_can_never_identify_a_person_so_it_holds_even_on_all_tokens():
+    body = {"query": "Bao", "verdict": "match", "exactCount": 0,
+            "containsCount": 0, "allTokensCount": 1,
+            "matches": [{"id": "1", "name": "BAO, Someone", "matchType": "all-tokens"}],
+            "listsChecked": [{"list": "OFAC SDN"}]}
+    decision, why = _screen(body)
+    assert decision == services.HOLD and "cannot identify a person" in why
+
+
+def test_an_explicit_no_match_is_the_only_clear():
+    body = {"query": "Jack Miller", "verdict": "no_match_on_lists_checked",
+            "exactCount": 0, "containsCount": 0, "allTokensCount": 0, "matches": [],
+            "listsChecked": [{"list": "OFAC SDN"}]}
+    assert _screen(body)[0] == services.CLEAN

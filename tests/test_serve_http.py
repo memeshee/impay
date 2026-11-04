@@ -147,7 +147,7 @@ def test_invoice_proof_endpoint_404s_for_an_unknown_invoice(base_url):
 
 @pytest.mark.parametrize("status,words", [
     ("expired", "Expired"),
-    ("held", "Held for review"),
+    ("held", "Waiting on an operator"),
     ("dropped", "Dropped"),
     ("blocked", "Blocked by sanctions screening"),
 ])

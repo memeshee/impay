@@ -1,0 +1,30 @@
+{
+  "status": 200,
+  "headers": {
+    "Date": "Wed, 04 Nov 2026 14:38:50 GMT",
+    "Content-Type": "application/json; charset=utf-8",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "access-control-allow-origin": "*",
+    "access-control-expose-headers": "PAYMENT-REQUIRED, PAYMENT-RESPONSE, WWW-Authenticate, Payment-Receipt, X-Cache, X-Credits-Balance, X-Metered-Usd, X-Idempotent-Replay, X-Replayed-Answer, X-Agent402-Allowance, Retry-After, Mcp-Session-Id, Mcp-Protocol-Version, Last-Event-Id, Link, X-Total-Count, X-Async-Recommended, Location, Preference-Applied, Sunset",
+    "Cache-Control": "no-store, private",
+    "etag": "W/\"3b8-/l7xQNg8LySwcaCJ1SMAJREcsV0\"",
+    "payment-response": "eyJzdWNjZXNzIjp0cnVlLCJwYXllciI6IjB4RGJGZTVjNGQwMjU2RDI0NTliQjIxNmNhQjkwNTk5OUNhNDFiRTM0OSIsInRyYW5zYWN0aW9uIjoiMHhhODk1ZDAxYTYwNjk5ZDFkNjFlMDdkZmUzNGNlODAzMTM1YjRkNjA0OTA4M2IyNDNmMzEyOTU0MzAyZDg4NDY2IiwibmV0d29yayI6ImVpcDE1NTo0MjIyMCJ9",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "Server": "cloudflare",
+    "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+    "vary": "Accept-Encoding",
+    "x-content-type-options": "nosniff",
+    "x-railway-request-id": "atF081FlTg6LtqT3WUN5dQ",
+    "x-request-id": "4c6c6a5e-29d2-4c2c-95d6-5bae86ee9cdf",
+    "Content-Encoding": "gzip",
+    "x-hikari-trace": "sin1.hs0s,hnd1.2zrd",
+    "x-railway-edge": "sin1",
+    "cf-cache-status": "DYNAMIC",
+    "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=Pm%2BpJgvzq%2FDi1D0hmBZCjdyjEBS745e1QqXfhJx2TAFsQFkmc1MoHyeLO659N8b4z7bk3QOCmAEB%2FfEQNmHkBoWit%2FRUBfKon9WsJkqr0F7Ll5g0LCDEiQ2dm%2B6MfUeZAg%3D%3D\"}]}",
+    "CF-RAY": "a5545d51acb18336-SIN",
+    "alt-svc": "h3=\":443\"; ma=86400"
+  },
+  "text": "{\"query\":\"Bao\",\"verdict\":\"match\",\"exactCount\":0,\"containsCount\":8,\"allTokensCount\":0,\"matches\":[{\"id\":\"7287\",\"name\":\"GANADERIAS BILBAO LTDA.\",\"type\":\"-0-\",\"matchType\":\"contains\"},{\"id\":\"22683\",\"name\":\"LIU, Baoxia\",\"type\":\"individual\",\"matchType\":\"contains\"},{\"id\":\"26933\",\"name\":\"SHANG YUAN BAO\",\"type\":\"vessel\",\"matchType\":\"contains\"},{\"id\":\"27924\",\"name\":\"ZHANG, Longbao\",\"type\":\"individual\",\"matchType\":\"contains\"},{\"id\":\"54137\",\"name\":\"BAOGANG DONGYING DONGGANG LOGISTICS AND WAREHOUSING CO., LTD.\",\"type\":\"-0-\",\"matchType\":\"contains\"}],\"entriesOnList\":19484,\"listsChecked\":[{\"list\":\"OFAC SDN\",\"authority\":\"US Treasury OFAC\",\"url\":\"https://sanctionslist.ofac.treas.gov/\"}],\"listsFetchedAt\":\"2026-11-04T14:33:10.378Z\",\"confirmBeforeActing\":\"a match is a string match against a published list, not a confirmed identification. Names repeat and addresses are reused; confirm the entry against the list itself (the SDN id is given) before acting on it\"}"
+}

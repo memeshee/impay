@@ -273,10 +273,13 @@ def enrich_pending(*, log=print, enricher=None, notifier=None,
                 # would be a refusal that points at a path which does not exist.
                 msg = (f"{inv['id']} blocked ❌\n"
                        f"{enrichment.get('reason')}\n"
-                       "A sanctions match is terminal for this invoice — an operator "
-                       "cannot clear it. Send a new one; if the recipient was a bare "
-                       "first name, use the full name, because the screen runs on the "
-                       "exact string you typed.")
+                       "An exact sanctions hit is terminal for this invoice — an operator "
+                       "cannot clear it. Send a new one.")
+            elif enrichment.get("held"):
+                msg = (f"{inv['id']} needs a decision ⚠️\n"
+                       f"{enrichment.get('held_reason')}\n"
+                       f"Nothing matched exactly, so this is a call a human makes: "
+                       f"/release {inv['id']} to accept it, or /drop {inv['id']} to refuse it.")
             else:
                 msg = (f"{inv['id']} screened ✅\n"
                        f"Bought {len(bought)} services for ${spent}: {', '.join(bought)}\n"

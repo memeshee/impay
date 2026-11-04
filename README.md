@@ -77,8 +77,17 @@ over x402 on Celo — and those purchases decide whether money may move.
 | `sanctions-name` | $0.005 | Is the counterparty name on one? |
 | `fx-rate` | $0.002 | Cross-check on non-USD pricing |
 
-A non-clean verdict sets the invoice to `blocked` and takes it out of the settlement
-queue. Every purchase is captured to [`docs/receipts/`](docs/receipts) before it is
+The screen answers with more than its `verdict` word, and the agent decides on the
+difference. `allTokensCount > 0` means **every** token of the name appears in one
+listed entry — that blocks, and is terminal (`Viktor Bout` → `BOUT, Viktor
+Anatolijevitch`, SDN 8279, verified live). A `containsCount` hit means a token appeared
+somewhere (`Bao` → `Bilbao` and `LIU, Baoxia`; `Anna` → `DI ANNABA, Yacine`), which is
+substring noise, not identification: those invoices go to `held`, where an operator
+accepts with `/release` or refuses with `/drop`, and the reason quotes the entry and its
+SDN id so it can be checked against the list. A single-token name can never identify a
+person, so it holds too. Only an explicit `no_match_on_lists_checked` keeps an invoice
+`open` on its own. Blocking on substring noise refused every invoice for a common name and
+left nothing a human could clear. Every purchase is captured to [`docs/receipts/`](docs/receipts) before it is
 parsed, and its settlement is re-checked onchain afterwards.
 
 ## Why the money cannot move on a bad invoice
@@ -211,7 +220,8 @@ the public HTTP surface over a real socket.
   far is builder-funded**; an outside payer is the remaining gap, and `/proof` says so
   on the page.
 - **Build with `buy`** — every invoice costs the agent ~$0.009 in services it does not
-  own, and a sanctions hit blocks settlement rather than decorating it.
+  own; an exact sanctions hit blocks settlement, and a fuzzy name match parks the invoice
+  for an operator rather than decorating it.
 
 ## Limits (stated, not hidden)
 

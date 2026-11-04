@@ -1,0 +1,104 @@
+{
+ "date": "2026-11-05",
+ "network": "eip155:42220",
+ "network_name": "Celo",
+ "payer": "0xDbFe5c4d0256D2459bB216caB905999Ca41bE349",
+ "query": "Guatemala stablecoin supplier payments Celo",
+ "count": 10,
+ "results_count": 10,
+ "usdc_before_atomic": 274699,
+ "usdc_after_atomic": 264699,
+ "usdc_spent_atomic": 10000,
+ "usdc_before": 0.274699,
+ "usdc_after": 0.264699,
+ "usdc_spent": 0.01,
+ "paid_usdc_atomic": 10000,
+ "response": {
+  "query": "Guatemala stablecoin supplier payments Celo",
+  "count": 10,
+  "results": [
+   {
+    "title": "How to Buy Celo (CELO) in Guatemala with Credit Card Online",
+    "url": "https://www.bitget.com/how-to-buy/celo/guatemala",
+    "description": "Tether\u2019s GENIUS-compliant USAT stablecoin launches on Celo, marking first expansion beyond Ethereum ... According to a report by 8004scan, approximately 386,000 onchain agents have been registered on-chain. ... Ledger supports Celo CIP-64 fee abstraction, allowing 18 Celo native assets to be used for Gas payments",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "Celo: Ethereum Layer 2 for Payments, Stablecoins & DeFi",
+    "url": "https://celo.org/",
+    "description": "Celo is an Ethereum L2 powering fast, low-cost payments, native stablecoins, and DeFi apps \u2014 driving real-world adoption and financial inclusion worldwide.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "Guatemala's Largest Bank Adopts Stablecoin Rails For U.S. Remittance Payments",
+    "url": "https://www.coindesk.com/business/2025/05/21/guatemalas-largest-bank-adopts-stablecoin-rails-for-us-remittance-payments",
+    "description": "Guatemala's largest bank, Banco Industrial, has adopted blockchain firm SukuPay's stablecoin rails for customers to send remittances from the U.S.",
+    "age": "May 21, 2025",
+    "publishedAt": "2025-05-21T14:26:04.000Z"
+   },
+   {
+    "title": "Celo Adds Six Latin American Stablecoins for Local Payments",
+    "url": "https://www.cointrust.com/market-news/celo-adds-six-latin-american-stablecoins-for-local-payments/amp",
+    "description": "Celo has expanded its stablecoin payment ecosystem by adding Ripio wFIAT, a platform that introduces six Latin American currencies backed on a one-to-one basis.",
+    "age": "August 1, 2026",
+    "publishedAt": "2026-08-01T07:18:59.000Z"
+   },
+   {
+    "title": "Celo Adds Six Ripio Stablecoins to Boost Latin American Payments",
+    "url": "https://www.cointrust.com/market-news/celo-adds-six-ripio-stablecoins-to-boost-latin-american-payments",
+    "description": "Celo has integrated six stablecoins issued by Latin American crypto company Ripio, expanding access to local-currency digital assets on its blockchain network and supporting cross-border payments and onchain foreign exchange transactions.",
+    "age": "2 weeks ago",
+    "publishedAt": "2026-10-24T05:52:02.000Z"
+   },
+   {
+    "title": "How to Buy Celo Dollar (CUSD) in Guatemala with Credit Card Online",
+    "url": "https://www.bitget.com/how-to-buy/celo-dollar/guatemala",
+    "description": "The national currency of Guatemala ... for you, including P2P trading, crypto deposits, and other third-party merchants such as Apple Pay, Google Pay, and different credit card services....",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "Build with Local Stablecoins - Celo Docs",
+    "url": "https://docs.celo.org/build/build-with-local-stablecoin",
+    "description": "Celo supports more than 30 fiat-referenced stablecoins: 7 USD-pegged assets, 27 pegged to regional currencies, and GoodDollar\u2019s UBI token. Most chains give builders a dollar and little else. On Celo, a payments app in Nairobi can settle in KESm, a remittance corridor into Brazil can settle in BRLm, and neither has to route through a dollar first.",
+    "age": "1 month ago",
+    "publishedAt": "2026-10-06T17:44:56.000Z"
+   },
+   {
+    "title": "wFIAT Stablecoins Now Live on Celo",
+    "url": "https://action.ripio.com/en/blog/wfiat-stablecoins-now-live-on-celo",
+    "description": "\"Celo is a key partner for Ripio, bringing our stablecoins to a developer community that's been building payments infrastructure for years,\" Fermin Rodriguez, Head of Product at Ripio.",
+    "age": "August 12, 2026",
+    "publishedAt": "2026-08-12T14:42:55.000Z"
+   },
+   {
+    "title": "x402/celo \u2014 stablecoin payments in one HTTP response",
+    "url": "https://x402.celo.org/",
+    "description": "A hosted x402 facilitator for Celo. Point your server at it, return a 402, and settle USDC payments gaslessly \u2014 no smart contracts to deploy, no funds held.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "Celo Launches AI Agent Marketplace With USDC and Stablecoin Payments",
+    "url": "https://www.cointrust.com/market-news/celo-launches-ai-agent-marketplace-with-usdc-and-stablecoin-payments",
+    "description": "The marketplace aims to enable AI agents to independently access and pay for digital resources using stablecoins, creating a payment infrastructure for automated software-driven commerce on Celo.",
+    "age": "3 weeks ago",
+    "publishedAt": "2026-10-13T13:37:19.000Z"
+   }
+  ],
+  "untrustedContent": true,
+  "next": {
+   "slug": "answer",
+   "route": "GET /api/answer",
+   "price": "$0.08"
+  }
+ },
+ "settlement_tx": "0x3ecbb5cdbb00c45c8736ba2abb3d62ab09dd01320d0b74293f3f3b37f92cd3a1",
+ "settlement_block": 81918115,
+ "settlement_status": "0x1",
+ "attempts": 1,
+ "elapsed_s": 4.4,
+ "payee": "0xabf4fabd7c416fb67202e5f9002389fc75e2a9d0"
+}

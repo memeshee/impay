@@ -354,6 +354,48 @@ def _e(value) -> str:
     return html.escape("" if value is None else str(value), quote=True)
 
 
+# A `celo://` or `ethereum:` link only works where a wallet app has claimed the
+# scheme. In a desktop browser both die with "Failed to launch … because the
+# scheme does not have a registered handler", which is what a judge clicking the
+# big teal button saw. On a phone the deep link is still the fastest path.
+_MOBILE_UA = re.compile(r"Android|iPhone|iPad|iPod|Mobile|MiniPay|Valora", re.I)
+
+
+def _is_mobile(ua: str | None) -> bool:
+    """Whether a wallet app on this device could plausibly claim a deep-link scheme."""
+    return bool(ua and _MOBILE_UA.search(ua))
+
+
+# Kept out of the page f-string so JS braces stay single.
+_COPY_JS = r'''<script>
+(function () {
+  function flash(b) {
+    if (!b.dataset.label) { b.dataset.label = b.textContent; }
+    b.textContent = 'copied';
+    b.classList.add('done');
+    setTimeout(function () { b.textContent = b.dataset.label; b.classList.remove('done'); }, 1400);
+  }
+  function legacy(v, b) {
+    var ta = document.createElement('textarea');
+    ta.value = v; ta.style.position = 'fixed'; ta.style.top = '-1000px';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); flash(b); } catch (e) {}
+    document.body.removeChild(ta);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('button.copy'), function (b) {
+    b.addEventListener('click', function () {
+      var v = b.getAttribute('data-copy') || '';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(v).then(function () { flash(b); },
+                                              function () { legacy(v, b); });
+      } else { legacy(v, b); }
+    });
+  });
+})();
+</script>'''
+
+
+
 def _short(addr: str) -> str:
     return f"{addr[:8]}…{addr[-6:]}" if addr and len(addr) > 20 else (addr or "")
 
@@ -391,6 +433,17 @@ a.ghost{background:transparent;color:#5eead4;border:1px solid #24463c;font-weigh
 }
 .note{margin-top:14px;font-size:12px;color:#64748b}
 .warn{background:#3b1d1d;border-color:#5b2a2a;color:#fca5a5;padding:14px;border-radius:10px;font-size:14px}
+.sendbox{margin-top:16px;border:1px solid #24463c;border-radius:12px;padding:14px 16px}
+.sendbox .lead{margin:0;font-size:13px;color:#94a3b8}
+.copyrow{display:flex;align-items:center;gap:10px;margin-top:9px}
+.copyrow .lbl{flex:0 0 auto;min-width:52px;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b}
+.copyrow .val{flex:1 1 auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:12.5px;overflow-wrap:anywhere}
+button.copy{flex:0 0 auto;background:#5eead4;color:#06231c;border:0;border-radius:8px;
+  padding:7px 10px;font:600 11.5px/1 ui-sans-serif,system-ui;cursor:pointer;letter-spacing:.02em}
+button.copy.done{background:#14351f;color:#6ee7b7}
+.hint{margin-top:12px;font-size:12px;color:#64748b}
 """
 
 
@@ -473,18 +526,55 @@ def render_invoice(payload: dict) -> str:
                 'This invoice was retired and will not be settled. '
                 'Ask the freelancer for a current one.</div>')
     elif status == "open":
-        body = (
-            f'<a class="btn" href="{_e(payload["pay_link_celo"])}">Pay '
-            f'{_e(payload.get("settle_amount") or "")}</a>'
-            f'<a class="btn ghost" href="{_e(payload["pay_link_eip681"])}">Open in another wallet '
-            f'(EIP&#8209;681)</a>'
-            + (f'<a class="btn ghost" href="{_e(payload["onramp_url"])}" target="_blank" '
-               f'rel="noreferrer">Don\'t hold it yet? Buy with a card (Ripio)</a>'
-               if payload.get("onramp_url") else "")
-            + f'<div class="note">Or send <b>{_e(payload.get("settle_amount") or "")}</b> to '
-            f'<span class="mono">{_e(payload.get("pay_to") or "")}</span> on Celo. '
-            f'This page confirms by itself — no need to tell anyone you paid.</div>'
-        )
+        amount = payload.get("settle_amount") or ""
+        symbol = payload.get("symbol") or ""
+        addr = payload.get("pay_to") or ""
+        token = payload.get("asset_contract") or ""
+        copy_rows = "".join(
+            f'<div class="copyrow"><span class="lbl">{label}</span>'
+            f'<span class="val">{_e(shown)}</span>'
+            f'<button class="copy" type="button" data-copy="{_e(value)}">copy</button></div>'
+            for label, shown, value in (
+                ("Amount", payload.get("amount_display") or "", payload.get("amount_display") or ""),
+                ("Token", f"{symbol} · {_short(token)}", token),
+                # Short display, full value in data-copy: a wrapped 42-char address
+                # leaves an orphan tail and makes the row look broken.
+                ("To", _short(addr), addr),
+            ))
+        manual = (
+            '<div class="sendbox" id="sendbox">'
+            f'<p class="lead">Send <b>{_e(amount)}</b> on Celo mainnet — a plain token '
+            'transfer is exactly what this page watches for.</p>'
+            f'{copy_rows}'
+            f'<p class="hint">In your wallet: pick {_e(symbol)} on Celo, paste the address, '
+            f'send {_e(payload.get("amount_display") or "")}. This page flips to settled by '
+            'itself once Celo shows the transfer — no need to tell anyone you paid.</p>'
+            '</div>')
+        # The deep links are useful on a phone and a dead end in a desktop browser,
+        # so they never render as the primary action on desktop.
+        ghosts = (
+            f'<a class="btn ghost" href="{_e(payload["pay_link_celo"])}">'
+            'Open in MiniPay / Valora</a>'
+            f'<a class="btn ghost" href="{_e(payload["pay_link_eip681"])}">'
+            'Open in a wallet app (EIP&#8209;681)</a>')
+        deep_note = (
+            '<div class="note">Those two need a wallet app registered on this device. '
+            'In a desktop browser they only raise “scheme does not have a registered '
+            'handler” — use the copy buttons.</div>')
+        parts = []
+        if payload.get("mobile"):
+            parts.append(f'<a class="btn" href="{_e(payload["pay_link_celo"])}">'
+                         f'Pay {_e(amount)} in MiniPay / Valora</a>')
+        parts.append(manual)
+        if payload.get("onramp_url"):
+            parts.append(f'<a class="btn ghost" href="{_e(payload["onramp_url"])}" '
+                         'target="_blank" rel="noreferrer">'
+                         "Don't hold it yet? Buy with a card (Ripio)</a>")
+        parts.append(ghosts)
+        if not payload.get("mobile"):
+            parts.append(deep_note)
+        body = "".join(parts)
+
     else:
         # Never fall through to a pay button: an unknown state is not payable.
         body = ('<div class="warn"><b>Not payable.</b><br>'
@@ -502,6 +592,7 @@ def render_invoice(payload: dict) -> str:
   <div style="margin-top:14px">{badge}</div>
   <dl class="rows">{row_html}</dl>
   {body}
+  {_COPY_JS}
   <div class="foot">
     Settled by an ERC-8004 agent · <span class="mono">agentId {AGENT_ID}</span> ·
     <a href="{REPO}" target="_blank" rel="noreferrer">source</a><br>
@@ -704,7 +795,11 @@ class Handler(BaseHTTPRequestHandler):
             if not inv:
                 self._send(404, render_index())
                 return
-            self._send(200, render_invoice(invoice_payload(inv)))
+            payload = invoice_payload(inv)
+            # Only a device that can hand a scheme to a wallet app gets the deep
+            # link as its primary action; everyone else gets copyable fields.
+            payload["mobile"] = _is_mobile(self.headers.get("User-Agent"))
+            self._send(200, render_invoice(payload))
             return
         self._json(404, {"error": "not found"})
 

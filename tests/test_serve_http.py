@@ -37,9 +37,10 @@ def base_url(tmp_path, monkeypatch):
         serve._PROOF_CACHE.update(at=0.0, data=None)
 
 
-def get(url, method="GET"):
-    req = urllib.request.Request(url, method=method,
-                                 headers={"User-Agent": "test/1.0"})
+def get(url, method="GET", headers=None):
+    hdrs = {"User-Agent": "test/1.0"}
+    hdrs.update(headers or {})
+    req = urllib.request.Request(url, method=method, headers=hdrs)
     try:
         with urllib.request.urlopen(req, timeout=15) as r:
             return r.status, dict(r.headers), r.read().decode()
@@ -180,4 +181,32 @@ def test_the_badge_cannot_claim_a_review_that_never_happened(base_url, status, l
     assert code == 200
     assert f'id="badge">{label}</span>' in body
     assert 'id="badge">held for review</span>' not in body
+
+
+def test_a_desktop_payer_gets_copyable_fields_not_a_dead_deep_link(base_url):
+    """A `celo://` link in a desktop browser dies with 'the scheme does not have a
+    registered handler' — the teal button was the only prominent action, so the
+    one obvious way to pay did nothing. The manual transfer is primary instead."""
+    inv = _invoice()
+    code, _, body = get(f"{base_url}/i/{inv['id']}",
+                        headers={"User-Agent": "Mozilla/5.0 (X11; Linux x86_64) Chrome/140"})
+    assert code == 200
+    assert 'id="sendbox"' in body
+    # copyable amount, token contract and address — the transfer a wallet can send
+    assert f'data-copy="{PAY_TO}"' in body
+    assert body.count('class="copy"') >= 2
+    # the deep link survives, but never as the primary button on desktop
+    assert 'class="btn ghost" href="celo://wallet/pay' in body
+    assert 'class="btn" href="celo://wallet/pay' not in body
+    assert "registered handler" in body  # the page says why the links may fail
+
+
+def test_a_phone_still_gets_the_deep_link_as_the_primary_action(base_url):
+    inv = _invoice()
+    code, _, body = get(f"{base_url}/i/{inv['id']}",
+                        headers={"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 18_0) Mobile"})
+    assert code == 200
+    assert 'class="btn" href="celo://wallet/pay' in body
+    assert 'id="sendbox"' in body  # the manual path is still there
+
 

@@ -13,7 +13,8 @@ reading the source first.
   link bound to the invoice's payout address (`bot/ramp.py`), so a payer with no
   stablecoin buys local-currency wFIAT with a card and it lands on the invoice.
 - **Autonomous?** `bot/watch.py` settles without anyone typing a command.
-- **Try it:** https://celo.uconfidant.tech/i/INV-0006-D2064A
+- **Try it:** https://celo.uconfidant.tech/i/INV-0008-9E74F4 — an open 25 wBRL
+  invoice, in kind, with the Ripio on-ramp on the page
 
 ## Build with `buy`
 

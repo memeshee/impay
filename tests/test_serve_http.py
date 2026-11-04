@@ -162,3 +162,22 @@ def test_an_open_invoice_does_render_a_pay_button(base_url):
     inv = _invoice()
     code, _, body = get(f"{base_url}/i/{inv['id']}")
     assert code == 200 and "celo://wallet/pay" in body
+
+
+@pytest.mark.parametrize("status,label", [
+    ("expired", "expired"),
+    ("weird_status_from_the_future", "not payable"),
+])
+def test_the_badge_cannot_claim_a_review_that_never_happened(base_url, status, label):
+    """An expired demo link rendered the 'held for review' badge: the body said
+    expired while the badge claimed a human had looked at it. Every state names
+    itself, and an unknown one does not borrow a truthful state's label."""
+    inv = _invoice()
+    db = store._load()
+    db["invoices"][inv["id"]]["status"] = status
+    store._save(db)
+    code, _, body = get(f"{base_url}/i/{inv['id']}")
+    assert code == 200
+    assert f'id="badge">{label}</span>' in body
+    assert 'id="badge">held for review</span>' not in body
+

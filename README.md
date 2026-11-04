@@ -9,9 +9,12 @@ Built for the Celo *Agents on Open Rails* hackathon. Celo mainnet only.
 <sub>Renamed from `celo-invoice-agent`; the old GitHub URL redirects. Every
 transaction we sign is tagged with the ERC-8021 code this entry is scored against,
 [`celo_b97cdbaae280`](https://celoscan.io/tx/0xf2ffab18d6db0c5766dd6f3479c4f3d09fa2bcef92aa4a987daacbc004c4e5b8)
-(decoded from calldata, schema 0), alongside our own `celo_invoiceagent`. Older
-transactions carry only the latter — attribution is appended to calldata and cannot
-be backfilled.</sub>
+(decoded from calldata, schema 0), alongside our own `celo_invoiceagent`. It is
+re-proved on every daily onchain write — `python scripts/verify_attribution.py` reads
+each attestation tx's calldata and prints `6/6 transactions carry celo_b97cdbaae280`,
+newest [`0x690d2ce0…`](https://celoscan.io/tx/0x690d2ce053ca648620402243f0ae2ea4d3081b307b02a0890afd440c66474018).
+Older transactions carry only our own code — attribution is appended to calldata and
+cannot be backfilled.</sub>
 
 [![ci](https://github.com/memeshee/impay/actions/workflows/ci.yml/badge.svg)](https://github.com/memeshee/impay/actions/workflows/ci.yml)
 

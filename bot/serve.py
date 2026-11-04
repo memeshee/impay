@@ -403,8 +403,10 @@ def render_invoice(payload: dict) -> str:
         "held": '<span class="badge held" id="badge">held for review</span>',
         "blocked": '<span class="badge held" id="badge">blocked</span>',
         "dropped": '<span class="badge held" id="badge">dropped</span>',
+        "expired": '<span class="badge held" id="badge">expired</span>',
     }
-    badge = badges.get(status, badges["held"])
+    # An unknown status is not "held" — saying so would claim a human reviewed it.
+    badge = badges.get(status, '<span class="badge held" id="badge">not payable</span>')
     rows = [
         ("Recipient", _e(payload.get("recipient") or "—")),
         ("Invoice", _e(payload.get("invoice_amount") or "—")),

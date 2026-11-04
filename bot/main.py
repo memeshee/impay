@@ -209,8 +209,25 @@ async def handle_text(update: Update, text: str, ctx=None) -> None:
     await mint_and_reply(msg, item, user_id=_user_id(msg.from_user))
 
 
+def _bare_name_hint(recipient: str | None) -> str:
+    """Warn before the money is spent, not after the invoice is blocked.
+
+    The sanctions-name vendor screens the exact string that is sent, so a single
+    bare token ("Jack") reads as a match on many lists while "Jack Miller" comes
+    back clean. Minting first and explaining after costs the screening fee and
+    leaves a dead pay link.
+    """
+    name = (recipient or "").strip()
+    if not name or name.startswith("@") or len(name.split()) > 1:
+        return ""
+    return ("\n\nNote: the recipient is a bare first name, and the name screen runs on "
+            "the exact string — single tokens often read as a match and block the "
+            "invoice. If that happens, send it again with the full name.")
+
+
 async def mint_and_reply(msg, item: dict, user_id: int, creator: str | None = None):
     """Create the invoice and send the pay link. Shared by the chat and the button."""
+
     from . import x402
     inv = store.create(item["draft"], item["screen"],
                        creator=creator or str(user_id),
@@ -238,6 +255,7 @@ async def mint_and_reply(msg, item: dict, user_id: int, creator: str | None = No
         f"The agent now buys its own screening for this invoice\n"
         f"(rate check + sanctions on the wallet and name, ≈$0.009) and watches\n"
         f"Celo to settle it by itself. /receipt {inv['id']}"
+        + _bare_name_hint(inv["recipient"])
     )
 
 

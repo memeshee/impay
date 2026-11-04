@@ -452,6 +452,14 @@ def test_minted_invoice_records_the_block_it_was_created_at(monkeypatch):
     assert inv["created_block"] == 123456
 
 
+def test_a_bare_first_name_is_flagged_before_the_screen_spends_money():
+    """'charge Jack …' mints, then the name screen matches and the invoice is dead
+    and the fee spent. Say it at mint time instead."""
+    assert "bare first name" in main._bare_name_hint("Jack")
+    for ok in ("Jack Miller", "@marco", "", None, "Ana Souza"):
+        assert main._bare_name_hint(ok) == ""
+
+
 def test_invoice_ids_are_not_enumerable():
     a, b = mint(), mint()
     assert a["id"].startswith("INV-0001-") and len(a["id"]) == len("INV-0001-") + 6

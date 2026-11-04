@@ -468,6 +468,7 @@ _WALLET_JS = r'''<script>
       })
       .then(function (tx) {
         var short = String(tx).slice(0, 12) + '\u2026';
+        note.classList.remove('bad');
         note.innerHTML = 'Sent <span class="mono">' + short + '</span> \u2014 waiting for '
                        + 'Celo to show the transfer. This page flips to settled on its own.';
         btn.textContent = 'Sent \u2014 waiting for Celo';
@@ -475,8 +476,10 @@ _WALLET_JS = r'''<script>
       .catch(function (err) {
         btn.disabled = false;
         var msg = (err && (err.message || err.code)) || 'the wallet did not send it';
+        note.classList.add('bad');
         say('Wallet: ' + msg);
       });
+
   });
 })();
 </script>'''
@@ -525,9 +528,11 @@ body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b121
 .open{background:#1e3a5f;color:#93c5fd}
 .settled{background:#14351f;color:#6ee7b7}
 .held{background:#3b2f14;color:#fcd34d}
-a.btn{display:block;text-align:center;text-decoration:none;margin-top:16px;padding:14px 18px;
-      border-radius:12px;font-weight:650;background:#5eead4;color:#06231c}
-a.ghost{background:transparent;color:#5eead4;border:1px solid #24463c;font-weight:550}
+.btn{display:block;width:100%;text-align:center;text-decoration:none;margin-top:16px;
+     padding:14px 18px;border:0;border-radius:12px;font:inherit;font-weight:650;
+     background:#5eead4;color:#06231c;cursor:pointer}
+.btn.ghost{background:transparent;color:#5eead4;border:1px solid #24463c;font-weight:550}
+#walletnote.bad{color:#fca5a5}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
 .foot{margin-top:22px;padding-top:16px;border-top:1px solid #1f2d28;font-size:12px;color:#64748b}
 .foot a{color:#94a3b8}

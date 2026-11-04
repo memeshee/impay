@@ -254,7 +254,9 @@ async def mint_and_reply(msg, item: dict, user_id: int, creator: str | None = No
         f"Pay link (send it to your client):\n{pay_url(inv['id'])}\n\n"
         f"The agent now buys its own screening for this invoice\n"
         f"(rate check + sanctions on the wallet and name, ≈$0.009) and watches\n"
-        f"Celo to settle it by itself. /receipt {inv['id']}"
+        f"Celo to settle it by itself. /receipt {inv['id']}\n"
+        f"The link is payable as soon as that screening finishes (about 40s) — the\n"
+        f"page refreshes itself."
         + _bare_name_hint(inv["recipient"])
     )
 

@@ -46,6 +46,12 @@ SECURITY_HEADERS = {
     "X-Content-Type-Options": "nosniff",
     "Referrer-Policy": "no-referrer",
     "X-Frame-Options": "DENY",
+    # Every route here answers from live state (an invoice flips from screening to
+    # payable to settled), so nothing may be cached — a cached "screening in
+    # progress" or "awaiting payment" page is a page that lies, and its own reload
+    # would come back from the cache and stay wrong.
+    "Cache-Control": "no-store, max-age=0",
+
     # One inline script drives the status poll; nothing else is loadable.
     "Content-Security-Policy": (
         "default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; "
@@ -655,7 +661,8 @@ def render_invoice(payload: dict) -> str:
         body = ('<div class="warn"><b>Screening in progress.</b><br>'
                 'The agent is buying this invoice’s sanctions checks right now and will '
                 'not accept payment until they come back clean — usually under a minute. '
-                'This page reloads itself as soon as the invoice is payable.</div>')
+                'This page reloads itself as soon as the invoice is payable '
+                '(<a href="?v=refresh">check again</a>).</div>')
     elif status == "settled":
         body = '<div class="note" id="paid" style="color:#6ee7b7">Payment confirmed onchain.</div>'
     elif status == "blocked":
@@ -777,16 +784,26 @@ def render_invoice(payload: dict) -> str:
   var initialStatus = {json.dumps(status)};
   var initialPayable = {json.dumps(bool(payload.get("payable")))};
   if (settled || {json.dumps(bool(payload.get("error")))}) return;
+  // A cache-busting replace, not reload(): this page's whole value is being current,
+  // and a reload that comes back from the cache leaves a stale refusal on screen.
+  function refresh() {{
+    location.replace(location.pathname + '?v=' + Date.now());
+  }}
   function poll() {{
-    fetch("/api/invoice/" + encodeURIComponent(id), {{headers: {{accept: "application/json"}}}})
+    fetch("/api/invoice/" + encodeURIComponent(id) + "?v=" + Date.now(),
+          {{headers: {{accept: "application/json"}}, cache: "no-store"}})
       .then(function(r) {{ return r.json(); }})
       .then(function(d) {{
-        // Screening finishing, or a status change, makes this page wrong — reload
-        // rather than leaving a payer looking at a stale promise.
-        if (d.status !== initialStatus || !!d.payable !== initialPayable) {{ location.reload(); }}
+        if (d.status !== initialStatus || !!d.payable !== initialPayable) {{ refresh(); }}
       }}).catch(function() {{}});
   }}
-  setInterval(poll, 5000);
+  // A tab restored from bfcache, or one the user comes back to, may be showing a
+  // state from minutes ago: check immediately instead of waiting for the interval.
+  window.addEventListener('pageshow', poll);
+  document.addEventListener('visibilitychange', function () {{
+    if (!document.hidden) {{ poll(); }}
+  }});
+  setInterval(poll, 4000);
 }})();
 </script>
 </body></html>"""

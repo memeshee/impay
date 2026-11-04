@@ -189,8 +189,14 @@ def enrich(invoice: dict, *, key: str | None = None, session_factory=None,
         if rec.get("ok") and slug.startswith("sanctions"):
             if not (rec.get("result") or {}).get("clean", False):
                 blocked = True
+                # Name the exact string that was screened. A bare first name
+                # ("Jack") matches broadly because the vendor screens the string
+                # token-by-token, and without the subject the operator cannot tell
+                # a real hit from a too-short name.
+                subject = params.get("name") or params.get("address") or ""
                 reason = (f"{slug} flagged: verdict="
-                          f"{(rec.get('result') or {}).get('verdict')}")
+                          f"{(rec.get('result') or {}).get('verdict')}"
+                          + (f" for {subject!r}" if subject else ""))
     spent = sum(float(r.get("price_usd_quoted") or 0) for r in receipts if r.get("ok"))
     return {"receipts": receipts, "blocked": blocked, "reason": reason,
             "spent_usd": round(spent, 4), "at": int(time.time())}

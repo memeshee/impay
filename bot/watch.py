@@ -269,9 +269,14 @@ def enrich_pending(*, log=print, enricher=None, notifier=None,
             + (" — BLOCKED: " + str(enrichment.get('reason')) if enrichment["blocked"] else ""))
         if updated:
             if enrichment["blocked"]:
+                # store.release() only accepts `held`, so promising a human here
+                # would be a refusal that points at a path which does not exist.
                 msg = (f"{inv['id']} blocked ❌\n"
                        f"{enrichment.get('reason')}\n"
-                       f"Settlement is refused until a human clears it.")
+                       "A sanctions match is terminal for this invoice — an operator "
+                       "cannot clear it. Send a new one; if the recipient was a bare "
+                       "first name, use the full name, because the screen runs on the "
+                       "exact string you typed.")
             else:
                 msg = (f"{inv['id']} screened ✅\n"
                        f"Bought {len(bought)} services for ${spent}: {', '.join(bought)}\n"

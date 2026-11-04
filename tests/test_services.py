@@ -206,6 +206,9 @@ def test_enrichment_blocks_the_invoice_on_a_sanctions_hit():
     }
     enr = services.enrich(inv, session_factory=lambda slug: sessions[slug], log=lambda *_: None)
     assert enr["blocked"] is True and "sanctions-name" in enr["reason"]
+    # The reason names the exact string screened, so a bare first name reading as a
+    # hit is distinguishable from a real one.
+    assert "'Marco Silva'" in enr["reason"]
     updated = store.set_services(inv["id"], "done", enr)
     assert updated["status"] == "blocked"
     # A blocked invoice must leave the settlement queue.

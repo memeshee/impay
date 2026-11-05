@@ -1,0 +1,104 @@
+{
+ "date": "2026-11-06",
+ "network": "eip155:42220",
+ "network_name": "Celo",
+ "payer": "0xDbFe5c4d0256D2459bB216caB905999Ca41bE349",
+ "query": "Honduras stablecoin cross-border supplier payments Celo",
+ "count": 10,
+ "results_count": 10,
+ "usdc_before_atomic": 264699,
+ "usdc_after_atomic": 254699,
+ "usdc_spent_atomic": 10000,
+ "usdc_before": 0.264699,
+ "usdc_after": 0.254699,
+ "usdc_spent": 0.01,
+ "paid_usdc_atomic": 10000,
+ "response": {
+  "query": "Honduras stablecoin cross-border supplier payments Celo",
+  "count": 10,
+  "results": [
+   {
+    "title": "Celo Adds Six Ripio Stablecoins to Boost Latin American Payments",
+    "url": "https://www.cointrust.com/market-news/celo-adds-six-ripio-stablecoins-to-boost-latin-american-payments",
+    "description": "Celo has integrated six stablecoins issued by Latin American crypto company Ripio, expanding access to local-currency digital assets on its blockchain network and supporting cross-border payments and on-chain foreign exchange transactions.",
+    "age": "2 weeks ago",
+    "publishedAt": "2026-10-24T05:52:02.000Z"
+   },
+   {
+    "title": "How to Buy Celo Dollar (CUSD) in Honduras with Credit Card Online",
+    "url": "https://www.bitget.com/how-to-buy/celo-dollar/honduras",
+    "description": "Our exchange offers secure payment options to make trading more accessible and safer than ever, including P2P trading, crypto deposits, and other third-party merchants such as Apple Pay, Google Pay, and several different credit card services.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "What Is Celo? Mobile-First L2 and Stablecoin Rails | Support",
+    "url": "https://eco.com/support/en/articles/15183710-what-is-celo-mobile-first-l2-and-stablecoin-rails",
+    "description": "Celo vs Base: Base optimizes for consumer apps and Coinbase distribution. Celo optimizes for stablecoin remittances and mobile money on-ramps. Base has roughly 20x the TVL but limited mobile-payments tooling.",
+    "age": "September 16, 2026",
+    "publishedAt": "2026-09-16T00:00:00.000Z"
+   },
+   {
+    "title": "Stablecoins in Emerging Markets: The Cross-Border Payments Playbook for 2026 | Tazapay",
+    "url": "https://tazapay.com/guides/stablecoins-cross-border-payments-emerging-markets",
+    "description": "Sources: FXC Intelligence (2025) \u00b7 BCG Global Payments Report (2025) \u00b7 World Bank Remittance Prices ... For a company paying $50 million annually to suppliers across LATAM, Southeast Asia, and Africa, the shift to stablecoin settlement delivers ...",
+    "age": "June 25, 2026",
+    "publishedAt": "2026-06-25T10:04:42.000Z"
+   },
+   {
+    "title": "Stablecoin cross-border payments: how it works for B2B",
+    "url": "https://www.cryptumpay.com/blog-posts/stablecoin-cross-border-payments-business",
+    "description": "You buy the stablecoin. Your company sends euros or dollars to a licensed exchange or provider and receives USDT. This on-ramp takes as long as a domestic bank transfer, because it is one.",
+    "age": "September 19, 2026",
+    "publishedAt": "2026-09-19T14:47:51.000Z"
+   },
+   {
+    "title": "How to Buy Celo Euro (CEUR) in Honduras with Credit Card Online",
+    "url": "https://www.bitget.com/how-to-buy/celo-euro/honduras",
+    "description": "Honduran lempira (HNL) is Honduras\u2019 official currency. With Bitget, you can purchase cryptos in just a few minutes, no matter where you are in the country, whether it's Tegucigalpa, San Pedro Sula, or La Ceiba. Our exchange offers secure payment options to make trading more accessible and safer than ever, including P2P trading, crypto deposits, and other third-party merchants such as Apple Pay, Google Pay, and several different credit card services. Buy Celo Euro now",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "State of stablecoins in Latin America",
+    "url": "https://www.rain.xyz/resources/state-of-stablecoins-in-latin-america",
+    "description": "Stablecoin adoption across Latin America is structural, not speculative. Stablecoins are solving concrete problems, \u200b\u200bincluding preserving purchasing power in high-inflation economies, reducing the cost and latency of cross-border payments, and giving individuals and businesses practical access to US dollars.",
+    "age": "June 12, 2026",
+    "publishedAt": "2026-06-12T00:00:00.000Z"
+   },
+   {
+    "title": "Celo Adds Six Latin American Stablecoins for Local Payments",
+    "url": "https://www.cointrust.com/market-news/celo-adds-six-latin-american-stablecoins-for-local-payments/amp",
+    "description": "The integration could simplify transaction flows for applications that previously relied on U.S. dollar-denominated stablecoins as an intermediary. Payment platforms and remittance providers can now use supported local currencies directly when determining transaction values and settling transfers on the Celo network. By allowing transactions to be priced and settled in local currencies, the integration removes the need for a separate dollar conversion step in supported payment and DeFi activities. The change may be particularly relevant to cross-border payment services and regional financial applications, where currency conversion can add operational steps to transaction processing.",
+    "age": "August 1, 2026",
+    "publishedAt": "2026-08-01T07:18:59.000Z"
+   },
+   {
+    "title": "Stablecoin Integrates Celo Network | Flash News Detail | Blockchain.News",
+    "url": "https://blockchain.news/flashnews/stablecoin-integrates-celo-network",
+    "description": "Stablecoin adds Celo support for global payments, announced at Consensus2026, boosting stablecoin adoption amid CELO price prediction trends.",
+    "age": "May 6, 2026",
+    "publishedAt": "2026-05-06T06:47:33.000Z"
+   },
+   {
+    "title": "Using stablecoin for cross-border payments in Latin America",
+    "url": "https://tempo.xyz/learn/cross-border-payments-latin-america/",
+    "description": "Cross-border payments in Latin America are growing quickly, but companies still manage currency fragmentation, local settlement windows, FX costs, and limited visibility across providers. Stablecoin rails can complement banks and local payment networks by giving teams a 24/7 settlement layer for regional payouts, treasury movement, and supplier payments.",
+    "age": "August 24, 2026",
+    "publishedAt": "2026-08-24T00:00:00.000Z"
+   }
+  ],
+  "untrustedContent": true,
+  "next": {
+   "slug": "answer",
+   "route": "GET /api/answer",
+   "price": "$0.08"
+  }
+ },
+ "settlement_tx": "0xe498f1c9be8f855757880dbe696f5b6fada724b0ecbd96feabe1e30d2c6bd3f6",
+ "settlement_block": 82005720,
+ "settlement_status": "0x1",
+ "attempts": 1,
+ "elapsed_s": 4.1,
+ "payee": "0xabf4fabd7c416fb67202e5f9002389fc75e2a9d0"
+}

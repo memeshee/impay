@@ -2,23 +2,23 @@
   "rewrites": [
     {
       "source": "/i/:path*",
-      "destination": "https://here-expenses-mason-beam.trycloudflare.com/i/:path*"
+      "destination": "https://hawk-rep-quarterly-omaha.trycloudflare.com/i/:path*"
     },
     {
       "source": "/proof",
-      "destination": "https://here-expenses-mason-beam.trycloudflare.com/proof"
+      "destination": "https://hawk-rep-quarterly-omaha.trycloudflare.com/proof"
     },
     {
       "source": "/api/:path*",
-      "destination": "https://here-expenses-mason-beam.trycloudflare.com/api/:path*"
+      "destination": "https://hawk-rep-quarterly-omaha.trycloudflare.com/api/:path*"
     },
     {
       "source": "/agent.json",
-      "destination": "https://here-expenses-mason-beam.trycloudflare.com/agent.json"
+      "destination": "https://hawk-rep-quarterly-omaha.trycloudflare.com/agent.json"
     },
     {
       "source": "/health",
-      "destination": "https://here-expenses-mason-beam.trycloudflare.com/health"
+      "destination": "https://hawk-rep-quarterly-omaha.trycloudflare.com/health"
     }
   ],
   "cleanUrls": true,

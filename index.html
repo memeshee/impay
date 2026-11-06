@@ -21,9 +21,11 @@ body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0b121
 .open{background:#1e3a5f;color:#93c5fd}
 .settled{background:#14351f;color:#6ee7b7}
 .held{background:#3b2f14;color:#fcd34d}
-a.btn{display:block;text-align:center;text-decoration:none;margin-top:16px;padding:14px 18px;
-      border-radius:12px;font-weight:650;background:#5eead4;color:#06231c}
-a.ghost{background:transparent;color:#5eead4;border:1px solid #24463c;font-weight:550}
+.btn{display:block;width:100%;text-align:center;text-decoration:none;margin-top:16px;
+     padding:14px 18px;border:0;border-radius:12px;font:inherit;font-weight:650;
+     background:#5eead4;color:#06231c;cursor:pointer}
+.btn.ghost{background:transparent;color:#5eead4;border:1px solid #24463c;font-weight:550}
+#walletnote.bad{color:#fca5a5}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px}
 .foot{margin-top:22px;padding-top:16px;border-top:1px solid #1f2d28;font-size:12px;color:#64748b}
 .foot a{color:#94a3b8}
@@ -35,6 +37,17 @@ a.ghost{background:transparent;color:#5eead4;border:1px solid #24463c;font-weigh
 }
 .note{margin-top:14px;font-size:12px;color:#64748b}
 .warn{background:#3b1d1d;border-color:#5b2a2a;color:#fca5a5;padding:14px;border-radius:10px;font-size:14px}
+.sendbox{margin-top:16px;border:1px solid #24463c;border-radius:12px;padding:14px 16px}
+.sendbox .lead{margin:0;font-size:13px;color:#94a3b8}
+.copyrow{display:flex;align-items:center;gap:10px;margin-top:9px}
+.copyrow .lbl{flex:0 0 auto;min-width:52px;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:#64748b}
+.copyrow .val{flex:1 1 auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:12.5px;overflow-wrap:anywhere}
+button.copy{flex:0 0 auto;background:#5eead4;color:#06231c;border:0;border-radius:8px;
+  padding:7px 10px;font:600 11.5px/1 ui-sans-serif,system-ui;cursor:pointer;letter-spacing:.02em}
+button.copy.done{background:#14351f;color:#6ee7b7}
+.hint{margin-top:12px;font-size:12px;color:#64748b}
 
   .how{margin:22px 0 6px;font-size:13px;letter-spacing:1.2px;color:#5eead4;text-transform:uppercase}
   .use{margin:0;padding-left:20px;font-size:14px;color:#cbd5e1}
@@ -60,7 +73,8 @@ a.ghost{background:transparent;color:#5eead4;border:1px solid #24463c;font-weigh
         judgment that fails closed on anything it cannot read.</li>
     <li><b>The agent buys what it cannot do itself</b> — a sanctions screen on the
         name and the payout wallet, plus an FX cross-check, each paid in USA₮/USDC
-        over x402 (~$0.009 per invoice). A hit blocks settlement.</li>
+        over x402 (~$0.009 per invoice). An all-token name match blocks settlement;
+        substring noise waits for an operator.</li>
     <li><b>The payer opens a link</b> — wallet deep link, EIP-681, or a Ripio
         on-ramp if they hold no stablecoin. 500 BRL settles as 500 wBRL in kind.</li>
     <li><b>Nobody confirms anything</b> — the watcher proves the transfer onchain
@@ -92,7 +106,7 @@ a.ghost{background:transparent;color:#5eead4;border:1px solid #24463c;font-weigh
   <p class="usenote">Before your first invoice, tell it where to send the money:
   <span class="mono">/wallet 0xYourAddress</span>, or
   <span class="mono">/wallet 0xYourAddress wBRL</span> to be paid in reais in kind.</p>
-  <p class="live" id="live">2/2 settlements proven onchain · 14 paid service calls · every payment so far is builder-funded: the rails work end to end, the users are still ours</p>
+  <p class="live" id="live">4/4 settlements proven onchain · 42 paid service calls · every payment so far is builder-funded: the rails work end to end, the users are still ours</p>
   <a class="btn" href="https://t.me/notcelordbot" target="_blank" rel="noreferrer">
     Try it on Telegram</a>
   <div class="foot">Invoice pages live at <span class="mono">/i/&lt;invoice-id&gt;</span>.

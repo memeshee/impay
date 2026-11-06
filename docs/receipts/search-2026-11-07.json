@@ -1,0 +1,104 @@
+{
+ "date": "2026-11-07",
+ "network": "eip155:42220",
+ "network_name": "Celo",
+ "payer": "0xDbFe5c4d0256D2459bB216caB905999Ca41bE349",
+ "query": "Dominican Republic stablecoin remittances Celo",
+ "count": 10,
+ "results_count": 10,
+ "usdc_before_atomic": 254699,
+ "usdc_after_atomic": 244699,
+ "usdc_spent_atomic": 10000,
+ "usdc_before": 0.254699,
+ "usdc_after": 0.244699,
+ "usdc_spent": 0.01,
+ "paid_usdc_atomic": 10000,
+ "response": {
+  "query": "Dominican Republic stablecoin remittances Celo",
+  "count": 10,
+  "results": [
+   {
+    "title": "What Is Celo? Mobile-First L2 and Stablecoin Rails | Support",
+    "url": "https://eco.com/support/en/articles/15183710-what-is-celo-mobile-first-l2-and-stablecoin-rails",
+    "description": "The network uses phone-number-based address discovery, native dollar and euro stablecoins issued by the Mento protocol, and lets users pay gas in stablecoins or USDC instead of ETH. It hosts roughly $150M in TVL as of mid-2026 per DeFiLlama, with ...",
+    "age": "September 16, 2026",
+    "publishedAt": "2026-09-16T00:00:00.000Z"
+   },
+   {
+    "title": "Send Money to the Dominican Republic: Cheapest Ways Compared",
+    "url": "https://stablecoin.nyc/posts/send-money-to-dominican-republic",
+    "description": "No. Zelle only moves money between US bank accounts. To send money to the Dominican Republic, use a remittance app such as F\u00e9lix, Taptap Send, or Remitly, or a bank wire transfer.",
+    "age": "3 weeks ago",
+    "publishedAt": "2026-10-15T02:23:53.000Z"
+   },
+   {
+    "title": "Best Crypto Cards in Dominican Republic (2026) - Territorial tax plus remittances make the DR a real crypto card market.",
+    "url": "https://www.spendnode.io/crypto-cards/country/dominican-republic/",
+    "description": "Tria Signature at 4.5% on the first ... (SDQ) and Punta Cana (PUJ). ... The Dominican Republic's $10 billion annual remittance corridor from 2 million US diaspora members defines the card selection here more than any other ...",
+    "age": "September 16, 2026",
+    "publishedAt": "2026-09-16T00:00:00.000Z"
+   },
+   {
+    "title": "wFIAT Stablecoins Now Live on Celo",
+    "url": "https://action.ripio.com/en/blog/wfiat-stablecoins-now-live-on-celo",
+    "description": "Ripio's wFIAT stablecoins launch on Celo. Build payments, DeFi, and remittance products with LatAm's local currencies on-chain.",
+    "age": "August 12, 2026",
+    "publishedAt": "2026-08-12T14:42:55.000Z"
+   },
+   {
+    "title": "How to Send Money to Dominican Republic | Bitwage Blog",
+    "url": "https://latam.bitwage.com/en-us/blog/how-to-send-money-to-dominican-republic",
+    "description": "By this point, you already know whether your recipient should be paid in local currency or by stablecoin. If you are paying a Dominican Republic-based contractor or employee on a recurring basis, the next move is to turn that choice into a payroll workflow you can reuse instead of rechecking remittance apps every pay cycle.",
+    "age": "April 20, 2026",
+    "publishedAt": "2026-04-20T15:42:53.000Z"
+   },
+   {
+    "title": "Build with Local Stablecoins - Celo Docs",
+    "url": "https://docs.celo.org/build-on-celo/build-with-local-stablecoin",
+    "description": "Price stability \u2014 unlike volatile cryptocurrencies, stablecoins hold a predictable value. Local denomination \u2014 users hold and spend in their own currency instead of converting to and from dollars. Low-cost transactions \u2014 sub-cent fees make small transfers and micropayments practical. Borderless access \u2014 send and receive globally without a bank account. Programmability \u2014 use them in smart contracts for lending, savings, payroll, and remittances.",
+    "age": "September 21, 2026",
+    "publishedAt": "2026-09-21T13:49:19.000Z"
+   },
+   {
+    "title": "Dominican Remittances Rise 6.5% to US$9.49 Billion | The Rio Times",
+    "url": "https://www.riotimesonline.com/dominican-republic-remittances-september-2026/",
+    "description": "Dominican Republic remittances reached US$9.49 billion from January to September, up 6.5%, the central bank said. The US sent most of the money.",
+    "age": "1 month ago",
+    "publishedAt": "2026-10-11T16:48:47.000Z"
+   },
+   {
+    "title": "Celo: Ethereum Layer 2 for Payments, Stablecoins & DeFi",
+    "url": "https://celo.org/",
+    "description": "Celo surpassed $6.2B in monthly stablecoin volume.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "Dominican Republic Remittances",
+    "url": "https://tradingeconomics.com/dominican-republic/remittances",
+    "description": "Remittances in Dominican Republic increased to 1097.10 USD Million in July from 1049.30 USD Million in June of 2026. This page provides - Dominican Republic Remittances - actual values, historical data, forecast, chart, statistics, economic calendar and news.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "Celo Adds Six Latin American Stablecoins for Local Payments",
+    "url": "https://www.cointrust.com/market-news/celo-adds-six-latin-american-stablecoins-for-local-payments/amp",
+    "description": "Celo has expanded its stablecoin payment ecosystem by adding Ripio wFIAT, a platform that introduces six Latin American currencies backed on a one-to-one basis. The integration is intended to enable payment providers, remittance services, and decentralized finance applications to price transactions and complete settlements directly in regional currencies without requiring an intermediate conversion into U.S.",
+    "age": "August 1, 2026",
+    "publishedAt": "2026-08-01T07:18:59.000Z"
+   }
+  ],
+  "untrustedContent": true,
+  "next": {
+   "slug": "answer",
+   "route": "GET /api/answer",
+   "price": "$0.08"
+  }
+ },
+ "settlement_tx": "0x5c85b521484bd460d13cebd0763b5d99370a533e2c905a719feb8a376803f5c3",
+ "settlement_block": 82090892,
+ "settlement_status": "0x1",
+ "attempts": 1,
+ "elapsed_s": 3.5,
+ "payee": "0xabf4fabd7c416fb67202e5f9002389fc75e2a9d0"
+}

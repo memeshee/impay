@@ -81,7 +81,7 @@ cross-checked against a bought one rather than a firm quote, and storage is a si
 
 ## Engineering, for the code reviewers
 
-279 offline tests (no network, no keys, no `.env`), ruff, a 75% coverage floor
+280 offline tests (no network, no keys, no `.env`), ruff, a 75% coverage floor
 (currently 79%) and a daily workflow that re-derives the settlement claims from Celo. The
 densest tests are on the paths where silence costs money: every refusal in `bot/verify.py`,
 the x402 spend budgets, the screening gate, and the HTTP surface over a real socket.

@@ -840,6 +840,12 @@ fetch('/api/proof').then(function (r) { return r.json(); }).then(function (d) {
 def render_index(stats: dict | None = None) -> str:
     """The front door. A judge should understand the product in ten seconds."""
     counts = (stats or {}).get("counts") or {}
+    # Show the code the transaction actually carries, read from configuration rather
+    # than written into the markup: the platform-issued code is the one that credits
+    # this entry, and the front page advertising only our own code was a claim the
+    # chain did not match.
+    attr_codes = " + ".join(
+        c.strip() for c in attribution.app_code().split(",") if c.strip())
     verified = counts.get("verified")
     settled = counts.get("settled")
     purchases = counts.get("purchases")
@@ -889,7 +895,7 @@ def render_index(stats: dict | None = None) -> str:
     <div class="row"><dt>Settlement</dt>
       <dd>USA₮ · USDC · wBRL/wARS/wCOP · eip155:42220</dd></div>
     <div class="row"><dt>Attribution</dt>
-      <dd class="mono">ERC-8021 · celo_invoiceagent</dd></div>
+      <dd class="mono">ERC-8021 · {attr_codes}</dd></div>
     <div class="row"><dt>Onchain proof</dt><dd><a href="/proof">/proof</a></dd></div>
     <div class="row"><dt>Agent card</dt>
       <dd><a href="https://8004scan.io/agents/celo/{AGENT_ID}" target="_blank"

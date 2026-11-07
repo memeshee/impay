@@ -202,7 +202,7 @@ bash scripts/tunnel_watchdog.sh              # what the timer runs every 2 minut
 
 ```bash
 pip install -r requirements.txt   # runtime deps only — that is enough
-pytest                            # 279 tests, offline: no network, no keys, no .env
+pytest                            # 280 tests, offline: no network, no keys, no .env
 pytest -m network                 # live facilitator, Textile, agent402, Typesafe Jev
 pytest -m live                    # reads real Celo mainnet history
 ruff check .                      # lint (E, F, W, I, B), from requirements-dev.txt

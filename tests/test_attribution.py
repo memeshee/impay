@@ -95,3 +95,18 @@ def test_default_configuration_credits_this_entry():
     with_no_env = attribution.DEFAULT_CODES
     assert attribution.ASSIGNED_CODE in with_no_env
     assert with_no_env[0] == attribution.ASSIGNED_CODE, "assigned code goes first"
+
+
+def test_the_front_page_shows_the_code_the_chain_carries():
+    """The landing page is where a judge reads the attribution claim.
+
+    It used to hardcode our own code and omit the one the platform issued, so the
+    page disagreed with every transaction. Rendering it from configuration keeps
+    the visible claim and the wire in step.
+    """
+    from bot import attribution, serve
+
+    html = serve.render_index()
+    assert attribution.ASSIGNED_CODE in html
+    assert attribution.OWN_CODE in html
+    assert attribution.ASSIGNED_CODE in attribution.app_code()

@@ -1,0 +1,104 @@
+{
+ "date": "2026-11-08",
+ "network": "eip155:42220",
+ "network_name": "Celo",
+ "payer": "0xDbFe5c4d0256D2459bB216caB905999Ca41bE349",
+ "query": "Nicaragua stablecoin B2B invoicing Celo",
+ "count": 10,
+ "results_count": 10,
+ "usdc_before_atomic": 244699,
+ "usdc_after_atomic": 234699,
+ "usdc_spent_atomic": 10000,
+ "usdc_before": 0.244699,
+ "usdc_after": 0.234699,
+ "usdc_spent": 0.01,
+ "paid_usdc_atomic": 10000,
+ "response": {
+  "query": "Nicaragua stablecoin B2B invoicing Celo",
+  "count": 10,
+  "results": [
+   {
+    "title": "cNGN: Le stablecoin nig\u00e9rian sur Celo pour des paiements transfrontaliers",
+    "url": "https://www.techinafrica.fr/cngn-le-stablecoin-nigerian-sur-celo-pour-des-paiements-transfrontaliers/",
+    "description": "Le cNGN, un stablecoin adoss\u00e9 au Naira, a \u00e9t\u00e9 lanc\u00e9 sur la blockchain Celo pour faciliter les paiements transfrontaliers.",
+    "age": "August 13, 2026",
+    "publishedAt": "2026-08-13T19:59:58.000Z"
+   },
+   {
+    "title": "Best B2B Stablecoin Invoicing Tools 2026 | Support",
+    "url": "https://eco.com/support/en/articles/14895620-best-b2b-stablecoin-invoicing-tools-2026",
+    "description": "B2B invoicing tools generate PDF invoices with a tax ID, line items, and due date, support recurring billing schedules, push paid invoices into QuickBooks or Xero as journal entries, and handle dispute or refund flows.",
+    "age": "July 16, 2026",
+    "publishedAt": "2026-07-16T00:00:00.000Z"
+   },
+   {
+    "title": "Stablecoin Invoicing Guide for B2B (2026) | Billed",
+    "url": "https://billed.app/hub/online-payments/stablecoin-invoicing-guide/",
+    "description": "Stablecoin invoicing is sending a bill denominated in a fiat-pegged cryptocurrency (USDC, USDT, PYUSD) and accepting payment to a wallet or processor address. For B2B suppliers with cross-border buyers, it lets you settle in minutes on a public ...",
+    "age": "May 20, 2026",
+    "publishedAt": "2026-05-20T10:00:00.000Z"
+   },
+   {
+    "title": "Build with Local Stablecoins - Celo Docs",
+    "url": "https://docs.celo.org/build-on-celo/build-with-local-stablecoin",
+    "description": "Users don\u2019t need to hold CELO to transact. Celo\u2019s fee abstraction lets them pay gas in ERC20 tokens, and every Mento stablecoin plus USDC, USD\u20ae and USA\u20ae is on the allowlist \u2014 so a wallet holding only KESm can still send a transaction.",
+    "age": "September 21, 2026",
+    "publishedAt": "2026-09-21T13:49:19.000Z"
+   },
+   {
+    "title": "Celo x402 Adds cNGN: AI Agents Can Now Pay in Naira",
+    "url": "https://stablecoininsider.org/celo-x402-cngn/",
+    "description": "Celo's x402 facilitator now settles cNGN plus Ripio's wMXN, wCLP and wPEN, so AI agents can pay per request in naira and Latin American pesos. Stablecoin Insider reads the docs: the one-time cNGN Permit2 approval, base-unit amounts, the 0.3% ...",
+    "age": "1 week ago",
+    "publishedAt": "2026-10-31T13:23:07.000Z"
+   },
+   {
+    "title": "How to Buy Celo (CELO) in Nicaragua with Credit Card Online",
+    "url": "https://www.bitget.com/how-to-buy/celo/nicaragua",
+    "description": "You can Deposit fiat funds using Advcash, SEPA, Faster Payments, or PIX payment gateways to top up your Bitget fiat balance. Then, click Buy Crypto > [Cash conversion] in the top navigation bar to place your Celo order.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "B2B Stablecoin Payments: How Businesses Settle in USDC and USDT | Support",
+    "url": "https://eco.com/support/en/articles/14856049-b2b-stablecoin-payments-how-businesses-settle-in-usdc-and-usdt",
+    "description": "B2B stablecoin payments settle invoices, payroll, and supplier payouts in USDC or USDT instead of wire/ACH/SWIFT. Covers the rails, the acceptance + treasury stack, customer patterns, and compliance.",
+    "age": "October 6, 2026",
+    "publishedAt": "2026-10-06T14:10:36.000Z"
+   },
+   {
+    "title": "Stablecoin B2B Payments in Latin America: A Treasury Operator's Guide | Support",
+    "url": "https://eco.com/support/en/articles/15575497-stablecoin-b2b-payments-in-latin-america-a-treasury-operator-s-guide",
+    "description": "First, the payer funds a wallet with USDC or USDT, usually on Base, Solana, Arbitrum, Polygon, or Tron depending on counterparty preference. Second, the stablecoin moves cross-chain or directly to the licensed local off-ramp partner's address.",
+    "age": "September 16, 2026",
+    "publishedAt": "2026-09-16T23:43:14.000Z"
+   },
+   {
+    "title": "Nigeria's cNGN Stablecoin Goes Live on Celo Blockchain - Blockchain.News",
+    "url": "https://blockchain.news/news/cngn-nigeria-stablecoin-celo-integration",
+    "description": "For traders, the cNGN<>USD\u20ae pair on Textile FX offers an immediate entry point into naira-denominated onchain FX markets. As the stablecoin ecosystem on Celo grows, opportunities for arbitrage, lending, and yield generation are likely to expand.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "cNGN Deploys on Celo, Bringing the Nigerian Naira to the Leading Stablecoin Network\u2019s Onchain FX Market | by Celo Core Co. | Aug, 2026 | The Celo Blog",
+    "url": "https://blog.celo.org/cngn-deploys-on-celo-bringing-the-nigerian-naira-to-the-leading-stablecoin-networks-onchain-fx-f2b570a079da",
+    "description": "Celo is the leading programmable rails for global finance. The most widely adopted blockchain for stablecoin payments.",
+    "age": "August 6, 2026",
+    "publishedAt": "2026-08-06T13:57:57.000Z"
+   }
+  ],
+  "untrustedContent": true,
+  "next": {
+   "slug": "answer",
+   "route": "GET /api/answer",
+   "price": "$0.08"
+  }
+ },
+ "settlement_tx": "0x82d34c4bed0f7c8a6ffe015489f04963c776f27572a59dee0b8b810196fee2c7",
+ "settlement_block": 82177355,
+ "settlement_status": "0x1",
+ "attempts": 1,
+ "elapsed_s": 4.2,
+ "payee": "0xabf4fabd7c416fb67202e5f9002389fc75e2a9d0"
+}

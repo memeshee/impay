@@ -2,8 +2,8 @@
   "chain": "celo",
   "chain_id": 42220,
   "note": "Settled invoices exported from the private store, public fields only. scripts/verify_settlements.py re-derives each one from Celo; the verify-claims workflow fails when one stops holding.",
-  "generated_at": 1793802882,
-  "count": 3,
+  "generated_at": 1793804378,
+  "count": 4,
   "claims": [
     {
       "id": "INV-0001",
@@ -31,6 +31,15 @@
       "payout_address": "0x86E95581E41946ED84956433a8a9c836bCbA636c",
       "settlement_tx": "0x25b117ddc008e7784e087d464529ac5dc945992a79c0cb475a05f21a096fb62e",
       "created": 1793802727
+    },
+    {
+      "id": "INV-0022-B845A6",
+      "amount": "0.01",
+      "currency": "USDT",
+      "settle_asset": null,
+      "payout_address": "0x86E95581E41946ED84956433a8a9c836bCbA636c",
+      "settlement_tx": "0xc4421597c0dc8ebabbb1908dfd4106289401ef1c9128df78d356a062a9d99411",
+      "created": 1793804240
     }
   ]
 }

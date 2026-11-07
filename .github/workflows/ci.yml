@@ -45,3 +45,41 @@ jobs:
         run: |
           pip install pip-audit
           pip-audit -r requirements.txt
+
+  # The reviewer path, as a blocking job. Every automated review of this repo
+  # installs the *runtime* requirements and runs whatever `pytest` the machine
+  # has — no requirements-dev.txt, no plugins. That is the one configuration the
+  # job above never tested, and it is how `--disable-socket` in pytest.ini broke
+  # a whole run with `unrecognized arguments` while CI stayed green.
+  reviewer-path:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Install runtime requirements + pytest only
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Bare `pytest` from the repo root (no .env, no keys, no dev deps)
+        env:
+          HOME: ${{ runner.temp }}/empty-home
+        run: |
+          mkdir -p "$HOME"
+          pytest
+
+      - name: Same suite via `python -m pytest`
+        env:
+          HOME: ${{ runner.temp }}/empty-home
+        run: python -m pytest -q
+
+      # The guard itself, not just the suite: an unmarked test that opens a
+      # socket has to fail here rather than pass on a machine with wifi.
+      - name: The offline guard actually blocks
+        env:
+          HOME: ${{ runner.temp }}/empty-home
+        run: pytest tests/test_offline_guard.py -q

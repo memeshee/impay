@@ -189,25 +189,43 @@ bash scripts/publish_site.sh                 # rebuild + redeploy the public hos
 ## Tests
 
 ```bash
-python -m pytest            # 246 tests, offline: no network, no keys, no .env
-python -m pytest -m network # live facilitator, Textile, agent402, Typesafe Jev
-python -m pytest -m live    # reads real Celo mainnet history
-ruff check .                # lint (E, F, W, I, B)
+pip install -r requirements.txt   # runtime deps only — that is enough
+pytest                            # 275 tests, offline: no network, no keys, no .env
+pytest -m network                 # live facilitator, Textile, agent402, Typesafe Jev
+pytest -m live                    # reads real Celo mainnet history
+ruff check .                      # lint (E, F, W, I, B), from requirements-dev.txt
 ```
 
-The default run passes on a clean checkout with nothing configured, and that is enforced
-rather than asserted: `pytest.ini` passes `--disable-socket`, so a test that quietly
-opens a connection fails here instead of passing on a laptop with wifi and hanging in a
-stranger's sandbox. Localhost stays open for the HTTP-surface tests, and anything marked
-`network` gets its sockets back. Adding that flag found two real leaks — a paid-call
-receipt verified against a live RPC, and a settle notification fired at
-`api.telegram.org` from a test — and one genuinely offline-broken path: a refused invoice
-page was priced (and so needed an FX fetch) before it could say "Dropped".
+The default run passes on a clean checkout with nothing configured, and it does so with
+**only the runtime requirements installed** — no dev extras, no pytest plugins, no
+secrets. That is the configuration a reviewer's sandbox uses (`pip install -r
+requirements.txt`, then `pytest`), so it is the configuration CI checks: the
+`reviewer-path` job installs that way and runs both `pytest` and `python -m pytest`
+against an empty `$HOME`.
 
-CI runs exactly that, plus ruff, byte-compilation, a 75% coverage floor (currently 79%)
-and an advisory dependency audit. The densest tests are where silence costs money —
-every refusal path in `bot/verify.py`, the x402 spend budgets, the screening gate, and
-the public HTTP surface over a real socket.
+Offline is enforced rather than asserted. `conftest.py` wraps `socket.connect`,
+`connect_ex` and `getaddrinfo` in stdlib code that refuses anything outside
+loopback, so an unmarked test that reaches for the network fails with
+`OfflineViolation: blocked DNS lookup for 'api.x402.celo.org': this test is not marked
+network` instead of passing on a laptop with wifi and hanging in a sandbox. The
+wrappers are re-asserted before every test, because anything that saves and restores
+`socket.connect` around a test — the `pytest-socket` plugin's teardown does — would
+otherwise disarm the guard halfway through a run. `tests/test_offline_guard.py` tests
+the guard itself, and a CI job runs it on a runtime-only install.
+
+That guard has now caught three real leaks and one false promise. The leaks: a
+paid-call receipt verified against a live RPC, a settle notification fired at
+`api.telegram.org` from a test, and a refused invoice page that was priced (and so
+needed an FX fetch) before it could say "Dropped". The false promise: the guard used
+to live in `pytest.ini` as `addopts = --disable-socket`, which needs the
+`pytest-socket` plugin from `requirements-dev.txt`; on any install without it, pytest
+refused to start at all — `error: unrecognized arguments: --disable-socket` — and the
+whole suite looked broken while CI, which installs dev requirements, stayed green.
+
+CI also runs ruff, byte-compilation, a 75% coverage floor (currently 79%) and an
+advisory dependency audit. The densest tests are where silence costs money — every
+refusal path in `bot/verify.py`, the x402 spend budgets, the screening gate, and the
+public HTTP surface over a real socket.
 
 ## Tracks this targets
 

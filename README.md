@@ -174,23 +174,35 @@ python -m bot.watch       # settlement watcher + the per-invoice purchases
 
 **Hosting, stated plainly.** The app runs on a home machine. A Cloudflare quick tunnel
 gives it an origin; Vercel serves a static landing page and reverse-proxies only the
-dynamic paths (`/i/*`, `/proof`, `/api/*`, `/agent.json`) to that origin — so the URL a
+dynamic paths (`/i/*`, `/proof`, `/api/*`, `/health`) to that origin — so the URL a
 judge holds stays valid even when the tunnel hostname rotates.
 `scripts/tunnel_sync.sh` republishes the proxy on every rotation and
 `scripts/set_agent_services.py` rewrites the ERC-8004 card to match, because an
 advertised endpoint that stops answering is worse than no advertisement.
 
+A quick tunnel also drops for a few seconds at a time, and during a reconnect it answers
+`530`. So `/agent.json` is **not** proxied: `scripts/build_site.py` freezes the card into a
+static file at deploy time (fetched from the live agent, falling back to building it
+in-process) and Vercel serves the filesystem before it applies a rewrite — the card is the
+URL written into the on-chain registration, so it is the last thing that should depend on a
+tunnel. `scripts/tunnel_watchdog.sh`, on a two-minute systemd timer, probes
+`localhost/health` (restarting `impay-serve` if the app died) and the public `/health`
+(restarting the tunnel after two consecutive failures, which republishes the proxy). The
+landing page and the agent card are therefore always up; the invoice pages and `/proof`
+need the origin, and say so honestly rather than rendering an empty state.
+
 ```bash
 python scripts/verify_settlements.py         # exit != 0 if any claim fails
 python scripts/verify_settlements.py --fix   # withdraw the ones that do not hold
 bash scripts/publish_site.sh                 # rebuild + redeploy the public host
+bash scripts/tunnel_watchdog.sh              # what the timer runs every 2 minutes
 ```
 
 ## Tests
 
 ```bash
 pip install -r requirements.txt   # runtime deps only — that is enough
-pytest                            # 275 tests, offline: no network, no keys, no .env
+pytest                            # 279 tests, offline: no network, no keys, no .env
 pytest -m network                 # live facilitator, Textile, agent402, Typesafe Jev
 pytest -m live                    # reads real Celo mainnet history
 ruff check .                      # lint (E, F, W, I, B), from requirements-dev.txt

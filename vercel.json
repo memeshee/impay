@@ -21,6 +21,21 @@
       "destination": "https://arabia-lexington-combination-beer.trycloudflare.com/health"
     }
   ],
+  "headers": [
+    {
+      "source": "/agent.json",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=300, must-revalidate"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    }
+  ],
   "cleanUrls": true,
   "trailingSlash": false
 }

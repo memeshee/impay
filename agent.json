@@ -1,0 +1,65 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "impay",
+  "description": "Turns one sentence into a settled stablecoin payment on Celo. Prices invoices, buys its own sanctions screening over x402, and proves settlement from the chain.",
+  "active": true,
+  "x402Support": false,
+  "services": [
+    {
+      "name": "web",
+      "endpoint": "https://celo.uconfidant.tech"
+    }
+  ],
+  "registrations": [
+    {
+      "agentId": "10005",
+      "agentRegistry": "eip155:42220:0x8004A169FB4a3325136EB29fA0ceB6D2e539a432"
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "invoice.create",
+      "via": "telegram",
+      "endpoint": "https://t.me/notcelordbot"
+    },
+    {
+      "id": "invoice.screen",
+      "decides": "settle|review|block",
+      "buys": [
+        "sanctions-name",
+        "sanctions-wallet",
+        "fx-rate"
+      ]
+    },
+    {
+      "id": "invoice.proof",
+      "endpoint": "/api/invoice/{id}/proof"
+    },
+    {
+      "id": "settlement.proof",
+      "endpoint": "/proof"
+    }
+  ],
+  "settlement": {
+    "chain": "eip155:42220",
+    "pay_to": "0x86E95581E41946ED84956433a8a9c836bCbA636c",
+    "assets": [
+      "USAT",
+      "USDC",
+      "wBRL",
+      "wARS",
+      "wCOP",
+      "wPEN",
+      "wMXN",
+      "wCLP"
+    ]
+  },
+  "attribution": {
+    "standard": "ERC-8021",
+    "code": "celo_b97cdbaae280",
+    "codes_on_wire": [
+      "celo_b97cdbaae280",
+      "celo_invoiceagent"
+    ]
+  }
+}

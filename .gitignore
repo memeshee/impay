@@ -16,3 +16,5 @@ site/.env.local
 .site_url
 .vercel
 .env*
+.watchdog_public_failures
+.watchdog.log

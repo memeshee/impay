@@ -34,6 +34,17 @@ def vercel_json(origin: str) -> dict:
             {"source": path, "destination": origin.rstrip("/") + path}
             for path in DYNAMIC
         ],
+        "headers": [
+            {
+                # The card is a static file now (see agent_card()); a short TTL keeps a
+                # republished card from being cached for the rest of the judging window.
+                "source": "/agent.json",
+                "headers": [
+                    {"key": "Cache-Control", "value": "public, max-age=300, must-revalidate"},
+                    {"key": "Content-Type", "value": "application/json"},
+                ],
+            }
+        ],
         # A judge wandering to a path we do not own should land on the front page,
         # not a 404.
         # Keep the upload to the two files that matter; the repo is mostly Python.
@@ -55,6 +66,36 @@ def landing() -> str:
     return html
 
 
+def agent_card(origin: str) -> dict:
+    """The ERC-8004 card, frozen at deploy time so a tunnel blip cannot take it down.
+
+    `/agent.json` is the one judge-facing document that is pure data and never
+    changes per request, and it is also the URL written into the on-chain
+    registration — the worst thing to lose to a 30-second tunnel reconnect. So the
+    deploy ships a static copy at the site root: Vercel serves the filesystem
+    before it applies a rewrite, which makes the proxied route a fallback rather
+    than the only path. The live copy is fetched first (so the file is exactly what
+    the agent serves); if the origin is unreachable, the card is built in-process
+    from `bot.serve.agent_card`.
+    """
+    import urllib.request
+
+    try:
+        with urllib.request.urlopen(f"{origin.rstrip('/')}/agent.json", timeout=10) as fh:
+            card = json.loads(fh.read().decode())
+        print("agent.json: frozen from the live origin")
+        return card
+    except Exception as e:  # noqa: BLE001 — a deploy must not depend on the tunnel
+        print(f"agent.json: live fetch failed ({type(e).__name__}); building in-process")
+
+    from bot import serve
+
+    card = serve.agent_card()
+    if not isinstance(card, dict) or "registrations" not in card:
+        raise SystemExit("agent card looks wrong; refusing to ship it")
+    return card
+
+
 def main() -> int:
     origin = ORIGIN
     if "--origin" in sys.argv:
@@ -65,6 +106,10 @@ def main() -> int:
     os.makedirs(SITE_DIR, exist_ok=True)
     with open(os.path.join(SITE_DIR, "index.html"), "w") as fh:
         fh.write(landing())
+    card = agent_card(origin)
+    with open(os.path.join(SITE_DIR, "agent.json"), "w") as fh:
+        json.dump(card, fh, indent=2)
+        fh.write("\n")
     with open(os.path.join(SITE_DIR, "vercel.json"), "w") as fh:
         json.dump(vercel_json(origin), fh, indent=2)
         fh.write("\n")

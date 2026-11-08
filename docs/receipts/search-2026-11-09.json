@@ -1,0 +1,104 @@
+{
+ "date": "2026-11-09",
+ "network": "eip155:42220",
+ "network_name": "Celo",
+ "payer": "0xDbFe5c4d0256D2459bB216caB905999Ca41bE349",
+ "query": "Philippines stablecoin freelance invoicing Celo",
+ "count": 10,
+ "results_count": 10,
+ "usdc_before_atomic": 234699,
+ "usdc_after_atomic": 224699,
+ "usdc_spent_atomic": 10000,
+ "usdc_before": 0.234699,
+ "usdc_after": 0.224699,
+ "usdc_spent": 0.01,
+ "paid_usdc_atomic": 10000,
+ "response": {
+  "query": "Philippines stablecoin freelance invoicing Celo",
+  "count": 10,
+  "results": [
+   {
+    "title": "Celo Invoices - About | Karma",
+    "url": "https://www.karmahq.org/project/celo-invoices-2/about",
+    "description": "Celo Invoices is a mobile-native ... into the Celo MiniPay wallet. It enables freelancers and small businesses to receive instant liquidity for pending invoices through on-chain financing and client-verified attestations. Invoices are turned into on-chain assets (NFTs), verified by clients ...",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "How freelancers in Philippines get paid by international clients \u2014 PayrollFlow",
+    "url": "https://payrollflow.io/blog/how-freelancers-in-philippines-get-paid-by-international-clients/",
+    "description": "Here's a practical rundown of how Filipino freelancers receive international payments and how to pick. The practical shortlist: Payoneer is widely used for marketplace payouts; PayPal is common for receiving but often has fees and slow bank withdrawal; local e-wallets like GCash and Maya are handy for spending; and USDT is used where speed and dollar-stability matter. An invoicing-first account can combine \"client pays without signing up\" with bank or crypto withdrawal.",
+    "age": "August 6, 2026",
+    "publishedAt": "2026-08-06T00:00:00.000Z"
+   },
+   {
+    "title": "How Freelancers in the Philippines Accept Payment in Crypto | Transfi",
+    "url": "https://www.transfi.com/blog/how-freelancers-in-the-philippines-accept-payment-in-crypto",
+    "description": "Crypto.jobs \u2013 Advertise freelance jobs and get payment in Bitcoin or stablecoins \u00b7 LaborX - A freelance website that utilizes blockchain \u00b7 Upwork (with Crypto Wallet via third party integration) Fiverr \u2013 Accepts crypto indirectly through a payment processor \u00b7 With invoice systems and open-source payment systems linked to a user\u2019s wallet, one can directly receive crypto payments.",
+    "age": "May 29, 2025",
+    "publishedAt": "2025-05-29T00:00:00.000Z"
+   },
+   {
+    "title": "MiniPay, Ruul target freelancers in emerging markets with stablecoin payments - TechCabal",
+    "url": "https://techcabal.com/2025/11/25/minipay-ruul-stablecoin-payments/",
+    "description": "To bridge this gap, Ruul, a global startup that lets freelancers invoice clients and receive payments in multiple currencies, has partnered with MiniPay, the Opera-owned stablecoin wallet built on the Celo blockchain.",
+    "age": "November 25, 2025",
+    "publishedAt": "2025-11-25T08:46:16.000Z"
+   },
+   {
+    "title": "Celo Philippines | Celo",
+    "url": "https://www.celopg.eco/ecosystem/celo-philippines",
+    "description": "Celo Philippines is a regional DAO that grows the usage and adoption of Celo in Philippines. The team plays an big role in growing the PUSO stablecoin.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "From Binance to GCash: How Filipinos Use Stablecoins to Get Paid Online | Transfi",
+    "url": "https://www.transfi.com/blog/from-binance-to-gcash-how-filipinos-use-stablecoins-to-get-paid-online",
+    "description": "Supports both crypto and fiat: Receive payments in conventional currencies and stablecoins like USDT \u00b7 Faster cross border payments: tailored for freelancers serving clients from all over the world \u00b7 Conversion losses are minimal: Freedom of competitors exchange rates \u00b7 Payment tracking is always accurate: Spend with ease. Transfi and its solutions are designed specifically for managing crypto payments in the Philippines.",
+    "age": "August 2, 2025",
+    "publishedAt": "2025-08-02T00:00:00.000Z"
+   },
+   {
+    "title": "Celo Philippines DAO Introduces $PUSO: A Stablecoin Aimed at Boosting Financial Inclusion | by Museigen.io | Medium",
+    "url": "https://medium.com/@museigen.io/celo-philippines-dao-introduces-puso-a-stablecoin-aimed-at-boosting-financial-inclusion-5d9333c6a0c0",
+    "description": "$PUSO is a community-led stablecoin that aims to make financial transactions easier and more affordable for Filipinos. The name $PUSO, which means \u201cheart\u201d in Filipino, reflects the community-driven spirit behind the project. The stablecoin operates on the Celo blockchain and is designed ...",
+    "age": "September 19, 2024",
+    "publishedAt": "2024-09-19T18:21:00.000Z"
+   },
+   {
+    "title": "Philippine Peso Stablecoin $PUSO Launched on Celo Blockchain | BitPinas",
+    "url": "https://bitpinas.com/cryptocurrency/philippine-peso-stablecoin-puso-celo-blockchain/",
+    "description": "According to Celo Philippines DAO, the name reflects the community-driven initiative. ... Purpose: To provide a decentralized stablecoin pegged to the Philippine Peso, reducing crypto exchange fees and creating more efficient remittance processes.",
+    "age": "September 9, 2024",
+    "publishedAt": "2024-09-09T03:50:00.000Z"
+   },
+   {
+    "title": "Launch of $PUSO, the Philippines\u2019 first community-led stablecoin - Governance Proposals - Celo Forum",
+    "url": "https://forum.celo.org/t/launch-of-puso-the-philippines-first-community-led-stablecoin/8786",
+    "description": "Dear all, Together with the ... Philippines. Why the Philippines and Why $PUSO? We want to propose PUSO, a Philippine Peso-pegged decentralized stablecoin on the Mento Platform on the Celo blockchain....",
+    "age": "August 20, 2024",
+    "publishedAt": "2024-08-20T23:03:23.000Z"
+   },
+   {
+    "title": "Celo Philippines DAO Launches $PUSO: A Stablecoin for Financial Inclusion",
+    "url": "https://www.cointrust.com/market-news/celo-philippines-dao-launches-puso-a-stablecoin-for-financial-inclusion",
+    "description": "The introduction of $PUSO leverages ... is pegged to the local currency, Celo Philippines DAO aims to promote the use of blockchain technology in everyday financial transactions, making it easier for Filipinos to interact with the crypto world....",
+    "age": "September 9, 2024",
+    "publishedAt": "2024-09-09T13:43:49.000Z"
+   }
+  ],
+  "untrustedContent": true,
+  "next": {
+   "slug": "answer",
+   "route": "GET /api/answer",
+   "price": "$0.08"
+  }
+ },
+ "settlement_tx": "0x4d65b2f14aba8a5d83a7a9f7136c62eb675da6ac799fb30f7add245479a61b6f",
+ "settlement_block": 82263720,
+ "settlement_status": "0x1",
+ "attempts": 1,
+ "elapsed_s": 4.7,
+ "payee": "0xabf4fabd7c416fb67202e5f9002389fc75e2a9d0"
+}

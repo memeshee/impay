@@ -2,23 +2,23 @@
   "rewrites": [
     {
       "source": "/i/:path*",
-      "destination": "https://arabia-lexington-combination-beer.trycloudflare.com/i/:path*"
+      "destination": "https://days-technique-fwd-clarke.trycloudflare.com/i/:path*"
     },
     {
       "source": "/proof",
-      "destination": "https://arabia-lexington-combination-beer.trycloudflare.com/proof"
+      "destination": "https://days-technique-fwd-clarke.trycloudflare.com/proof"
     },
     {
       "source": "/api/:path*",
-      "destination": "https://arabia-lexington-combination-beer.trycloudflare.com/api/:path*"
+      "destination": "https://days-technique-fwd-clarke.trycloudflare.com/api/:path*"
     },
     {
       "source": "/agent.json",
-      "destination": "https://arabia-lexington-combination-beer.trycloudflare.com/agent.json"
+      "destination": "https://days-technique-fwd-clarke.trycloudflare.com/agent.json"
     },
     {
       "source": "/health",
-      "destination": "https://arabia-lexington-combination-beer.trycloudflare.com/health"
+      "destination": "https://days-technique-fwd-clarke.trycloudflare.com/health"
     }
   ],
   "headers": [

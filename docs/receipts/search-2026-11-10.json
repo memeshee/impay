@@ -1,0 +1,104 @@
+{
+ "date": "2026-11-10",
+ "network": "eip155:42220",
+ "network_name": "Celo",
+ "payer": "0xDbFe5c4d0256D2459bB216caB905999Ca41bE349",
+ "query": "Kenya stablecoin B2B supplier payments Celo",
+ "count": 10,
+ "results_count": 10,
+ "usdc_before_atomic": 224699,
+ "usdc_after_atomic": 214699,
+ "usdc_spent_atomic": 10000,
+ "usdc_before": 0.224699,
+ "usdc_after": 0.214699,
+ "usdc_spent": 0.01,
+ "paid_usdc_atomic": 10000,
+ "response": {
+  "query": "Kenya stablecoin B2B supplier payments Celo",
+  "count": 10,
+  "results": [
+   {
+    "title": "With Nigeria\u2019s cNGN and Kenya\u2019s sandboxes, stablecoins edge from retail hype to B2B payment rails | Africa Insights",
+    "url": "https://www.capmad.com/post/with-nigerias-cngn-and-kenyas-sandboxes-stablecoins-edge-from-retail-hype-to-b2b-payment-rails",
+    "description": "The retail experience gives an early taste of these gains: MiniPay, a stablecoin wallet embedded in the Opera browser and built on the Celo blockchain, reported in early July ... 3 million activated wallets in less than a year across four African markets \u2013 Nigeria, Kenya, Ghana and South Africa \u2013 with transfer fees below \u00b7 0.01 USD per transaction and near\u2011instant processing. While this usage remains mainly consumer\u2011facing, it demonstrates the technical ability to move value in real time across several countries. On the B2B side, an African fintech focused on stablecoin\u2011based cross\u2011border payments disclosed in late",
+    "age": "October 9, 2026",
+    "publishedAt": "2026-10-09T02:41:13.000Z"
+   },
+   {
+    "title": "PayU invests in blockchain-based payments with CELO and launches new stablecoin option to 450,000 merchants | The Kenyan Wallstreet",
+    "url": "https://kenyanwallstreet.com/payu-invests-in-blockchain-based-payments-with-celo-and-launches-new-stablecoin-option-to-450000-merchants",
+    "description": "Working with First DAG and Celo to offer a new payment option creates new opportunities for e-commerce merchants and creators, and will open new doors for users to transact freely.\u201d \u00b7 Using First DAG\u2019s platform, which acts as a middle layer between the merchant and its bank of choice, PayU\u2019s merchants can seamlessly accept stablecoin payments without integrating additional blockchain components.",
+    "age": "September 11, 2025",
+    "publishedAt": "2025-09-11T20:56:10.000Z"
+   },
+   {
+    "title": "What Is Celo? Mobile-First L2 and Stablecoin Rails | Support",
+    "url": "https://eco.com/support/en/articles/15183710-what-is-celo-mobile-first-l2-and-stablecoin-rails",
+    "description": "Where Celo differs: Celo issues local-currency stablecoins (cREAL for Brazil, cKES for Kenya, eXOF for West Africa) that Tron does not have, and Celo's wallet partners integrate directly with mobile money APIs. Where Tron wins: liquidity and ubiquity. USDT on Tron is accepted at almost every P2P trader and exchange globally, while cUSD liquidity outside Celo-native venues is thin.",
+    "age": "September 16, 2026",
+    "publishedAt": "2026-09-16T00:00:00.000Z"
+   },
+   {
+    "title": "Build with Local Stablecoins - Celo Docs",
+    "url": "https://docs.celo.org/build-on-celo/build-with-local-stablecoin",
+    "description": "Most chains give builders a dollar and little else. On Celo, a payments app in Nairobi can settle in KESm, a remittance corridor into Brazil can settle in BRLm, and neither has to route through a dollar first.",
+    "age": "September 21, 2026",
+    "publishedAt": "2026-09-21T13:49:19.000Z"
+   },
+   {
+    "title": "12 Best Stablecoin Payment Providers Compared (2026) | Due",
+    "url": "https://www.opendue.com/blog/best-stablecoin-payment-providers",
+    "description": "Best for: Wallet infrastructure providers, remittance platforms, and B2B fintechs in Africa and LATAM that need compliant virtual accounts and stablecoin settlement as a backend service. Africa (11): Kenya, Nigeria, Ghana, Tanzania, Uganda, Rwanda, South Africa, Ethiopia, Senegal, Cameroon, Cote d'Ivoire \u00b7 Americas (5): US, Brazil, Mexico, Argentina, Colombia ... Ethereum, Solana, Polygon, Tron, Celo.",
+    "age": "April 30, 2026",
+    "publishedAt": "2026-04-30T00:00:00.000Z"
+   },
+   {
+    "title": "Enabling Stablecoins Payments with Ease - Africa - Celo Forum",
+    "url": "https://forum.celo.org/t/enabling-stablecoins-payments-with-ease/10078",
+    "description": "We are excited to announce the launch of the Pretium Mobile App, now available on the Google Play Store! This marks a significant milestone in our journey to redefine how people across Africa make everyday payments using stablecoins. Our app is live in Kenya, Ghana, Nigeria, Uganda and Malawi.",
+    "age": "January 23, 2025",
+    "publishedAt": "2025-01-23T12:59:15.000Z"
+   },
+   {
+    "title": "[FINAL] Launch of a Kenyan Shilling Stablecoin - Governance Proposals - Celo Forum",
+    "url": "https://forum.celo.org/t/final-launch-of-a-kenyan-shilling-stablecoin/7964",
+    "description": "Dear all, Together with the Celo Africa DAO, the help of Mento Labs and the whole community we would like to propose a Kenya Shilling stablecoin. Why Kenya now? After the West African Franc (eXOF), with the success of the roll out of mobile wallets and partners such as Hurupay, Kotani Pay, MiniPay, and Valora in Africa, and a fast growing number of Celo community partners in Kenya, it makes sense to take a deeper look at the country.",
+    "age": "May 9, 2024",
+    "publishedAt": "2024-05-09T18:03:03.000Z"
+   },
+   {
+    "title": "Celo: Ethereum Layer 2 for Payments, Stablecoins & DeFi",
+    "url": "https://celo.org/",
+    "description": "Celo is an Ethereum L2 powering fast, low-cost payments, native stablecoins, and DeFi apps \u2014 driving real-world adoption and financial inclusion worldwide.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "Stablecoins find a use case in Africa\u2019s most volatile markets",
+    "url": "https://restofworld.org/2021/stablecoins-find-a-use-case-in-africas-most-volatile-markets/",
+    "description": "In the last few months, Celo Dollars ... according to Hootsuite, for peer-to-peer transfers. In Kenya, ImpactMarket works with Kotani Pay, a fintech company, to support M-Pesa payments for people without access to the internet or ...",
+    "age": "April 18, 2023",
+    "publishedAt": "2023-04-18T21:02:25.000Z"
+   },
+   {
+    "title": "Startups in Kenya building Innovative Solutions on the Celo Blockchain | The Kenyan Wallstreet",
+    "url": "https://kenyanwallstreet.com/startups-in-kenya-building-solutions-on-blockchain",
+    "description": "Through its wallet, Pesabase enables its users to hold tokens, virtual currencies and stablecoins, giving them the opportunity to remit, pay and transact securely. The app based platform also allows users to send money from South Sudan to Kenya using just your mobile phone or a registered agent. ... PayU invests in blockchain-based payments with CELO and launches new stablecoin option to 450,000 merchants",
+    "age": "September 11, 2025",
+    "publishedAt": "2025-09-11T20:56:10.000Z"
+   }
+  ],
+  "untrustedContent": true,
+  "next": {
+   "slug": "answer",
+   "route": "GET /api/answer",
+   "price": "$0.08"
+  }
+ },
+ "settlement_tx": "0xfb7891f92801e24a7cfd88c01c84c9a0061c129005dbf8a22197ca2efd9082de",
+ "settlement_block": 82350114,
+ "settlement_status": "0x1",
+ "attempts": 1,
+ "elapsed_s": 4.6,
+ "payee": "0xabf4fabd7c416fb67202e5f9002389fc75e2a9d0"
+}

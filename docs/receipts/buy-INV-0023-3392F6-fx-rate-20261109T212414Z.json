@@ -1,0 +1,29 @@
+{
+  "status": 400,
+  "headers": {
+    "Date": "Mon, 09 Nov 2026 21:24:14 GMT",
+    "Content-Type": "application/json; charset=utf-8",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "access-control-allow-origin": "*",
+    "access-control-expose-headers": "PAYMENT-REQUIRED, PAYMENT-RESPONSE, WWW-Authenticate, Payment-Receipt, X-Cache, X-Credits-Balance, X-Metered-Usd, X-Idempotent-Replay, X-Replayed-Answer, X-Agent402-Allowance, Retry-After, Mcp-Session-Id, Mcp-Protocol-Version, Last-Event-Id, Link, X-Total-Count, X-Async-Recommended, Location, Preference-Applied, Sunset",
+    "Cache-Control": "no-store, private",
+    "etag": "W/\"292-nz2sTXzXsDxreQWKeWWRA3T047w\"",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "Server": "cloudflare",
+    "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+    "vary": "Accept-Encoding",
+    "x-content-type-options": "nosniff",
+    "x-railway-request-id": "NlX4VT8UTzyzf9Rs6WHkDg",
+    "x-request-id": "b1a2a750-3270-4652-b595-b3ec00408af9",
+    "Content-Encoding": "gzip",
+    "x-hikari-trace": "sin1.hs0s",
+    "x-railway-edge": "sin1",
+    "cf-cache-status": "DYNAMIC",
+    "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=uE6E9X%2Fd9cu%2FQitHlbj7dogK0iwwDCH3%2FzioAYbmZHIvObVk1G1jX3WsXehynsosbbvOu874mJcT1ojW70XcNHQRYo439iB%2FCx%2FTCiu%2BD1aVg845WZ0UeI4d478JLBMQfF3e%2BuM1JspM9APNFg%3D%3D\"}]}",
+    "CF-RAY": "a57fe2115e62ef6d-SIN",
+    "alt-svc": "h3=\":443\"; ma=86400"
+  },
+  "text": "{\"error\":\"from and to must be 3-letter currency codes (e.g. USD, EUR)\",\"tool\":\"fx-rate\",\"expected\":{\"from\":{\"type\":\"string\",\"description\":\"3-letter currency code, e.g. USD\"},\"to\":{\"type\":\"string\",\"description\":\"3-letter currency code, e.g. EUR\"},\"amount\":{\"type\":\"number\",\"description\":\"amount to convert (default 1)\"}},\"required\":[\"from\",\"to\"],\"example\":{\"from\":\"USD\",\"to\":\"EUR\",\"amount\":100},\"howToCall\":{\"method\":\"GET\",\"url\":\"https://agent402.tools/api/fx-rate?from=USD&to=EUR&amount=100\",\"alternate\":{\"method\":\"POST\",\"url\":\"https://agent402.tools/api/fx-rate\",\"headers\":{\"Content-Type\":\"application/json\"},\"body\":{\"from\":\"USD\",\"to\":\"EUR\",\"amount\":100}}}}"
+}

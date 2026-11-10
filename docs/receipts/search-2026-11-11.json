@@ -1,0 +1,104 @@
+{
+ "date": "2026-11-11",
+ "network": "eip155:42220",
+ "network_name": "Celo",
+ "payer": "0xDbFe5c4d0256D2459bB216caB905999Ca41bE349",
+ "query": "Ghana stablecoin B2B invoicing Celo",
+ "count": 10,
+ "results_count": 10,
+ "usdc_before_atomic": 212699,
+ "usdc_after_atomic": 202699,
+ "usdc_spent_atomic": 10000,
+ "usdc_before": 0.212699,
+ "usdc_after": 0.202699,
+ "usdc_spent": 0.01,
+ "paid_usdc_atomic": 10000,
+ "response": {
+  "query": "Ghana stablecoin B2B invoicing Celo",
+  "count": 10,
+  "results": [
+   {
+    "title": "Launch of a Ghanaian Cedi Stablecoin (cGHS) - Governance Proposals - Celo Forum",
+    "url": "https://forum.celo.org/t/launch-of-a-ghanaian-cedi-stablecoin-cghs/9289",
+    "description": "Dear all, Together with the Celo Africa DAO, the support of Mento Labs, and the whole community, we would like to propose a Ghanaian Cedi decentralized stablecoin (cGHS) on Mento. Why Ghana now? After eXOF and cKES, and with the success of the roll out of mobile wallets and partners such as Hurupay, Kotani Pay, MiniPay, and Valora in Africa, and a fast growing number of Celo community members in Ghana, it makes sense to take a deeper look at the country.",
+    "age": "October 17, 2024",
+    "publishedAt": "2024-10-17T10:15:51.000Z"
+   },
+   {
+    "title": "Celo Invoices - About | Karma",
+    "url": "https://www.karmahq.org/project/celo-invoices-2/about",
+    "description": "Celo Invoices Premium: e.g., instant payouts, risk assessment tools, AI Agents. The model aligns incentives between freelancers, liquidity providers, and the protocol. ... Kenya, Nigeria, Ghana, South Africa, Senegal, Brazil, Colombia, Philippines, United Kingdom, United States, Europe, Canada, Australia",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "12 Best Stablecoin Payment Providers Compared (2026) | Due",
+    "url": "https://www.opendue.com/blog/best-stablecoin-payment-providers",
+    "description": "Best for: Wallet infrastructure ... and B2B fintechs in Africa and LATAM that need compliant virtual accounts and stablecoin settlement as a backend service. Africa (11): Kenya, Nigeria, Ghana, Tanzania, Uganda, Rwanda, South Africa, Ethiopia, Senegal, Cameroon, Cote d'Ivoire \u00b7 Americas (5): US, Brazil, Mexico, Argentina, Colombia ... Ethereum, Solana, Polygon, Tron, Celo...",
+    "age": "April 30, 2026",
+    "publishedAt": "2026-04-30T00:00:00.000Z"
+   },
+   {
+    "title": "Crypto for Cross-Border Business in Ghana (Guide)",
+    "url": "https://blog.obiex.finance/how-can-businesses-in-ghana-use-crypto-for-cross-border-payments-and-what-actually-works/",
+    "description": "Use clear invoices that show the USD value, date, and reference. Track conversion rates accurately for accounting and tax purposes. This use case works, but only under specific conditions.",
+    "age": "March 23, 2026",
+    "publishedAt": "2026-03-23T10:18:41.000Z"
+   },
+   {
+    "title": "Build with Local Stablecoins - Celo Docs",
+    "url": "https://docs.celo.org/build-on-celo/build-with-local-stablecoin",
+    "description": "Users don\u2019t need to hold CELO to transact. Celo\u2019s fee abstraction lets them pay gas in ERC20 tokens, and every Mento stablecoin plus USDC, USD\u20ae and USA\u20ae is on the allowlist \u2014 so a wallet holding only KESm can still send a transaction.",
+    "age": "September 21, 2026",
+    "publishedAt": "2026-09-21T13:49:19.000Z"
+   },
+   {
+    "title": "Top 7 Crypto & Stablecoin APIs in Ghana - Breet",
+    "url": "https://breet.io/blog/crypto-stablecoin-api-ghana",
+    "description": "Modern Ghanaian startups increasingly need to collect payments internationally, pay remote teams, settle vendor obligations and support regional treasury movement. Stablecoin infrastructure makes this easier. ... For B2B operators, stablecoin API in Ghana can help reduce FX friction, enable near-instant settlement, simplify treasury operations, expand beyond local banking limitations and reduce infrastructure engineering costs.",
+    "age": "May 26, 2026",
+    "publishedAt": "2026-05-26T11:06:18.000Z"
+   },
+   {
+    "title": "Celo (CELO) Price Prediction 2026, 2027 and 2030: How High Will CELO Go? | Bitget News",
+    "url": "https://www.bitget.com/news/detail/12560605349931",
+    "description": "The localised stablecoins are Celo's differentiation from dollar-only stablecoin chains: a user in Ghana can hold cGHS without currency risk, a user in Brazil can save in cREAL. In 2025, the Mento Reserve was restructured to optimise yield ...",
+    "age": "April 8, 2026",
+    "publishedAt": "2026-04-08T15:00:48.000Z"
+   },
+   {
+    "title": "B2B Stablecoin Payments: How Businesses Settle in USDC and USDT | Support",
+    "url": "https://eco.com/support/en/articles/14856049-b2b-stablecoin-payments-how-businesses-settle-in-usdc-and-usdt",
+    "description": "B2B stablecoin payments settle invoices, payroll, and supplier payouts in USDC or USDT instead of wire/ACH/SWIFT. Covers the rails, the acceptance + treasury stack, customer patterns, and compliance.",
+    "age": "October 6, 2026",
+    "publishedAt": "2026-10-06T14:10:36.000Z"
+   },
+   {
+    "title": "Top 5 Crypto & Stablecoin APIs for Ghanaian Businesses (And How to Choose) - Breet",
+    "url": "https://breet.io/blog/top-crypto-stablecoins-api-in-ghana",
+    "description": "If you run a business in Ghana, the best crypto API is the one that settles cleanly to Cedi, charges what it says it charges, and stays reliable when you hit a production issue at 2 am. Businesses in Ghana are now building faster than local banking infrastructure can keep up with. Cross-border collections, stablecoin payouts, remote team salaries, and international vendor settlements are everyday operations for startups in Accra and beyond.",
+    "age": "August 18, 2026",
+    "publishedAt": "2026-08-18T17:39:58.000Z"
+   },
+   {
+    "title": "What Is Celo? Mobile-First L2 and Stablecoin Rails | Support",
+    "url": "https://eco.com/support/en/articles/15183710-what-is-celo-mobile-first-l2-and-stablecoin-rails",
+    "description": "Celo is an EVM-compatible Layer 2 on Ethereum optimized for mobile-first payments. The network uses phone-number-based address discovery, native dollar and euro stablecoins issued by the Mento protocol, and lets users pay gas in stablecoins ...",
+    "age": "September 16, 2026",
+    "publishedAt": "2026-09-16T00:00:00.000Z"
+   }
+  ],
+  "untrustedContent": true,
+  "next": {
+   "slug": "answer",
+   "route": "GET /api/answer",
+   "price": "$0.08"
+  }
+ },
+ "settlement_tx": "0x58a9bf2f1e816f7981f1772911775dfd6a1e799a52084de748c60efb9fbe5775",
+ "settlement_block": 82436535,
+ "settlement_status": "0x1",
+ "attempts": 1,
+ "elapsed_s": 4.2,
+ "payee": "0xabf4fabd7c416fb67202e5f9002389fc75e2a9d0"
+}

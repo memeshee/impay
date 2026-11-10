@@ -2,23 +2,23 @@
   "rewrites": [
     {
       "source": "/i/:path*",
-      "destination": "https://tunes-consensus-symbol-boats.trycloudflare.com/i/:path*"
+      "destination": "https://bon-mutual-monitored-certain.trycloudflare.com/i/:path*"
     },
     {
       "source": "/proof",
-      "destination": "https://tunes-consensus-symbol-boats.trycloudflare.com/proof"
+      "destination": "https://bon-mutual-monitored-certain.trycloudflare.com/proof"
     },
     {
       "source": "/api/:path*",
-      "destination": "https://tunes-consensus-symbol-boats.trycloudflare.com/api/:path*"
+      "destination": "https://bon-mutual-monitored-certain.trycloudflare.com/api/:path*"
     },
     {
       "source": "/agent.json",
-      "destination": "https://tunes-consensus-symbol-boats.trycloudflare.com/agent.json"
+      "destination": "https://bon-mutual-monitored-certain.trycloudflare.com/agent.json"
     },
     {
       "source": "/health",
-      "destination": "https://tunes-consensus-symbol-boats.trycloudflare.com/health"
+      "destination": "https://bon-mutual-monitored-certain.trycloudflare.com/health"
     }
   ],
   "headers": [

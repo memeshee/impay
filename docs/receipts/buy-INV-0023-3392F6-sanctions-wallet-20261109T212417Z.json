@@ -1,0 +1,30 @@
+{
+  "status": 200,
+  "headers": {
+    "Date": "Mon, 09 Nov 2026 21:24:17 GMT",
+    "Content-Type": "application/json; charset=utf-8",
+    "Transfer-Encoding": "chunked",
+    "Connection": "keep-alive",
+    "access-control-allow-origin": "*",
+    "access-control-expose-headers": "PAYMENT-REQUIRED, PAYMENT-RESPONSE, WWW-Authenticate, Payment-Receipt, X-Cache, X-Credits-Balance, X-Metered-Usd, X-Idempotent-Replay, X-Replayed-Answer, X-Agent402-Allowance, Retry-After, Mcp-Session-Id, Mcp-Protocol-Version, Last-Event-Id, Link, X-Total-Count, X-Async-Recommended, Location, Preference-Applied, Sunset",
+    "Cache-Control": "no-store, private",
+    "etag": "W/\"26d-JrpudOJwPTsfANI2Z42Gm2hITKg\"",
+    "payment-response": "eyJzdWNjZXNzIjp0cnVlLCJwYXllciI6IjB4RGJGZTVjNGQwMjU2RDI0NTliQjIxNmNhQjkwNTk5OUNhNDFiRTM0OSIsInRyYW5zYWN0aW9uIjoiMHhlNjY2OTFlMzMxNDFkOGNiYzk5YTI2YjhjZjI0YjYzODc1ZGFlMDNhYWI1OTcxYWY4NzlhZDEzOGYwZjUxNDQ2IiwibmV0d29yayI6ImVpcDE1NTo0MjIyMCJ9",
+    "referrer-policy": "strict-origin-when-cross-origin",
+    "Server": "cloudflare",
+    "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
+    "vary": "Accept-Encoding",
+    "x-content-type-options": "nosniff",
+    "x-railway-request-id": "kFbdRNt4Q0yVw6lyxtoGcA",
+    "x-request-id": "8e5b4c20-c6ad-4e64-a967-599d0d42f700",
+    "Content-Encoding": "gzip",
+    "x-hikari-trace": "sin1.hs0s",
+    "x-railway-edge": "sin1",
+    "cf-cache-status": "DYNAMIC",
+    "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=78EkWCi3IvtbinNA1b3WrpTVdeSavgLvsBbRvLE8c94P8wP44d41WuKiKAwi1ErJ%2BX8PuSbsjFwE5%2ByPSkOLYKneDejjfZc3i0S538bprAszqcTFh3ECz7unHHmgtqlVY20m856PUMiDwwkjzA%3D%3D\"}]}",
+    "CF-RAY": "a57fe21a4db0d47b-SIN",
+    "alt-svc": "h3=\":443\"; ma=86400"
+  },
+  "text": "{\"address\":\"0x86e95581e41946ed84956433a8a9c836bcba636c\",\"verdict\":\"no_match_on_lists_checked\",\"addressesOnList\":1064,\"listsChecked\":[{\"list\":\"OFAC SDN\",\"authority\":\"US Treasury OFAC\",\"url\":\"https://sanctionslist.ofac.treas.gov/\"}],\"listsFetchedAt\":\"2026-11-09T18:40:03.138Z\",\"notAClearance\":\"this value does not appear on the lists named in `listsChecked`, as of the dates in `listsFetchedAt`. That is NOT a clearance: lists change without notice, entities appear under many spellings, and ownership rules put parties in scope who are named on no list. Use this as one input to your own screening, never as the decision\"}"
+}

@@ -1,0 +1,104 @@
+{
+ "date": "2026-11-12",
+ "network": "eip155:42220",
+ "network_name": "Celo",
+ "payer": "0xDbFe5c4d0256D2459bB216caB905999Ca41bE349",
+ "query": "Vietnam stablecoin B2B supplier invoicing Celo",
+ "count": 10,
+ "results_count": 10,
+ "usdc_before_atomic": 202699,
+ "usdc_after_atomic": 192699,
+ "usdc_spent_atomic": 10000,
+ "usdc_before": 0.202699,
+ "usdc_after": 0.192699,
+ "usdc_spent": 0.01,
+ "paid_usdc_atomic": 10000,
+ "response": {
+  "query": "Vietnam stablecoin B2B supplier invoicing Celo",
+  "count": 10,
+  "results": [
+   {
+    "title": "B2B Stablecoin Payments: How Businesses Settle in USDC and USDT | Support",
+    "url": "https://eco.com/support/en/articles/14856049-b2b-stablecoin-payments-how-businesses-settle-in-usdc-and-usdt",
+    "description": "The transfer is final once confirmed onchain, settles in seconds to minutes depending on the chain, and produces a permanent transaction record that finance teams can reconcile against an invoice or general-ledger entry. \u200b \u00b7 The category covers any business-to-business payment whose primary instrument is a stablecoin. Common examples: a US software company paying a Vietnamese development team in USDC; a freight broker settling a shipping invoice with a Singapore carrier in USDT; a SaaS company collecting subscription revenue from international customers in USDC and converting to USD via a regulated offramp once a week.",
+    "age": "October 6, 2026",
+    "publishedAt": "2026-10-06T14:10:36.000Z"
+   },
+   {
+    "title": "B2B Stablecoin Payments for Enterprise Transactions",
+    "url": "https://silencelaboratories.com/blog/b2b-stablecoin-payments-how-businesses-are-using-stablecoins-for-cross-border-and-enterprise-transactions",
+    "description": "B2B stablecoin payments are business-to-business transactions settled in fiat-pegged digital tokens instead of traditional bank rails. A supplier in Vietnam invoices a US buyer. The buyer settles in USDC.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "Stablecoin Invoicing Guide for B2B (2026) | Billed",
+    "url": "https://billed.app/hub/online-payments/stablecoin-invoicing-guide/",
+    "description": "The friction sits at the seller ... The three stablecoins most commonly accepted in B2B invoicing are USDC (Circle), USDT (Tether), and PYUSD (PayPal/Paxos)....",
+    "age": "May 20, 2026",
+    "publishedAt": "2026-05-20T10:00:00.000Z"
+   },
+   {
+    "title": "Business Account for Currencies & Stablecoins | Request Finance",
+    "url": "https://www.requestfinance.com/",
+    "description": "No invoices needed. Stablecoin payouts land in minutes and are always free; bank payouts reach 190+ countries. Paying a hundred vendors at once? Run batch vendor payouts instead of a hundred transfers. Everything runs on one account, with one set of records. Explore stablecoin payments \u00b7 Pay ...",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "B2B Stablecoin Payments: Business Use Cases | Support",
+    "url": "https://eco.com/support/en/articles/14797800-b2b-stablecoin-payments-business-use-cases",
+    "description": "Real use cases: supplier payouts, payroll, marketplace settlement, treasury, and FX. ... B2B stablecoin payments are business-to-business transactions settled in dollar-pegged digital tokens such as USDC or USDT, executed onchain instead of through correspondent banks. A US software company paying a developer in Argentina, a marketplace settling with sellers in 40 countries, or a manufacturer paying a Vietnamese supplier are all use cases where stablecoin rails replace SWIFT wires, ACH transfers, and local card payouts.",
+    "age": "September 16, 2026",
+    "publishedAt": "2026-09-16T11:48:46.000Z"
+   },
+   {
+    "title": "B2B and B2C Electronic Invoicing in Vietnam: Regulations, Requirements & Decree 254/2026 | EDICOM",
+    "url": "https://edicomgroup.com/blog/vietnam-prepares-to-roll-out-e-invoicing-for-all",
+    "description": "Additionally, Circular 32/2025/TT-BTC provides guidance on specific aspects of invoice and document management under Decree 70. Decree 70 introduces compliance requirements for foreign suppliers operating in Vietnam\u2019s e-commerce sector, sets standardized timelines for invoice issuance, and allows these suppliers to issue VAT invoices.",
+    "age": "August 14, 2026",
+    "publishedAt": "2026-08-14T00:00:00.000Z"
+   },
+   {
+    "title": "Best B2B Stablecoin Invoicing Tools 2026 | Support",
+    "url": "https://eco.com/support/en/articles/14895620-best-b2b-stablecoin-invoicing-tools-2026",
+    "description": "B2B invoicing tools generate PDF invoices with a tax ID, line items, and due date, support recurring billing schedules, push paid invoices into QuickBooks or Xero as journal entries, and handle dispute or refund flows. Most \"crypto checkout\" products skip half that list. \u200b \u00b7 The table below covers stablecoin support, recurring billing, PDF invoice output, accounting integrations, KYC posture, and headline fee, based on each vendor's official documentation as of May 2026.",
+    "age": "July 16, 2026",
+    "publishedAt": "2026-07-16T00:00:00.000Z"
+   },
+   {
+    "title": "B2B Stablecoin Payments: How Cross-Border Settlement Works in 2026 | Support",
+    "url": "https://eco.com/support/en/articles/15360638-b2b-stablecoin-payments-how-cross-border-settlement-works-in-2026",
+    "description": "Step one: the supplier issues an invoice that names a stablecoin (USDC on Base, for example) and a destination address or virtual account. Step two: the buyer either holds the stablecoin in a treasury wallet or instructs a payment-network partner ...",
+    "age": "October 5, 2026",
+    "publishedAt": "2026-10-05T16:00:58.000Z"
+   },
+   {
+    "title": "B2B Stablecoin Payments: What Changes and What Does Not",
+    "url": "https://coingate.com/blog/post/b2b-stablecoin-payments-suppliers",
+    "description": "The invoice stays. Your approval workflow stays. Three-way matching stays. A stablecoin transfer is a payment rail, not a procurement system. What changes is the instrument and the timing. Instead of instructing a bank to push dollars through a chain of other banks, you send a token straight to an address your supplier controls.",
+    "age": "August 11, 2026",
+    "publishedAt": "2026-08-11T08:38:11.000Z"
+   },
+   {
+    "title": "B2B Stablecoin Payments 2026: Payout and Treasury Platforms",
+    "url": "https://stablecoininsider.org/b2b-stablecoin-payment-solutions-in-2026/",
+    "description": "Cross-border supplier and stablecoin vendor payments ... Reliability and observability: confirmations, monitoring, error handling, and support/SLA structures \u00b7 Custody and controls: approvals, permissions, segregated wallets, key management, role-based access \u00b7 Reporting: reconciliation-ready data, metadata fields, invoice mapping, audit trails \u00b7 If a provider does not give you strong answers on these six areas, it is usually not a complete B2B solution, even if transfers are fast.",
+    "age": "October 5, 2026",
+    "publishedAt": "2026-10-05T10:08:49.000Z"
+   }
+  ],
+  "untrustedContent": true,
+  "next": {
+   "slug": "answer",
+   "route": "GET /api/answer",
+   "price": "$0.08"
+  }
+ },
+ "settlement_tx": "0x2c7deae42d4d0bfde2c3552389d129215714730bedb1114798c0b5eb0fd5fe4c",
+ "settlement_block": 82522924,
+ "settlement_status": "0x1",
+ "attempts": 1,
+ "elapsed_s": 4.3,
+ "payee": "0xabf4fabd7c416fb67202e5f9002389fc75e2a9d0"
+}

@@ -2,23 +2,23 @@
   "rewrites": [
     {
       "source": "/i/:path*",
-      "destination": "https://bon-mutual-monitored-certain.trycloudflare.com/i/:path*"
+      "destination": "https://rings-islands-prior-qualities.trycloudflare.com/i/:path*"
     },
     {
       "source": "/proof",
-      "destination": "https://bon-mutual-monitored-certain.trycloudflare.com/proof"
+      "destination": "https://rings-islands-prior-qualities.trycloudflare.com/proof"
     },
     {
       "source": "/api/:path*",
-      "destination": "https://bon-mutual-monitored-certain.trycloudflare.com/api/:path*"
+      "destination": "https://rings-islands-prior-qualities.trycloudflare.com/api/:path*"
     },
     {
       "source": "/agent.json",
-      "destination": "https://bon-mutual-monitored-certain.trycloudflare.com/agent.json"
+      "destination": "https://rings-islands-prior-qualities.trycloudflare.com/agent.json"
     },
     {
       "source": "/health",
-      "destination": "https://bon-mutual-monitored-certain.trycloudflare.com/health"
+      "destination": "https://rings-islands-prior-qualities.trycloudflare.com/health"
     }
   ],
   "headers": [

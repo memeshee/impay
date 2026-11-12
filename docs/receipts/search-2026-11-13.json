@@ -1,0 +1,104 @@
+{
+ "date": "2026-11-13",
+ "network": "eip155:42220",
+ "network_name": "Celo",
+ "payer": "0xDbFe5c4d0256D2459bB216caB905999Ca41bE349",
+ "query": "Indonesia stablecoin B2B supplier invoicing Celo",
+ "count": 10,
+ "results_count": 10,
+ "usdc_before_atomic": 192699,
+ "usdc_after_atomic": 182699,
+ "usdc_spent_atomic": 10000,
+ "usdc_before": 0.192699,
+ "usdc_after": 0.182699,
+ "usdc_spent": 0.01,
+ "paid_usdc_atomic": 10000,
+ "response": {
+  "query": "Indonesia stablecoin B2B supplier invoicing Celo",
+  "count": 10,
+  "results": [
+   {
+    "title": "IDRX Rupiah Stablecoin Goes Live on Celo With Textile FX Liquidity",
+    "url": "https://cryptonews.net/news/altcoins/33453267/",
+    "description": "The deployment makes the rupiah the 20th global currency tokenized on the payments-focused blockchain and adds a regulated, fiat-backed asset to a network whose stablecoin ecosystem now processes $6.2 billion in monthly volume. IDRX is backed one-to-one by rupiah-denominated reserves held as fiat and Indonesian government bonds at regulated financial institutions, with reserve documentation published by the issuer and audited by independent third parties. Crosschain FX network Textile FX, born out of the Celo ecosystem, is a day-one partner quoting IDRX against Tether\u2019s USD\u20ae with institutional liquidity led by Tribeca Park Capital.",
+    "age": "September 19, 2026",
+    "publishedAt": "2026-09-19T14:58:08.000Z"
+   },
+   {
+    "title": "IDRX Rupiah Stablecoin Launches On Celo Network",
+    "url": "https://blockchainreporter.net/idrx-rupiah-stablecoin-launches-on-celo",
+    "description": "The Indonesian Rupiah stablecoin IDRX, issued by PT IDRX Indo Inovasi, went live on the Celo network on 15 September, according to an announcement from the Celo Foundation.",
+    "age": "September 16, 2026",
+    "publishedAt": "2026-09-16T21:45:00.000Z"
+   },
+   {
+    "title": "IDRX Rupiah Stablecoin Launches on Celo with Textile FX Liquidity | KuCoin",
+    "url": "https://www.kucoin.com/news/flash/idrx-rupiah-stablecoin-launches-on-celo-with-textile-fx-liquidity",
+    "description": "The deployment makes the rupiah the 20th global currency tokenized on the payments-focused blockchain and adds a regulated, fiat-backed asset to a network whose stablecoin ecosystem now processes $6.2 billion in monthly volume. IDRX is backed one-to-one by rupiah-denominated reserves held as fiat and Indonesian government bonds at regulated financial institutions, with reserve documentation published by the issuer and audited by independent third parties. Crosschain FX network Textile FX, born out of the Celo ecosystem, is a day-one partner quoting IDRX against Tether\u2019s USD\u20ae with institutional liquidity led by Tribeca Park Capital.",
+    "age": "September 16, 2026",
+    "publishedAt": "2026-09-16T21:53:49.000Z"
+   },
+   {
+    "title": "Fiat-Backed, Regulated Indonesian Rupiah Stablecoin, IDRX, Deploys on Celo",
+    "url": "https://www.cryptowisser.com/news/indonesian-rupiah-stablecoin-idrx-goes-live-on-celo/",
+    "description": "On Tuesday, the Celo Foundation announced via X that the leading fiat-backed Indonesian Rupiah stablecoin IDRX, issued by PT IDRX Indo Inovasi, has launched on Celo.",
+    "age": "September 16, 2026",
+    "publishedAt": "2026-09-16T08:50:57.000Z"
+   },
+   {
+    "title": "IDRX Rupiah Stablecoin Goes Live on Celo With Textile FX Liquidity | Bitget News",
+    "url": "https://www.bitget.com/news/detail/12560605842215",
+    "description": "The deployment makes the rupiah the 20th global currency tokenized on the payments-focused blockchain and adds a regulated, fiat-backed asset to a network whose stablecoin ecosystem now processes $6.2 billion in monthly volume. IDRX is backed one-to-one by rupiah-denominated reserves held as fiat and Indonesian government bonds at regulated financial institutions, with reserve documentation published by the issuer and audited by independent third parties. Crosschain FX network Textile FX, born out of the Celo ecosystem, is a day-one partner quoting IDRX against Tether\u2019s USD\u20ae with institutional liquidity led by Tribeca Park Capital.",
+    "age": "September 17, 2026",
+    "publishedAt": "2026-09-17T00:57:33.000Z"
+   },
+   {
+    "title": "IDRX Rupiah Stablecoin Launches on Celo, Expands FX Reach - Blockchain.News",
+    "url": "https://blockchain.news/news/idrx-rupiah-stablecoin-launches-on-celo",
+    "description": "IDRX, a regulated Indonesian rupiah stablecoin, has officially launched on Celo, marking a significant step in connecting Indonesia's economy to global onchain financial markets. Issued by PT IDRX Indo Inovasi, IDRX is pegged 1:1 to the Indonesian ...",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "IDRX Stablecoin Launches on Celo for Global Payments",
+    "url": "https://www.cointrust.com/market-news/idrx-stablecoin-launches-on-celo-for-global-payments",
+    "description": "Issued by PT IDRX Indo Inovasi, IDRX is designed to maintain a one-to-one value with the Indonesian rupiah. The stablecoin is backed by fiat reserves and government bonds held with regulated financial institutions, according to the information ...",
+    "age": "September 16, 2026",
+    "publishedAt": "2026-09-16T07:36:12.000Z"
+   },
+   {
+    "title": "IDRX Rupiah Stablecoin Launches on Celo, Expands FX Reach",
+    "url": "https://bitcoinethereumnews.com/tech/idrx-rupiah-stablecoin-launches-on-celo-expands-fx-reach/",
+    "description": "IDRX, a regulated Indonesian rupiah stablecoin, has officially launched on Celo, marking a significant step in connecting Indonesia\u2019s economy to global onchain financial markets. Issued by PT IDRX Indo Inovasi, IDRX is pegged 1:1 to the Indonesian ...",
+    "age": "September 15, 2026",
+    "publishedAt": "2026-09-15T14:59:07.000Z"
+   },
+   {
+    "title": "docs(stablecoins): add IDRX, the Indonesian Rupiah stablecoin, to the Celo Mainnet lists by ghozzza \u00b7 Pull Request #2321 \u00b7 celo-org/docs \u00b7 GitHub",
+    "url": "https://github.com/celo-org/docs/pull/2321",
+    "description": "\u2026 Celo Mainnet lists IDRX deployed to Celo Mainnet on 2026-09-09 at 0x18Bc5bcC660cf2B9cE3cd51a404aFe1a0cBD3C22, the address it also uses on Base and Lisk, and IDRX's own supported-chain page lists Celo. It joins scripts/data/stablecoins.json as a curated third-party entry; the generated stablecoin-contracts table is regenerated from it (the row is byte-identical to the script's output against live chain data), and the Build with Local Stablecoins page gains the issuer row and the regional count moves from 26 to 27.",
+    "age": null,
+    "publishedAt": null
+   },
+   {
+    "title": "B2B Stablecoin Payments: How Businesses Settle in USDC and USDT | Support",
+    "url": "https://eco.com/support/en/articles/14856049-b2b-stablecoin-payments-how-businesses-settle-in-usdc-and-usdt",
+    "description": "B2B stablecoin payments settle invoices, payroll, and supplier payouts in USDC or USDT instead of wire/ACH/SWIFT. Covers the rails, the acceptance + treasury stack, customer patterns, and compliance.",
+    "age": "October 6, 2026",
+    "publishedAt": "2026-10-06T14:10:36.000Z"
+   }
+  ],
+  "untrustedContent": true,
+  "next": {
+   "slug": "answer",
+   "route": "GET /api/answer",
+   "price": "$0.08"
+  }
+ },
+ "settlement_tx": "0x160402aa22af6dfdeb600ae49efaaabfaef4510419f036b20260184e020e1002",
+ "settlement_block": 82609296,
+ "settlement_status": "0x1",
+ "attempts": 1,
+ "elapsed_s": 4.3,
+ "payee": "0xabf4fabd7c416fb67202e5f9002389fc75e2a9d0"
+}

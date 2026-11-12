@@ -2,23 +2,23 @@
   "rewrites": [
     {
       "source": "/i/:path*",
-      "destination": "https://rings-islands-prior-qualities.trycloudflare.com/i/:path*"
+      "destination": "https://thee-features-auburn-proprietary.trycloudflare.com/i/:path*"
     },
     {
       "source": "/proof",
-      "destination": "https://rings-islands-prior-qualities.trycloudflare.com/proof"
+      "destination": "https://thee-features-auburn-proprietary.trycloudflare.com/proof"
     },
     {
       "source": "/api/:path*",
-      "destination": "https://rings-islands-prior-qualities.trycloudflare.com/api/:path*"
+      "destination": "https://thee-features-auburn-proprietary.trycloudflare.com/api/:path*"
     },
     {
       "source": "/agent.json",
-      "destination": "https://rings-islands-prior-qualities.trycloudflare.com/agent.json"
+      "destination": "https://thee-features-auburn-proprietary.trycloudflare.com/agent.json"
     },
     {
       "source": "/health",
-      "destination": "https://rings-islands-prior-qualities.trycloudflare.com/health"
+      "destination": "https://thee-features-auburn-proprietary.trycloudflare.com/health"
     }
   ],
   "headers": [

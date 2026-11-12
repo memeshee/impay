@@ -1,7 +1,7 @@
 {
-  "total_usd": 0.622,
+  "total_usd": 0.632,
   "hosts": {
-    "agent402.tools": 0.622
+    "agent402.tools": 0.632
   },
   "issued": {
     "0x837ee5a4b5739b7da4ac90c29eaf4623c3d14a56d5a4cb3141b482a49e7d3573": {
@@ -493,6 +493,11 @@
       "url": "https://agent402.tools/api/search",
       "amount_atomic": 10000,
       "at": 1794423679
+    },
+    "0x3b074f24b8464b57570abd999d92b777e382fc1573039414beadd0e04f184971": {
+      "url": "https://agent402.tools/api/search",
+      "amount_atomic": 10000,
+      "at": 1794510050
     }
   }
 }
